@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Book Review | Stefano Pagliari - Personal Website</title>
+    <link>https://stefanopagliari.net/tag/book-review/</link>
+      <atom:link href="https://stefanopagliari.net/tag/book-review/index.xml" rel="self" type="application/rss+xml" />
+    <description>Book Review</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 01 Dec 2014 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://stefanopagliari.net/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Book Review</title>
+      <link>https://stefanopagliari.net/tag/book-review/</link>
+    </image>
+    
+    <item>
+      <title>Fixing international finance: between international rule-making and domestic cosmetic compliance. Review of &#39;International Harmonization of Financial Regulation? The politics of global diffusion of the Basel Capital Accord&#39; by Hyoung-Kyu Chey</title>
+      <link>https://stefanopagliari.net/publication/fixing_international_finance/</link>
+      <pubDate>Mon, 01 Dec 2014 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/fixing_international_finance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Private financial governance at a crossroads. Review of &#39;The Governance and Regulation of International Finance&#39; by Geoffrey P. Miller and Fabrizio Cafaggi (eds)</title>
+      <link>https://stefanopagliari.net/publication/private_financial_governance_at_a_crossroads/</link>
+      <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/private_financial_governance_at_a_crossroads/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

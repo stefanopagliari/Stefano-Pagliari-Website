@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>International Industry | Stefano Pagliari - Personal Website</title>
+    <link>https://stefanopagliari.net/tag/international-industry/</link>
+      <atom:link href="https://stefanopagliari.net/tag/international-industry/index.xml" rel="self" type="application/rss+xml" />
+    <description>International Industry</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 01 Aug 2015 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://stefanopagliari.net/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>International Industry</title>
+      <link>https://stefanopagliari.net/tag/international-industry/</link>
+    </image>
+    
+    <item>
+      <title>Financial Industry Power and Regulatory Policies: What Lessons from the Global Financial Crisis?</title>
+      <link>https://stefanopagliari.net/publication/financial_industry_power_and-regulatory_policies/</link>
+      <pubDate>Sat, 01 Aug 2015 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/financial_industry_power_and-regulatory_policies/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

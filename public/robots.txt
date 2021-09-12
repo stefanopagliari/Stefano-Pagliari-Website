@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://stefanopagliari.net/sitemap.xml

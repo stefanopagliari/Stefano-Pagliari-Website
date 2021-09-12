@@ -1,0 +1,66 @@
+# Navigation Links
+#   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
+#     desired widget in your `content/home/` folder.
+#   The weight parameter defines the order that the links will appear in.
+
+main:
+#  - name: Bio
+#    url: '#about'
+#    weight: 10
+  - name: Research
+    url: '#Research_Interests'
+    weight: 30
+  - name: Financial Regulation
+    parent: 'Research'
+    url: "/tag/financial-regulation/"
+    weight: 31 
+  - name: Financial Industry
+    parent: 'Research'
+    url: "/tag/financial-industry/"
+    weight: 32
+  - name: International Financial Institutions
+    parent: 'Research'
+    url: "/tag/international-financial-institutions/"
+    weight: 33 
+  - name: Accountability after Financial Crises
+    parent: 'Research'
+    url: "/tag/accountability/"
+    weight: 34
+  - name: Text-as-Data
+    parent: 'Research'
+    url: "/tag/text-as-data/"
+    weight: 34      
+  - name: Publications
+    url: '/publication/'
+    weight: 37
+  - name: Recent Publications
+    parent: 'Publications'
+    url: "#featured_publications"
+    weight: 38
+  - name: Edited Books
+    parent: 'Publications'
+    url: "#books"
+    weight: 39
+  - name: Journal Articles
+    parent: 'Publications'
+    url: "#articles"
+    weight: 41
+  - name: Book Chapters
+    parent: 'Publications'
+    url: "#articles"
+    weight: 42
+  - name: Other Publications
+    parent: 'Publications'
+    url: "#Other_Publications"
+    weight: 43
+  - name: Search all
+    parent: 'Publications'
+    url: "/publication/"
+    weight: 44
+  - name: Contact
+    url: '#contact'
+    weight: 80
+  - name: CV
+    url: "files/Pagliari-CV.pdf"
+    weight: 70
+

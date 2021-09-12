@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Stefano Pagliari (ed.) | Stefano Pagliari - Personal Website</title>
+    <link>https://stefanopagliari.net/author/stefano-pagliari-ed./</link>
+      <atom:link href="https://stefanopagliari.net/author/stefano-pagliari-ed./index.xml" rel="self" type="application/rss+xml" />
+    <description>Stefano Pagliari (ed.)</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language>
+    <image>
+      <url>https://stefanopagliari.net/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Stefano Pagliari (ed.)</title>
+      <link>https://stefanopagliari.net/author/stefano-pagliari-ed./</link>
+    </image>
+    
+    <item>
+      <title>Governing the World&#39;s Biggest Market: The Politics of Derivatives Regulation After the 2008 Crisis</title>
+      <link>https://stefanopagliari.net/publication/governing_the_worlds_biggest_market/</link>
+      <pubDate>Sun, 01 Apr 2018 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/governing_the_worlds_biggest_market/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Making Good Financial Regulation. Towards a Policy Response to Regulatory Capture</title>
+      <link>https://stefanopagliari.net/publication/making_good_financial_regulation/</link>
+      <pubDate>Sun, 01 Jan 2012 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/making_good_financial_regulation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Global Finance in Crisis. The Politics of International Regulatory Change</title>
+      <link>https://stefanopagliari.net/publication/global_finance_in_crisis/</link>
+      <pubDate>Fri, 01 Jan 2010 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/global_finance_in_crisis/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Regulatory Capture | Stefano Pagliari - Personal Website</title>
+    <link>https://stefanopagliari.net/tag/regulatory-capture/</link>
+      <atom:link href="https://stefanopagliari.net/tag/regulatory-capture/index.xml" rel="self" type="application/rss+xml" />
+    <description>Regulatory Capture</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 01 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://stefanopagliari.net/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Regulatory Capture</title>
+      <link>https://stefanopagliari.net/tag/regulatory-capture/</link>
+    </image>
+    
+    <item>
+      <title>Beyond financial repression and regulatory capture: the recomposition of European financial ecosystems after the crisis</title>
+      <link>https://stefanopagliari.net/publication/europe_between_financial_repression_and_regulatory_capture/</link>
+      <pubDate>Sun, 01 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/europe_between_financial_repression_and_regulatory_capture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Making Good Financial Regulation. Towards a Policy Response to Regulatory Capture</title>
+      <link>https://stefanopagliari.net/publication/making_good_financial_regulation/</link>
+      <pubDate>Sun, 01 Jan 2012 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/making_good_financial_regulation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mitigating Capture in Financial Regulation</title>
+      <link>https://stefanopagliari.net/publication/mitigating-capture_in_financial_regulation/</link>
+      <pubDate>Sun, 01 Jan 2012 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/mitigating-capture_in_financial_regulation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Who Mobilizes? An Analysis of Stakeholder Responses to Financial Policy Consultations</title>
+      <link>https://stefanopagliari.net/publication/who_mobilizes/</link>
+      <pubDate>Sun, 01 Jan 2012 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/who_mobilizes/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

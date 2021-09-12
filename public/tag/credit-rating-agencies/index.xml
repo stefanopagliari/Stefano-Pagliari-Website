@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Credit Rating Agencies | Stefano Pagliari - Personal Website</title>
+    <link>https://stefanopagliari.net/tag/credit-rating-agencies/</link>
+      <atom:link href="https://stefanopagliari.net/tag/credit-rating-agencies/index.xml" rel="self" type="application/rss+xml" />
+    <description>Credit Rating Agencies</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 08 Feb 2013 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://stefanopagliari.net/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Credit Rating Agencies</title>
+      <link>https://stefanopagliari.net/tag/credit-rating-agencies/</link>
+    </image>
+    
+    <item>
+      <title>Public Salience and International Financial Regulation. Explaining the International Regulation of OTC Derivatives, Rating Agencies, and Hedge Funds</title>
+      <link>https://stefanopagliari.net/publication/public_salience_and_international_financial_regulation/</link>
+      <pubDate>Fri, 08 Feb 2013 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/public_salience_and_international_financial_regulation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Who Governs Finance? The Shifting Public-Private Divide in the Regulation of Derivatives, Rating Agencies and Hedge Funds</title>
+      <link>https://stefanopagliari.net/publication/who_governs_finance/</link>
+      <pubDate>Sun, 01 Jan 2012 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/who_governs_finance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reforming the US financial architecture: the regulation of derivatives, rating agencies, and hedge funds</title>
+      <link>https://stefanopagliari.net/publication/reforming_us_financial_architecture/</link>
+      <pubDate>Fri, 08 Jan 2010 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/reforming_us_financial_architecture/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

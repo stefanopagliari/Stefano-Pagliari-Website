@@ -1,0 +1,15 @@
+# Publication types.
+# Each item in the list corresponds to an item in the language packs.
+types = [ "pub_journal",
+          "pub_book",
+          "pub_book_section",
+          "pub_working_paper",
+          "pub_thesis",
+          "pub_other",
+          "pub_conf",
+          "pub_preprint",
+          "pub_report",
+          "pub_uncat",
+          "pub_patent"
+        ]
+

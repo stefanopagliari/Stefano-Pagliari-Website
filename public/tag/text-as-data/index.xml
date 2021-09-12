@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Text-as-Data | Stefano Pagliari - Personal Website</title>
+    <link>https://stefanopagliari.net/tag/text-as-data/</link>
+      <atom:link href="https://stefanopagliari.net/tag/text-as-data/index.xml" rel="self" type="application/rss+xml" />
+    <description>Text-as-Data</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 02 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://stefanopagliari.net/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Text-as-Data</title>
+      <link>https://stefanopagliari.net/tag/text-as-data/</link>
+    </image>
+    
+    <item>
+      <title>The Internationalization of European Financial Networks: A Quantitative Text Analysis of EU Consultation Responses</title>
+      <link>https://stefanopagliari.net/publication/internationalization_european_financial_networks/</link>
+      <pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/internationalization_european_financial_networks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Regulatory Novelty after Financial Crises: Evidence from International Banking and Securities Standards, 1975-2016</title>
+      <link>https://stefanopagliari.net/publication/regulatory_novelty_after_financial_crises/</link>
+      <pubDate>Sun, 18 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/regulatory_novelty_after_financial_crises/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Exploring Information Exchange among Interest Groups: A Text-Reuse Approach</title>
+      <link>https://stefanopagliari.net/publication/exploring_information_exchange_among_interest_groups/</link>
+      <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/exploring_information_exchange_among_interest_groups/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

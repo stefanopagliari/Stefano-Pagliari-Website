@@ -1,0 +1,257 @@
+/* links */
+
+a {
+  color: #3186d5;
+  cursor: pointer;
+}
+
+a:active,
+a:focus,
+a:hover {
+  color: #3186d5;
+}
+
+/* nav */
+
+
+.navbar-light .navbar-nav>.nav-item>.nav-link,
+.navbar-light .navbar-nav>.nav-item>.nav-link:focus,
+.navbar-light .navbar-nav>.nav-item>.nav-link:hover,
+.navbar-light .navbar-nav>.nav-item>.nav-link:active {
+  font-weight: 700;
+}
+
+.navbar-light .navbar-nav > li.nav-item > a.active,
+.navbar-light .navbar-nav > li.nav-item > a.active:focus,
+.navbar-light .navbar-nav > li.nav-item > a.active:hover {
+  font-weight: 700;
+  transition: color .2s ease;
+}
+
+.navbar-light {
+  box-shadow: none;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.navbar-nav {
+  border-bottom: 2px solid #3186d5;
+}
+
+.navbar-brand {
+/*  text-transform: lowercase; */
+  font-weight: 700;
+  font-size: medium;
+  letter-spacing: .08em;
+
+
+}
+
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover {
+  color: #3186d5;
+}
+
+.navbar-main {
+  background: #3186d5;
+  background-color: #3186d5;
+  border-bottom: 2px solid #3186d5;
+
+}
+
+ 
+.about.avatar {
+  border-bottom: 2px solid #3186d5;
+}
+s
+/* publications listed in the home */
+
+div.pub-list-item {
+  line-height: 1.4;
+}
+
+/* text */
+
+h1, h2, h3, h4, h5, h6 {
+  color: #333;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+body {
+  color: #333;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+
+/* home page */
+
+
+.portrait-title h2 {
+  color: #333;
+}
+
+#about .col-12.col-lg-8 {
+  padding-top: 30px !important;
+}
+
+.network-icon li:hover {
+  transform: scale(1.05);
+}
+
+.home-section:first-of-type {
+  padding: 50px 0 50px 0;
+}
+
+.home-section:not(:first-of-type) {
+  padding: 25px 0 50px 0;
+}
+
+
+/* this erases the margin-bottom for h1 */
+
+.home-section.wg-pages .section-heading h1 {
+  margin: 0 0 0 0;
+}
+
+
+/* this is the section subtitle */
+
+
+.home-section.wg-pages .section-heading p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  letter-spacing: .08em;
+}
+
+/* make dark even/odd sections same color so less stripey */
+
+
+.dark .home-section:nth-of-type(n) {
+	background-color: #282a36;
+}
+
+
+/* buttons */
+
+
+.btn.btn-sm, .btn-group-sm > .btn {
+  font-size: 0.7rem;
+}
+
+.btn.btn-outline-primary.my-1.mr-1 {
+  font-size: 0.7rem;
+}
+
+/*
+.btn {
+  /*font-family: Arapey;*/
+ /* text-transform: lowercase; */
+ /* font-style: italic;*/
+/*  border-radius: 0px;/*
+/*
+
+
+
+/* section headers */
+
+div.universal-wrapper.pt-3 h1 {
+  text-align: center;
+  padding-bottom: 50px;
+  text-transform: capitalize;
+}
+
+/* about-contact helpers */
+/*
+.mini {
+	text-align: left;
+	margin-left: 10rem;
+	margin-right: 10rem;
+	padding-bottom: 68px;
+  border-bottom: 1px solid #d53135;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #d53135;
+  background-image: none;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+.home-section.wg-experience .card-body {
+	padding: .5rem;
+}
+
+.home-section.wg-experience .card .card-text{
+  padding: 0;
+}
+*/
+/* images more like cards; iframes more seamless */
+/*
+img {
+	margin-bottom: 1.5rem;
+	overflow: hidden;
+	background: #fff;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+iframe {
+	border: 0;
+}
+*/
+/* pagination buttons */
+
+.page-link {
+	color: #d53135;
+	background-color: #fbf9f4;
+	border: 1px solid #d53135;
+  border-radius: 0px;
+}
+
+.page-link:hover {
+	color: #fff;
+	background-color: #d53135;
+	border-color: #d53135;
+}
+
+.page-item:first-child .page-link {
+	border-top-left-radius: 0rem;
+	border-bottom-left-radius: 0rem;
+}
+
+.page-item:last-child .page-link {
+	border-top-right-radius: 0rem;
+	border-bottom-right-radius: 0rem;
+}
+
+/* dark fixes */
+/*
+.dark .pagination li > a, .pagination li > span {
+	border: 1px solid #d53135;
+}
+
+.dark .page-link:hover {
+	background-color: #d53135;
+}
+
+.dark a:active,
+.dark a:focus,
+.dark a:hover {
+	color: #fff;
+}
+
+*/
+
+
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>International Cooperation | Stefano Pagliari - Personal Website</title>
+    <link>https://stefanopagliari.net/tag/international-cooperation/</link>
+      <atom:link href="https://stefanopagliari.net/tag/international-cooperation/index.xml" rel="self" type="application/rss+xml" />
+    <description>International Cooperation</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 01 Jan 2011 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://stefanopagliari.net/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>International Cooperation</title>
+      <link>https://stefanopagliari.net/tag/international-cooperation/</link>
+    </image>
+    
+    <item>
+      <title>The End of an Era in International Financial Regulation? A Postcrisis Research Agenda</title>
+      <link>https://stefanopagliari.net/publication/end_of_an_era_in_international_financial_regulation/</link>
+      <pubDate>Sat, 01 Jan 2011 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/end_of_an_era_in_international_financial_regulation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Towards a New Bretton Woods? The First G20 Leaders Summit and the Regulation of Global Finance</title>
+      <link>https://stefanopagliari.net/publication/towards_new_bretton_woods/</link>
+      <pubDate>Mon, 01 Jun 2009 00:00:00 +0000</pubDate>
+      <guid>https://stefanopagliari.net/publication/towards_new_bretton_woods/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
