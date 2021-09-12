@@ -4,7 +4,7 @@ theme: "starter-hugo-academic"
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
-title: Stefano Pagliari - Personal Website # Website name
+title: Stefano Pagliari # Website name
 baseurl: 'https://stefanopagliari.net/' # Website URL
 copyright: '' # Footer text, e.g. '© {year} Me'
 
