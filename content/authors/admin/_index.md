@@ -1,5 +1,5 @@
 ---
-#bio: <br/>I’m a Senior Lecturer in the [International Politics Department]("https://www.city.ac.uk/about/schools/arts-social-sciences/international-politics") at City, University of London. My research covers a number of themes related to international and comparative political economy, with a particular focus on the political economy of finance.
+bio: <br/>I’m a Senior Lecturer in the [International Politics Department]("https://www.city.ac.uk/about/schools/arts-social-sciences/international-politics") at City, University of London. My research covers a number of themes related to international and comparative political economy, with a particular focus on the political economy of finance.
 #education:
 #  courses:
 #  - course: PhD in Artificial Intelligence
