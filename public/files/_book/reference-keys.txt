@@ -20,8 +20,9 @@ commenting-your-code
 importingexporting-files-from-rstudio-cloud
 getting-started-with-r
 objects-in-r
-creating-objects-with-the-assignment-operator--
+creating-objects
 naming-object
+case-sensitive
 types-of-objects
 numbers
 characters

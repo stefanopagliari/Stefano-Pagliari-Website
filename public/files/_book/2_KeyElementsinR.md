@@ -4,7 +4,7 @@
 
 ## Objects in R
 
-### Creating Objects with the Assignment Operator `<-`
+### Creating Objects
 R is an object-oriented language, that is, data and code can be saved as **objects**.
 
 Instead of sending the result of our command to the console, we can use the `<-` operator to assign the results to an object we create. This is a combination of the lesser than sign and the dash.
@@ -45,7 +45,7 @@ You can give objects names, with a few restrictions:
 - no mathematical operators (-, +, *, /, etc...)
 - object names must start with a letter but can include numbers
 
-For instance, can you correct the names below that the code does not return an error when you run it?
+For instance, the code below returns an error when you run it since R is reading "My" and "Name" as two different objects. 
 
 
 ```r
@@ -61,6 +61,10 @@ My Name
 ```
 
 
+
+### Case Sensitive
+
+
 Names in R are case sensitive. This means that the object my_data is not the same as the object My_Data.
 For instance, see what happens when you run the code below:
 
@@ -71,7 +75,7 @@ my_name <- "Stefano"
 
 # Check if your name is the one assigned
 My_Name == "Stefano"
-
+#> Error in eval(expr, envir, enclos): object 'My_Name' not found
 ```
 
 Running the code will result in the error `Object "My_Name" not found` since we initially stored our name in the object `my_name`
@@ -453,7 +457,13 @@ Packages allow you to build upon the work done by others to complete your tasks 
 
 In order to access the commands included in packages, you will need to *install* these packages into R the first time you use them, and *load* them in your workspace every time you use them.
 
-In order to install a package you will call the function `install.packages("NAME OF THE PACKAGE")`. 
+In order to install a package you will call the function `install.packages("NAME OF THE PACKAGE")`. For instance, we install the tidyverse package by using this command. 
+
+
+```r
+install.packages("tidyverse")
+```
+
 You can install packages into R by hand-selecting Install, Packages from the Files/Help/Packages panel, and typing in the "package_name".
 
 ![](images/Packages_Panel.png){width=50%}
@@ -475,14 +485,16 @@ To load packages, you can:
 
 ### Tidyverse
 
+
+![](images/Tidyverse_Logo.png){width=50%}
+
 In this module we will do the bulk of the analysis a few important packages:
 
 - `dplyr()` to manipulate the data
 - `ggplot2()` to visualize the data
-- `tidyr()` 
+- `tidyr()` to clean the data
 
 
-![](images/Tidyverse_Logo.png){width=50%}
 
 These packages are part of a common group of packages called `tidyverse`. You can install and load all the packages that are part of the tidyverse using
 
