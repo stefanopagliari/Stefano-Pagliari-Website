@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 2 RStudio and RStudio Cloud | IP2038 - Analysing Political and Economic Data in the Real World - Course Material</title>
+<meta name="author" content="Stefano Pagliari">
+<meta name="description" content="RStudio is an integrated development environment (IDE) used to programme in R. In other words, RStudio is a software that helps you to write R code, examine data, produce graphs, present your...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 2 RStudio and RStudio Cloud | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta property="og:type" content="book">
+<meta property="og:description" content="RStudio is an integrated development environment (IDE) used to programme in R. In other words, RStudio is a software that helps you to write R code, examine data, produce graphs, present your...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 2 RStudio and RStudio Cloud | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta name="twitter:description" content="RStudio is an integrated development environment (IDE) used to programme in R. In other words, RStudio is a software that helps you to write R code, examine data, produce graphs, present your...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IP2038 - Analysing Political and Economic Data in the Real World - Course Material</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction to the Module</a></li>
+<li><a class="active" href="rstudio-and-rstudio-cloud.html"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></li>
+<li><a class="" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="rstudio-and-rstudio-cloud" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> RStudio and RStudio Cloud<a class="anchor" aria-label="anchor" href="#rstudio-and-rstudio-cloud"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>RStudio</strong> is an integrated development environment (IDE) used to programme in R. In other words, RStudio is a software that helps you to write R code, examine data, produce graphs, present your findings.</p>
+<div class="inline-figure"><img src="images/RStudio_Image.png" style="width:80.0%"></div>
+<hr>
+<div id="optional-installing-rstudio-on-your-personal-computer" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> (Optional) Installing RStudio on your personal computer<a class="anchor" aria-label="anchor" href="#optional-installing-rstudio-on-your-personal-computer"><i class="fas fa-link"></i></a>
+</h2>
+<p>R and RStudio are free to download and use on your personal computer. In order to install RStudio on your computer you need to:</p>
+<ul>
+<li>
+<strong>Download and install R</strong> (the programming language) from <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>. R is maintained by an international team of developers who make the language available through the web page of <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. The top of the web page provides three links for downloading R. Follow the link that describes your operating system: Windows, Mac, or Linux.</li>
+<li>
+<strong>Download and install RStudio Desktop</strong> on your computer from <a href="https://rstudio.com/products/rstudio/download/" class="uri">https://rstudio.com/products/rstudio/download/</a>. Once you’ve installed RStudio, you can open it like any other program on your computer—usually by clicking an icon on your desktop.</li>
+</ul>
+<p><em>Please note that this is not required for this module as we will use the browser-based version RStudio (RStudio Cloud)</em></p>
+<hr>
+</div>
+<div id="rstudio-cloud" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> RStudio Cloud<a class="anchor" aria-label="anchor" href="#rstudio-cloud"><i class="fas fa-link"></i></a>
+</h2>
+<div class="inline-figure"><img src="images/RStudio_Cloud_Logo.png" style="width:70.0%"></div>
+<p><strong>RStudio Cloud</strong> (<a href="https://rstudio.cloud/" class="uri">https://rstudio.cloud/</a>) is a lightweight, cloud-based version of RStudio that runs on a browser. City has paid for a module subscription, which will make it easier for you to access RStudio and complete the module.
+You can switch over to a free individual RStudio Cloud plan once the module is completed.</p>
+<hr>
+<div id="getting-started-in-rstudio-cloud" class="section level3" number="2.2.1">
+<h3>
+<span class="header-section-number">2.2.1</span> Getting Started in RStudio Cloud<a class="anchor" aria-label="anchor" href="#getting-started-in-rstudio-cloud"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>You should have received an email from RStudio Cloud that looks like this:</li>
+</ul>
+<div class="inline-figure"><img src="images/EmailRStudioCloud.png" style="width:70.0%"></div>
+<ul>
+<li><p>The email contains a link that will direct you towards the webpage where you can create your account. In order to do to:</p></li>
+<li><p>You must use your City email address</p></li>
+</ul>
+<div class="inline-figure"><img src="images/RStudioCloudRegister.png" style="width:70.0%"></div>
+<ul>
+<li>Choose a strong password</li>
+<li>You must use your first and last names registered with City</li>
+</ul>
+<p>After you have completed your registration, you can access RStudio Cloud from your browser by navigating to: <a href="https://rstudio.cloud/" class="uri">https://rstudio.cloud/</a> using your browser. Here you will need to sign in using your city email and your new RStudio Cloud password.</p>
+<hr>
+</div>
+<div id="rstudio-cloud-interface" class="section level3" number="2.2.2">
+<h3>
+<span class="header-section-number">2.2.2</span> RStudio Cloud Interface<a class="anchor" aria-label="anchor" href="#rstudio-cloud-interface"><i class="fas fa-link"></i></a>
+</h3>
+<div class="inline-figure"><img src="images/RStudioCloudInterface.png" style="width:90.0%"></div>
+<p>When you open RStudio Cloud, you will see different elements:</p>
+<ul>
+<li>
+<strong>Your Workspace</strong>: here you can create your own projects as well as copy your own versions of the weekly worksheets</li>
+<li>
+<strong>Tutorials</strong>: This folder contains code used in the tutorials of this module. You can run the code included in these projects but you cannot edit it. In order to edit it, you will need to create your own copy of the projects. Save this weekly project as a new file by clicking on “Save a Permanent Copy”.</li>
+</ul>
+<div class="inline-figure"><img src="images/RStudioSavePermanent.png" style="width:90.0%"></div>
+<hr>
+</div>
+</div>
+<div id="rstudio-working-environment" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> RStudio Working Environment<a class="anchor" aria-label="anchor" href="#rstudio-working-environment"><i class="fas fa-link"></i></a>
+</h2>
+<p>When you open a project in RStudio/RStudio Cloud, you will access the main working environment.</p>
+<div class="inline-figure"><img src="images/RStudio_Panels.png" style="width:90.0%"></div>
+<p>This has has four main panels.</p>
+<ul>
+<li>
+<strong>Console</strong>: where you can execute commands and see the results. Commands run here are temporary, and will be lost if you close R.</li>
+<li>
+<strong>Code Editor</strong>: where you work on different code files that can be saved.</li>
+<li>
+<strong>Environment/History</strong>: this space shows the objects that you create and work with</li>
+<li>
+<strong>Files/Help/Packages</strong>: in this space you can see your files, plots and graphs that you produce, R packages that you install, help with packages.</li>
+</ul>
+<hr>
+</div>
+<div id="writing-code-with-rstudio" class="section level2" number="2.4">
+<h2>
+<span class="header-section-number">2.4</span> Writing Code with RStudio<a class="anchor" aria-label="anchor" href="#writing-code-with-rstudio"><i class="fas fa-link"></i></a>
+</h2>
+<p>It is possible to execute commands by writing them in the Console on the bottom of the RStudio environment. However, if you close R, you lose this command history and thus the ability to replicate what you have done.</p>
+<p>Just as we “save” files (like MS Word documents), so that we don’t lose our work, in R you can save your R Scripts, so that you don’t lose the various R commands that you have executed. A script is a series of commands that you can save, modify, and re-run whenever you like.</p>
+<p>In RStudio, you will create, edit, and save scripts from the code editor panel</p>
+<div class="inline-figure"><img src="images/Code_Editor.png" style="width:90.0%"></div>
+<hr>
+<div id="how-to-create-a-r-script" class="section level3" number="2.4.1">
+<h3>
+<span class="header-section-number">2.4.1</span> How to create a R Script<a class="anchor" aria-label="anchor" href="#how-to-create-a-r-script"><i class="fas fa-link"></i></a>
+</h3>
+<p>In order to create a new R Script:</p>
+<ul>
+<li>Go to the Code Editor panel and click on the “New File” button</li>
+<li>Select “R Script”
+<img src="images/CreateRScript.png" style="width:90.0%">
+</li>
+</ul>
+<p>Once you have created a script, you can then type multiple instructions within different lines of your code, run, and save the script.</p>
+<div class="inline-figure"><img src="images/ExampleRScript.png" style="width:50.0%"></div>
+</div>
+<div id="how-to-run-a-r-script" class="section level3" number="2.4.2">
+<h3>
+<span class="header-section-number">2.4.2</span> How to Run a R Script<a class="anchor" aria-label="anchor" href="#how-to-run-a-r-script"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are different ways to run a script. You can:</p>
+<ul>
+<li>Type the command in the Console</li>
+<li>You can run your script line by clicking on a line and typing Command+Enter (Mac OS) or Control+Enter (Windows) to run the line, or hitting <code>Run</code> from the dropdown menu.</li>
+<li>To run the whole script, type Ctrl+Shift+Enter on Windows, Command+Shift+Enter.</li>
+<li>You can also process your script by clicking on the “Run” icon at the top of the script editor. If a line is selected, this will run only that line. Otherwise, the entire script will be compiled.</li>
+</ul>
+<div class="inline-figure"><img src="images/RStudio_Run_Script.png" style="width:90.0%"></div>
+<hr>
+</div>
+<div id="how-to-save-a-r-script" class="section level3" number="2.4.3">
+<h3>
+<span class="header-section-number">2.4.3</span> How to Save a R Script<a class="anchor" aria-label="anchor" href="#how-to-save-a-r-script"><i class="fas fa-link"></i></a>
+</h3>
+<p>In order to save a R script you can:</p>
+<ul>
+<li>type Control + S (panels) or Command + S (Mac OS)</li>
+<li>Click the “save” button</li>
+<li>By default the script will be saved in the folder of your project.</li>
+</ul>
+<hr>
+</div>
+<div id="commenting-your-code" class="section level3" number="2.4.4">
+<h3>
+<span class="header-section-number">2.4.4</span> Commenting your code<a class="anchor" aria-label="anchor" href="#commenting-your-code"><i class="fas fa-link"></i></a>
+</h3>
+<p>R code can be hard to read. If someone else tries to read it (or you later on), it might be hard to figure out what you have done. Adding comments make code easier to read.</p>
+<p>In R you can insert a comment in your script by placing <code>#</code> at the beginning of your code.</p>
+<p>See this example:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#This script creates data and returns TRUE if the mean is less than the median.</span>
+
+<span class="co"># Create the number vector (sequence of numbers) called x</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>
+<span class="co"># Compute the mean of vector x and store value it in object y</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+<span class="co"># Compute the median of vector x and store value it in object z</span>
+<span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+<span class="co"># Compare the mean and median of vector x with a logical expression</span>
+<span class="va">y</span> <span class="op">&lt;</span> <span class="va">z</span>
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<p>It is also possible to place a comment (<code>#</code>) at the end of a line of code.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#This script creates data and returns TRUE if the mean is less than the median.</span>
+
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span> <span class="co"># Create the number vector (sequence of numbers) called x</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># Compute the mean of vector x and store value it in object y</span>
+<span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># Compute the median of vector x and store value it in object z</span>
+<span class="va">y</span> <span class="op">&lt;</span> <span class="va">z</span> <span class="co"># Compare the mean and median of vector x with a logical expression</span>
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<hr>
+</div>
+<div id="importingexporting-files-from-rstudio-cloud" class="section level3" number="2.4.5">
+<h3>
+<span class="header-section-number">2.4.5</span> Importing/Exporting files from RStudio Cloud<a class="anchor" aria-label="anchor" href="#importingexporting-files-from-rstudio-cloud"><i class="fas fa-link"></i></a>
+</h3>
+<p>From the Files tab you can manage the files that are stored in your project folder. In particular, here you will find the commands to:</p>
+<ul>
+<li>
+<strong>upload</strong> a file from your computer to the project folder</li>
+<li>
+<strong>delete</strong> a file from the project folder</li>
+<li>
+<strong>rename</strong> a file in your project folder</li>
+<li>download a file from the project folder to your computer (<strong>more –&gt; export </strong>)</li>
+</ul>
+<hr>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html"><span class="header-section-number">1</span> Introduction to the Module</a></div>
+<div class="next"><a href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rstudio-and-rstudio-cloud"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></li>
+<li><a class="nav-link" href="#optional-installing-rstudio-on-your-personal-computer"><span class="header-section-number">2.1</span> (Optional) Installing RStudio on your personal computer</a></li>
+<li>
+<a class="nav-link" href="#rstudio-cloud"><span class="header-section-number">2.2</span> RStudio Cloud</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#getting-started-in-rstudio-cloud"><span class="header-section-number">2.2.1</span> Getting Started in RStudio Cloud</a></li>
+<li><a class="nav-link" href="#rstudio-cloud-interface"><span class="header-section-number">2.2.2</span> RStudio Cloud Interface</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#rstudio-working-environment"><span class="header-section-number">2.3</span> RStudio Working Environment</a></li>
+<li>
+<a class="nav-link" href="#writing-code-with-rstudio"><span class="header-section-number">2.4</span> Writing Code with RStudio</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#how-to-create-a-r-script"><span class="header-section-number">2.4.1</span> How to create a R Script</a></li>
+<li><a class="nav-link" href="#how-to-run-a-r-script"><span class="header-section-number">2.4.2</span> How to Run a R Script</a></li>
+<li><a class="nav-link" href="#how-to-save-a-r-script"><span class="header-section-number">2.4.3</span> How to Save a R Script</a></li>
+<li><a class="nav-link" href="#commenting-your-code"><span class="header-section-number">2.4.4</span> Commenting your code</a></li>
+<li><a class="nav-link" href="#importingexporting-files-from-rstudio-cloud"><span class="header-section-number">2.4.5</span> Importing/Exporting files from RStudio Cloud</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-01-30.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
