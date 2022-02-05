@@ -4,7 +4,7 @@
 
 ## Objects in R
 
-### Creating Objects
+### Creating Objects with the Assignment Operator `<-`
 R is an object-oriented language, that is, data and code can be saved as **objects**.
 
 Instead of sending the result of our command to the console, we can use the `<-` operator to assign the results to an object we create. This is a combination of the lesser than sign and the dash.
@@ -45,7 +45,7 @@ You can give objects names, with a few restrictions:
 - no mathematical operators (-, +, *, /, etc...)
 - object names must start with a letter but can include numbers
 
-For instance, the code below returns an error when you run it since R is reading "My" and "Name" as two different objects. 
+For instance, can you correct the names below that the code does not return an error when you run it?
 
 
 ```r
@@ -54,15 +54,7 @@ My Name <- "Stefano"
  
 My Name
 
-#> Error: <text>:2:4: unexpected symbol
-#> 1: 
-#> 2: My Name
-#>       ^
 ```
-
-
-
-### Case Sensitive
 
 
 Names in R are case sensitive. This means that the object my_data is not the same as the object My_Data.
@@ -75,7 +67,7 @@ my_name <- "Stefano"
 
 # Check if your name is the one assigned
 My_Name == "Stefano"
-#> Error in eval(expr, envir, enclos): object 'My_Name' not found
+
 ```
 
 Running the code will result in the error `Object "My_Name" not found` since we initially stored our name in the object `my_name`
@@ -283,7 +275,39 @@ sum(All_Votes)
 #> [1] 209
 ```
 
+---
+### Dataframes 
 
+In R, we represent ***tabular*** data in a special object called a `data.frame`. A  a `tibble` is a special type of dataframe.
+
+We can create a dataframe by combining different vectors by using the function `dataframe()`, whereby each vector is turned into a variable/column.
+
+
+```r
+
+#Create vector with surname of UK Party Leaders
+Name <- c("Johnson", "Starmer", "Sturgeon")
+
+#Create vector with name of UK Party Leaders
+Party <- c("Conservative", "Labour", "SNP")
+
+#Create vector with gender of UK Party Leaders
+Gender <- c("M", "M", "F")
+
+Age <- c(56, 58, 50)
+
+#Create dataframe from these three vectors
+Leader_DF <- data.frame(Name, Party, Gender, Age) 
+
+#Print the dataframe in the console
+Leader_DF
+#>       Name        Party Gender Age
+#> 1  Johnson Conservative      M  56
+#> 2  Starmer       Labour      M  58
+#> 3 Sturgeon          SNP      F  50
+```
+
+Most commonly, however, dataframes are created when importing an existing dataset into the R working environment. 
 
 ---
 
@@ -457,13 +481,7 @@ Packages allow you to build upon the work done by others to complete your tasks 
 
 In order to access the commands included in packages, you will need to *install* these packages into R the first time you use them, and *load* them in your workspace every time you use them.
 
-In order to install a package you will call the function `install.packages("NAME OF THE PACKAGE")`. For instance, we install the tidyverse package by using this command. 
-
-
-```r
-install.packages("tidyverse")
-```
-
+In order to install a package you will call the function `install.packages("NAME OF THE PACKAGE")`. 
 You can install packages into R by hand-selecting Install, Packages from the Files/Help/Packages panel, and typing in the "package_name".
 
 ![](images/Packages_Panel.png){width=50%}
@@ -485,16 +503,14 @@ To load packages, you can:
 
 ### Tidyverse
 
-
-![](images/Tidyverse_Logo.png){width=50%}
-
 In this module we will do the bulk of the analysis a few important packages:
 
 - `dplyr()` to manipulate the data
 - `ggplot2()` to visualize the data
-- `tidyr()` to clean the data
+- `tidyr()` 
 
 
+![](images/Tidyverse_Logo.png){width=50%}
 
 These packages are part of a common group of packages called `tidyverse`. You can install and load all the packages that are part of the tidyverse using
 

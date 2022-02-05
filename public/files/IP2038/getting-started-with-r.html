@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 3 Getting Started with R | IP2038 - Analysing Political and Economic Data in the Real World - Course Material</title>
 <meta name="author" content="Stefano Pagliari">
-<meta name="description" content="3.1 Objects in R  3.1.1 Creating Objects R is an object-oriented language, that is, data and code can be saved as objects. Instead of sending the result of our command to the console, we can use...">
+<meta name="description" content="3.1 Objects in R  3.1.1 Creating Objects with the Assignment Operator &lt;- R is an object-oriented language, that is, data and code can be saved as objects. Instead of sending the result of our...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 3 Getting Started with R | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
 <meta property="og:type" content="book">
-<meta property="og:description" content="3.1 Objects in R  3.1.1 Creating Objects R is an object-oriented language, that is, data and code can be saved as objects. Instead of sending the result of our command to the console, we can use...">
+<meta property="og:description" content="3.1 Objects in R  3.1.1 Creating Objects with the Assignment Operator &lt;- R is an object-oriented language, that is, data and code can be saved as objects. Instead of sending the result of our...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 3 Getting Started with R | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
-<meta name="twitter:description" content="3.1 Objects in R  3.1.1 Creating Objects R is an object-oriented language, that is, data and code can be saved as objects. Instead of sending the result of our command to the console, we can use...">
+<meta name="twitter:description" content="3.1 Objects in R  3.1.1 Creating Objects with the Assignment Operator &lt;- R is an object-oriented language, that is, data and code can be saved as objects. Instead of sending the result of our...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -42,6 +42,11 @@
 <li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction to the Module</a></li>
 <li><a class="" href="rstudio-and-rstudio-cloud.html"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></li>
 <li><a class="active" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
+<li><a class="" href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></li>
+<li><a class="" href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
+<li><a class="" href="missing-values.html"><span class="header-section-number">6</span> Missing Values</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="list-of-datasets.html"><span class="header-section-number">A</span> List of Datasets</a></li>
 </ul>
 
         <div class="book-extra">
@@ -57,9 +62,9 @@
 <h2>
 <span class="header-section-number">3.1</span> Objects in R<a class="anchor" aria-label="anchor" href="#objects-in-r"><i class="fas fa-link"></i></a>
 </h2>
-<div id="creating-objects" class="section level3" number="3.1.1">
+<div id="creating-objects-with-the-assignment-operator--" class="section level3" number="3.1.1">
 <h3>
-<span class="header-section-number">3.1.1</span> Creating Objects<a class="anchor" aria-label="anchor" href="#creating-objects"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.1.1</span> Creating Objects with the Assignment Operator <code>&lt;-</code><a class="anchor" aria-label="anchor" href="#creating-objects-with-the-assignment-operator--"><i class="fas fa-link"></i></a>
 </h3>
 <p>R is an object-oriented language, that is, data and code can be saved as <strong>objects</strong>.</p>
 <p>Instead of sending the result of our command to the console, we can use the <code>&lt;-</code> operator to assign the results to an object we create. This is a combination of the lesser than sign and the dash.</p>
@@ -91,21 +96,11 @@
 <li>no mathematical operators (-, +, *, /, etc…)</li>
 <li>object names must start with a letter but can include numbers</li>
 </ul>
-<p>For instance, the code below returns an error when you run it since R is reading “My” and “Name” as two different objects.</p>
+<p>For instance, can you correct the names below that the code does not return an error when you run it?</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="getting-started-with-r.html#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-2"><a href="getting-started-with-r.html#cb7-2" aria-hidden="true" tabindex="-1"></a>My Name <span class="ot">&lt;-</span> <span class="st">"Stefano"</span></span>
 <span id="cb7-3"><a href="getting-started-with-r.html#cb7-3" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb7-4"><a href="getting-started-with-r.html#cb7-4" aria-hidden="true" tabindex="-1"></a>My Name</span>
-<span id="cb7-5"><a href="getting-started-with-r.html#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="getting-started-with-r.html#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: &lt;text&gt;:2:4: unexpected symbol</span></span>
-<span id="cb7-7"><a href="getting-started-with-r.html#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: </span></span>
-<span id="cb7-8"><a href="getting-started-with-r.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: My Name</span></span>
-<span id="cb7-9"><a href="getting-started-with-r.html#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       ^</span></span></code></pre></div>
-</div>
-<div id="case-sensitive" class="section level3" number="3.1.3">
-<h3>
-<span class="header-section-number">3.1.3</span> Case Sensitive<a class="anchor" aria-label="anchor" href="#case-sensitive"><i class="fas fa-link"></i></a>
-</h3>
+<span id="cb7-4"><a href="getting-started-with-r.html#cb7-4" aria-hidden="true" tabindex="-1"></a>My Name</span></code></pre></div>
 <p>Names in R are case sensitive. This means that the object my_data is not the same as the object My_Data.
 For instance, see what happens when you run the code below:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -113,8 +108,7 @@ For instance, see what happens when you run the code below:</p>
 <span class="va">my_name</span> <span class="op">&lt;-</span> <span class="st">"Stefano"</span>
 
 <span class="co"># Check if your name is the one assigned</span>
-<span class="va">My_Name</span> <span class="op">==</span> <span class="st">"Stefano"</span>
-<span class="co">#&gt; Error in eval(expr, envir, enclos): object 'My_Name' not found</span></code></pre></div>
+<span class="va">My_Name</span> <span class="op">==</span> <span class="st">"Stefano"</span></code></pre></div>
 <p>Running the code will result in the error <code>Object "My_Name" not found</code> since we initially stored our name in the object <code>my_name</code></p>
 <hr>
 </div>
@@ -274,7 +268,54 @@ For instance, see what happens when you run the code below:</p>
  
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">All_Votes</span><span class="op">)</span>
 <span class="co">#&gt; [1] 209</span></code></pre></div>
-<hr>
+<div class="inline-table"><table style="width:6%;" class="table table-sm">
+<colgroup><col width="5%"></colgroup>
+<tbody>
+<tr class="odd">
+<td>### Dataframes</td>
+</tr>
+<tr class="even">
+<td>In R, we represent <strong><em>tabular</em></strong> data in a special object called a <code>data.frame</code>. A a <code>tibble</code> is a special type of dataframe.</td>
+</tr>
+<tr class="odd">
+<td>We can create a dataframe by combining different vectors by using the function <code>dataframe()</code>, whereby each vector is turned into a variable/column.</td>
+</tr>
+<tr class="even">
+<td>```r</td>
+</tr>
+<tr class="odd">
+<td>#Create vector with surname of UK Party Leaders
+Name &lt;- c(“Johnson”, “Starmer”, “Sturgeon”)</td>
+</tr>
+<tr class="even">
+<td>#Create vector with name of UK Party Leaders
+Party &lt;- c(“Conservative”, “Labour”, “SNP”)</td>
+</tr>
+<tr class="odd">
+<td>#Create vector with gender of UK Party Leaders
+Gender &lt;- c(“M”, “M”, “F”)</td>
+</tr>
+<tr class="even">
+<td>Age &lt;- c(56, 58, 50)</td>
+</tr>
+<tr class="odd">
+<td>#Create dataframe from these three vectors
+Leader_DF &lt;- data.frame(Name, Party, Gender, Age)</td>
+</tr>
+<tr class="even">
+<td>#Print the dataframe in the console
+Leader_DF
+#&gt; Name Party Gender Age
+#&gt; 1 Johnson Conservative M 56
+#&gt; 2 Starmer Labour M 58
+#&gt; 3 Sturgeon SNP F 50
+```</td>
+</tr>
+<tr class="odd">
+<td>Most commonly, however, dataframes are created when importing an existing dataset into the R working environment.</td>
+</tr>
+</tbody>
+</table></div>
 </div>
 </div>
 <div id="functions-in-r" class="section level2" number="3.3">
@@ -427,10 +468,8 @@ What do these functions do?</p>
 <span class="header-section-number">3.4.1</span> How to install packages<a class="anchor" aria-label="anchor" href="#how-to-install-packages"><i class="fas fa-link"></i></a>
 </h3>
 <p>In order to access the commands included in packages, you will need to <em>install</em> these packages into R the first time you use them, and <em>load</em> them in your workspace every time you use them.</p>
-<p>In order to install a package you will call the function <code>install.packages("NAME OF THE PACKAGE")</code>. For instance, we install the tidyverse package by using this command.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></code></pre></div>
-<p>You can install packages into R by hand-selecting Install, Packages from the Files/Help/Packages panel, and typing in the “package_name”.</p>
+<p>In order to install a package you will call the function <code>install.packages("NAME OF THE PACKAGE")</code>.
+You can install packages into R by hand-selecting Install, Packages from the Files/Help/Packages panel, and typing in the “package_name”.</p>
 <div class="inline-figure"><img src="images/Packages_Panel.png" style="width:50.0%"></div>
 </div>
 <div id="loading-packages" class="section level3" number="3.4.2">
@@ -451,19 +490,18 @@ What do these functions do?</p>
 <h3>
 <span class="header-section-number">3.4.3</span> Tidyverse<a class="anchor" aria-label="anchor" href="#tidyverse"><i class="fas fa-link"></i></a>
 </h3>
-<div class="inline-figure"><img src="images/tidyverse_logo.png" style="width:50.0%"></div>
 <p>In this module we will do the bulk of the analysis a few important packages:</p>
 <ul>
 <li>
 <code><a href="https://dplyr.tidyverse.org/reference/dplyr-package.html">dplyr()</a></code> to manipulate the data</li>
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/ggplot2-package.html">ggplot2()</a></code> to visualize the data</li>
-<li>
-<code><a href="https://tidyr.tidyverse.org/reference/tidyr-package.html">tidyr()</a></code> to clean the data</li>
+<li><code><a href="https://tidyr.tidyverse.org/reference/tidyr-package.html">tidyr()</a></code></li>
 </ul>
+<div class="inline-figure"><img src="images/tidyverse_logo.png" style="width:50.0%"></div>
 <p>These packages are part of a common group of packages called <code>tidyverse</code>. You can install and load all the packages that are part of the tidyverse using</p>
 <p>Example, in order to load the “tidyverse” package</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
@@ -473,16 +511,15 @@ What do these functions do?</p>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="rstudio-and-rstudio-cloud.html"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></div>
-<div class="empty"></div>
+<div class="next"><a href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#getting-started-with-r"><span class="header-section-number">3</span> Getting Started with R</a></li>
 <li>
 <a class="nav-link" href="#objects-in-r"><span class="header-section-number">3.1</span> Objects in R</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#creating-objects"><span class="header-section-number">3.1.1</span> Creating Objects</a></li>
+<li><a class="nav-link" href="#creating-objects-with-the-assignment-operator--"><span class="header-section-number">3.1.1</span> Creating Objects with the Assignment Operator &lt;-</a></li>
 <li><a class="nav-link" href="#naming-object"><span class="header-section-number">3.1.2</span> Naming Object</a></li>
-<li><a class="nav-link" href="#case-sensitive"><span class="header-section-number">3.1.3</span> Case Sensitive</a></li>
 </ul>
 </li>
 <li>
@@ -524,7 +561,7 @@ What do these functions do?</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-01-30.</p>
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-02-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

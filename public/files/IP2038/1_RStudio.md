@@ -64,7 +64,6 @@ When you open RStudio Cloud, you will see different elements:
 
 ![](images/RStudioSavePermanent.png){width=90%}
 
----
 
 ## RStudio Working Environment 
 
@@ -75,24 +74,11 @@ When you open a project in RStudio/RStudio Cloud, you will access the main worki
 
 This has has four main panels.
 
-+ **Console**: where you can execute commands and see the results. Commands run here are temporary, and will be lost if you close R. 
-+ **Code Editor**: where you work on different code files that can be saved.
++ **Console**: where you can execute commands and see the results. Commands run here are temporary and if you close R, you lose this command history and thus the ability to replicate what you have done.
++ **Code Editor**: where you work on different code files that can be saved. Just as we "save" files (like MS Word documents), so that we don't lose our work, in R you can save your R Scripts, so that you don't lose the various R commands that you have executed. A script is a series of commands that you can save, modify, and re-run whenever you like. In RStudio, you will create, edit, and save scripts from the code editor panel
 + **Environment/History**: this space shows the objects that you create and work with
 + **Files/Help/Packages**: in this space you can see your files, plots and graphs that you produce, R packages that you install, help with packages.
  
-
----
-
-
-
-## Writing Code with RStudio
-
-It is possible to execute commands by writing them in the Console on the bottom of the RStudio environment. However, if you close R, you lose this command history and thus the ability to replicate what you have done.
-
-Just as we "save" files (like MS Word documents), so that we don't lose our work, in R you can save your R Scripts, so that you don't lose the various R commands that you have executed. A script is a series of commands that you can save, modify, and re-run whenever you like.
-
-In RStudio, you will create, edit, and save scripts from the code editor panel
-
 ![](images/Code_Editor.png){width=90%}
 
 ---

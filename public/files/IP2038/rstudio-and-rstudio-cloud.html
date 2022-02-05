@@ -42,6 +42,11 @@
 <li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction to the Module</a></li>
 <li><a class="active" href="rstudio-and-rstudio-cloud.html"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></li>
 <li><a class="" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
+<li><a class="" href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></li>
+<li><a class="" href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
+<li><a class="" href="missing-values.html"><span class="header-section-number">6</span> Missing Values</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="list-of-datasets.html"><span class="header-section-number">A</span> List of Datasets</a></li>
 </ul>
 
         <div class="book-extra">
@@ -111,7 +116,6 @@ You can switch over to a free individual RStudio Cloud plan once the module is c
 <strong>Tutorials</strong>: This folder contains code used in the tutorials of this module. You can run the code included in these projects but you cannot edit it. In order to edit it, you will need to create your own copy of the projects. Save this weekly project as a new file by clicking on “Save a Permanent Copy”.</li>
 </ul>
 <div class="inline-figure"><img src="images/RStudioSavePermanent.png" style="width:90.0%"></div>
-<hr>
 </div>
 </div>
 <div id="rstudio-working-environment" class="section level2" number="2.3">
@@ -123,28 +127,19 @@ You can switch over to a free individual RStudio Cloud plan once the module is c
 <p>This has has four main panels.</p>
 <ul>
 <li>
-<strong>Console</strong>: where you can execute commands and see the results. Commands run here are temporary, and will be lost if you close R.</li>
+<strong>Console</strong>: where you can execute commands and see the results. Commands run here are temporary and if you close R, you lose this command history and thus the ability to replicate what you have done.</li>
 <li>
-<strong>Code Editor</strong>: where you work on different code files that can be saved.</li>
+<strong>Code Editor</strong>: where you work on different code files that can be saved. Just as we “save” files (like MS Word documents), so that we don’t lose our work, in R you can save your R Scripts, so that you don’t lose the various R commands that you have executed. A script is a series of commands that you can save, modify, and re-run whenever you like. In RStudio, you will create, edit, and save scripts from the code editor panel</li>
 <li>
 <strong>Environment/History</strong>: this space shows the objects that you create and work with</li>
 <li>
 <strong>Files/Help/Packages</strong>: in this space you can see your files, plots and graphs that you produce, R packages that you install, help with packages.</li>
 </ul>
-<hr>
-</div>
-<div id="writing-code-with-rstudio" class="section level2" number="2.4">
-<h2>
-<span class="header-section-number">2.4</span> Writing Code with RStudio<a class="anchor" aria-label="anchor" href="#writing-code-with-rstudio"><i class="fas fa-link"></i></a>
-</h2>
-<p>It is possible to execute commands by writing them in the Console on the bottom of the RStudio environment. However, if you close R, you lose this command history and thus the ability to replicate what you have done.</p>
-<p>Just as we “save” files (like MS Word documents), so that we don’t lose our work, in R you can save your R Scripts, so that you don’t lose the various R commands that you have executed. A script is a series of commands that you can save, modify, and re-run whenever you like.</p>
-<p>In RStudio, you will create, edit, and save scripts from the code editor panel</p>
 <div class="inline-figure"><img src="images/Code_Editor.png" style="width:90.0%"></div>
 <hr>
-<div id="how-to-create-a-r-script" class="section level3" number="2.4.1">
+<div id="how-to-create-a-r-script" class="section level3" number="2.3.1">
 <h3>
-<span class="header-section-number">2.4.1</span> How to create a R Script<a class="anchor" aria-label="anchor" href="#how-to-create-a-r-script"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3.1</span> How to create a R Script<a class="anchor" aria-label="anchor" href="#how-to-create-a-r-script"><i class="fas fa-link"></i></a>
 </h3>
 <p>In order to create a new R Script:</p>
 <ul>
@@ -156,9 +151,9 @@ You can switch over to a free individual RStudio Cloud plan once the module is c
 <p>Once you have created a script, you can then type multiple instructions within different lines of your code, run, and save the script.</p>
 <div class="inline-figure"><img src="images/ExampleRScript.png" style="width:50.0%"></div>
 </div>
-<div id="how-to-run-a-r-script" class="section level3" number="2.4.2">
+<div id="how-to-run-a-r-script" class="section level3" number="2.3.2">
 <h3>
-<span class="header-section-number">2.4.2</span> How to Run a R Script<a class="anchor" aria-label="anchor" href="#how-to-run-a-r-script"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3.2</span> How to Run a R Script<a class="anchor" aria-label="anchor" href="#how-to-run-a-r-script"><i class="fas fa-link"></i></a>
 </h3>
 <p>There are different ways to run a script. You can:</p>
 <ul>
@@ -170,9 +165,9 @@ You can switch over to a free individual RStudio Cloud plan once the module is c
 <div class="inline-figure"><img src="images/RStudio_Run_Script.png" style="width:90.0%"></div>
 <hr>
 </div>
-<div id="how-to-save-a-r-script" class="section level3" number="2.4.3">
+<div id="how-to-save-a-r-script" class="section level3" number="2.3.3">
 <h3>
-<span class="header-section-number">2.4.3</span> How to Save a R Script<a class="anchor" aria-label="anchor" href="#how-to-save-a-r-script"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3.3</span> How to Save a R Script<a class="anchor" aria-label="anchor" href="#how-to-save-a-r-script"><i class="fas fa-link"></i></a>
 </h3>
 <p>In order to save a R script you can:</p>
 <ul>
@@ -182,9 +177,9 @@ You can switch over to a free individual RStudio Cloud plan once the module is c
 </ul>
 <hr>
 </div>
-<div id="commenting-your-code" class="section level3" number="2.4.4">
+<div id="commenting-your-code" class="section level3" number="2.3.4">
 <h3>
-<span class="header-section-number">2.4.4</span> Commenting your code<a class="anchor" aria-label="anchor" href="#commenting-your-code"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3.4</span> Commenting your code<a class="anchor" aria-label="anchor" href="#commenting-your-code"><i class="fas fa-link"></i></a>
 </h3>
 <p>R code can be hard to read. If someone else tries to read it (or you later on), it might be hard to figure out what you have done. Adding comments make code easier to read.</p>
 <p>In R you can insert a comment in your script by placing <code>#</code> at the beginning of your code.</p>
@@ -212,9 +207,9 @@ You can switch over to a free individual RStudio Cloud plan once the module is c
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <hr>
 </div>
-<div id="importingexporting-files-from-rstudio-cloud" class="section level3" number="2.4.5">
+<div id="importingexporting-files-from-rstudio-cloud" class="section level3" number="2.3.5">
 <h3>
-<span class="header-section-number">2.4.5</span> Importing/Exporting files from RStudio Cloud<a class="anchor" aria-label="anchor" href="#importingexporting-files-from-rstudio-cloud"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3.5</span> Importing/Exporting files from RStudio Cloud<a class="anchor" aria-label="anchor" href="#importingexporting-files-from-rstudio-cloud"><i class="fas fa-link"></i></a>
 </h3>
 <p>From the Files tab you can manage the files that are stored in your project folder. In particular, here you will find the commands to:</p>
 <ul>
@@ -244,14 +239,13 @@ You can switch over to a free individual RStudio Cloud plan once the module is c
 <li><a class="nav-link" href="#rstudio-cloud-interface"><span class="header-section-number">2.2.2</span> RStudio Cloud Interface</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#rstudio-working-environment"><span class="header-section-number">2.3</span> RStudio Working Environment</a></li>
 <li>
-<a class="nav-link" href="#writing-code-with-rstudio"><span class="header-section-number">2.4</span> Writing Code with RStudio</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#how-to-create-a-r-script"><span class="header-section-number">2.4.1</span> How to create a R Script</a></li>
-<li><a class="nav-link" href="#how-to-run-a-r-script"><span class="header-section-number">2.4.2</span> How to Run a R Script</a></li>
-<li><a class="nav-link" href="#how-to-save-a-r-script"><span class="header-section-number">2.4.3</span> How to Save a R Script</a></li>
-<li><a class="nav-link" href="#commenting-your-code"><span class="header-section-number">2.4.4</span> Commenting your code</a></li>
-<li><a class="nav-link" href="#importingexporting-files-from-rstudio-cloud"><span class="header-section-number">2.4.5</span> Importing/Exporting files from RStudio Cloud</a></li>
+<a class="nav-link" href="#rstudio-working-environment"><span class="header-section-number">2.3</span> RStudio Working Environment</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#how-to-create-a-r-script"><span class="header-section-number">2.3.1</span> How to create a R Script</a></li>
+<li><a class="nav-link" href="#how-to-run-a-r-script"><span class="header-section-number">2.3.2</span> How to Run a R Script</a></li>
+<li><a class="nav-link" href="#how-to-save-a-r-script"><span class="header-section-number">2.3.3</span> How to Save a R Script</a></li>
+<li><a class="nav-link" href="#commenting-your-code"><span class="header-section-number">2.3.4</span> Commenting your code</a></li>
+<li><a class="nav-link" href="#importingexporting-files-from-rstudio-cloud"><span class="header-section-number">2.3.5</span> Importing/Exporting files from RStudio Cloud</a></li>
 </ul>
 </li>
 </ul>
@@ -270,7 +264,7 @@ You can switch over to a free individual RStudio Cloud plan once the module is c
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-01-30.</p>
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-02-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

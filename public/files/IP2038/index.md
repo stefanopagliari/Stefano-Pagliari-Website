@@ -1,7 +1,7 @@
 --- 
 title: "IP2038 - Analysing Political and Economic Data in the Real World - Course Material"
 author: "Stefano Pagliari"
-date: "2022-01-30"
+date: "2022-02-05"
 site: bookdown::bookdown_site
 documentclass: book
 # url: your book url like https://bookdown.org/yihui/bookdown
@@ -18,12 +18,12 @@ description: |
 
 - **Module Convenor:**  Dr. Stefano Pagliari
 	- Office Hour: Wednesday 10:30-12:30.
-	- Please book using the IP Dept Booking [link](https://outlook.office365.com/owa/calendar/OfficeHour202021@cityuni.onmicrosoft.com/bookings/s/VGUsxz9d_E6qI1xaXKgkrQ2)
+	- Please book using the IP Dept Booking  [link](https://outlook.office365.com/owa/calendar/OfficeHour202021@cityuni.onmicrosoft.com/bookings/s/VGUsxz9d_E6qI1xaXKgkrQ2)
 
 - **Tutorial Leader**: Dr. Pedro Machado
 
 - **Course Office:**
-	- Email: IntPol.PG@city.ac.uk
+	- Email: IntPol.PG@city.ac.uk, 
 	- Room: A129
 
 
