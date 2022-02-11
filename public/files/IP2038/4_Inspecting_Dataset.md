@@ -52,7 +52,6 @@ One of the first elements we may want to know about a dataset is the number of o
 
 
 ```r
-
 library(gapminder)
 
 #Create the gap dataset from gapminder function
@@ -77,7 +76,6 @@ We can extract the name of the columns (variables) by using the function `colnam
 
 
 ```r
-
 library(gapminder)
 
 #Create the gap dataset from gapminder function

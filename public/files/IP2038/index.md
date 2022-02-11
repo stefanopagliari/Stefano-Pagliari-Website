@@ -1,7 +1,7 @@
 --- 
 title: "IP2038 - Analysing Political and Economic Data in the Real World - Course Material"
 author: "Stefano Pagliari"
-date: "2022-02-05"
+date: "2022-02-11"
 site: bookdown::bookdown_site
 documentclass: book
 # url: your book url like https://bookdown.org/yihui/bookdown
@@ -72,7 +72,8 @@ In a similar way, it is possible to write to code to instruct R to download data
 ```r
 library(gapminder)
 library(tidyverse)
-
+#> Warning: package 'tidyr' was built under R version 4.0.5
+#> Warning: package 'readr' was built under R version 4.0.5
 countries <- c("United Kingdom","Japan")
 
 gapminder %>% filter(country %in% countries) %>% 

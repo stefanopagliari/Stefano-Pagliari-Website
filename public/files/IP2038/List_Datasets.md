@@ -61,6 +61,9 @@ This document provides a list of some of the most commonly used databases captur
 ## Government Debt
 - [World Bank's International Debt Statistics](https://databank.worldbank.org/source/international-debt-statistics)
 
+## Inequality
+- [World Wealth and Income Database (WID.world)](https://wid.world), accessible through [wid-r-tool](https://github.com/WIDworld/wid-r-tool) package
+
 ## Foreign Direct Investment
 - [International Trade Center - Investment Map](https://www.investmentmap.org/investment/data-availability)
 - [United Nations Conference on Trade and Development](https://unctadstat.unctad.org/EN/About.html)
