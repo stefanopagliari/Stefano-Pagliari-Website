@@ -45,8 +45,11 @@
 <li><a class="" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
 <li><a class="" href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></li>
 <li><a class="active" href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
-<li><a class="" href="data-transformation-with-dplyr.html"><span class="header-section-number">6</span> Data Transformation with dplyr()</a></li>
-<li><a class="" href="missing-values.html"><span class="header-section-number">7</span> Missing Values</a></li>
+<li><a class="" href="data-visualization-with-ggplot.html"><span class="header-section-number">6</span> Data Visualization with ggplot</a></li>
+<li><a class="" href="types-of-visualizations.html"><span class="header-section-number">7</span> Types of visualizations</a></li>
+<li><a class="" href="data-wrangling-with-dplyr.html"><span class="header-section-number">8</span> Data Wrangling with dplyr</a></li>
+<li><a class="" href="tidying-the-data-with-tidyr.html"><span class="header-section-number">9</span> Tidying the data with tidyr()</a></li>
+<li><a class="" href="missing-data.html"><span class="header-section-number">10</span> Missing Data</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="list-of-datasets.html"><span class="header-section-number">A</span> List of Datasets</a></li>
 </ul>
@@ -67,7 +70,7 @@
 <p>Once we have loaded a dataset in our working environment in RStudio, can can start exploring this data.
 Different functions are also available to peek at the data itself from within R Studio.</p>
 <p>The <code>head</code> function displays the first 6 rows of the dataframe.</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
 
 <span class="co">#Create the gap dataset from gapminder function</span>
@@ -85,7 +88,7 @@ Different functions are also available to peek at the data itself from within R 
 <span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460      740.</span>
 <span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372      786.</span></code></pre></div>
 <p>It is possible to view the entire dataset from within RStudio using the command <code>View</code> followed by the name of the dataframe or by clicking on the data name of the dataset in the Environment panel (top-right).</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">gap</span><span class="op">)</span></code></pre></div>
 <p>This will open the entire dataset in a separate tab. This viewer allows you to filter the value in a specific column as well as reorder them.</p>
 <div class="inline-figure"><img src="images/RStudio-Viewer.png" style="width:80.0%"></div>
@@ -95,7 +98,7 @@ Different functions are also available to peek at the data itself from within R 
 <span class="header-section-number">5.2</span> Dimensions of a dataframe<a class="anchor" aria-label="anchor" href="#dimensions-of-a-dataframe"><i class="fas fa-link"></i></a>
 </h2>
 <p>One of the first elements we may want to know about a dataset is the number of observations (rows) and variables (columns). These can be computed using the function <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code>, adding the name of the object where the dataset is stored within parentheses. For instance, let’s look at the dimensions of the Gapminder dataset.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
 
 <span class="co">#Create the gap dataset from gapminder function</span>
@@ -117,7 +120,7 @@ Different functions are also available to peek at the data itself from within R 
 <span class="header-section-number">5.3.1</span> Name of the Variables<a class="anchor" aria-label="anchor" href="#name-of-the-variables"><i class="fas fa-link"></i></a>
 </h3>
 <p>We can extract the name of the columns (variables) by using the function <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code></p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
 
 <span class="co">#Create the gap dataset from gapminder function</span>
@@ -134,7 +137,7 @@ Different functions are also available to peek at the data itself from within R 
 </h3>
 <p>Knowing what type of variables are present in a dataset is crucial to be able analyze them. Many of the summaries, models, functions, and pictures we can generate in R depend on knowing what kind of variable we’re using. The wrong kind of variable used with a command or function will often elicit an error message.</p>
 <p>The function <code>str</code> can be used to investigate the type (or class) of all the variables in a given dataframe.</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
 
 <span class="co">#Create the gap dataset from gapminder function</span>
@@ -164,7 +167,7 @@ Different functions are also available to peek at the data itself from within R 
 <p>In order to better understand our data, we may also want to understand the distribution and type of variables. The <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function provides quick summary statistics of a all the variables in our dataframe.</p>
 <p>The command will return for each numerical variable the minimum and maximum value that the variable takes, as well as the median, mean, and 1/3rd quartile.</p>
 <p>In the case of strings, the command will return the frequency of the most common values found in this variable</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
 
 <span class="co">#Create the gap dataset from gapminder function</span>
@@ -194,7 +197,7 @@ Different functions are also available to peek at the data itself from within R 
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></div>
-<div class="next"><a href="data-transformation-with-dplyr.html"><span class="header-section-number">6</span> Data Transformation with dplyr()</a></div>
+<div class="next"><a href="data-visualization-with-ggplot.html"><span class="header-section-number">6</span> Data Visualization with ggplot</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -224,7 +227,7 @@ Different functions are also available to peek at the data itself from within R 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-02-11.</p>
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-02-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -1,7 +1,7 @@
 --- 
 title: "IP2038 - Analysing Political and Economic Data in the Real World - Course Material"
 author: "Stefano Pagliari"
-date: "2022-02-11"
+date: "2022-02-20"
 site: bookdown::bookdown_site
 documentclass: book
 # url: your book url like https://bookdown.org/yihui/bookdown
@@ -42,9 +42,9 @@ description: |
 
 In this module you will learn to answer substantive questions related to the study of political economy by analyzing real-world political and economic data. In particular, you will learn to
 
-	- find and evaluate datasets 
-	- wrangle data into a usable format
-	- explore and describe the data through visualizations
+- find and evaluate datasets 
+- wrangle data into a usable format
+- explore and describe the data through visualizations
 
  
 ## Introduction to R
@@ -65,7 +65,7 @@ sqrt(9)
 #> [1] 3
 ```
 
-In a similar way, it is possible to write to code to instruct R to download data, manipulate it, and plot it. For instance, the code snippet below creates a plot comparing the evolution of the gdp per capita of the United Kingdom and Japan in the postwar era.
+In a similar way, it is possible to write to code to instruct R to download data, manipulate it, and plot it. For instance, the code snippet below creates a plot showing the relationship between GDP per capita and life expectancy across a large range of countries since the 1960s.
 
 
 
@@ -74,13 +74,16 @@ library(gapminder)
 library(tidyverse)
 #> Warning: package 'tidyr' was built under R version 4.0.5
 #> Warning: package 'readr' was built under R version 4.0.5
-countries <- c("United Kingdom","Japan")
-
-gapminder %>% filter(country %in% countries) %>% 
-  ggplot(aes(x = year, 
-             y = gdpPercap, 
-             colour = country)) +
-  geom_line()
+ggplot(data = gapminder, 
+       mapping = aes(x = gdpPercap, 
+                     y = lifeExp,
+                     color = continent)) + 
+  geom_point() + 
+  coord_cartesian() + 
+  scale_x_log10()  + 
+  labs(x = "log GDP", 
+       y = "Life Expectancy", 
+       title = "A Gapminder Plot")
 ```
 
 <img src="index_files/figure-html/gdppc-1.png" width="672" />

@@ -45,8 +45,11 @@
 <li><a class="" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
 <li><a class="" href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></li>
 <li><a class="" href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
-<li><a class="" href="data-transformation-with-dplyr.html"><span class="header-section-number">6</span> Data Transformation with dplyr()</a></li>
-<li><a class="" href="missing-values.html"><span class="header-section-number">7</span> Missing Values</a></li>
+<li><a class="" href="data-visualization-with-ggplot.html"><span class="header-section-number">6</span> Data Visualization with ggplot</a></li>
+<li><a class="" href="types-of-visualizations.html"><span class="header-section-number">7</span> Types of visualizations</a></li>
+<li><a class="" href="data-wrangling-with-dplyr.html"><span class="header-section-number">8</span> Data Wrangling with dplyr</a></li>
+<li><a class="" href="tidying-the-data-with-tidyr.html"><span class="header-section-number">9</span> Tidying the data with tidyr()</a></li>
+<li><a class="" href="missing-data.html"><span class="header-section-number">10</span> Missing Data</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="list-of-datasets.html"><span class="header-section-number">A</span> List of Datasets</a></li>
 </ul>
@@ -186,7 +189,7 @@ You can switch over to a free individual RStudio Cloud plan once the module is c
 <p>R code can be hard to read. If someone else tries to read it (or you later on), it might be hard to figure out what you have done. Adding comments make code easier to read.</p>
 <p>In R you can insert a comment in your script by placing <code>#</code> at the beginning of your code.</p>
 <p>See this example:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#This script creates data and returns TRUE if the mean is less than the median.</span>
 
 <span class="co"># Create the number vector (sequence of numbers) called x</span>
@@ -199,7 +202,7 @@ You can switch over to a free individual RStudio Cloud plan once the module is c
 <span class="va">y</span> <span class="op">&lt;</span> <span class="va">z</span>
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <p>It is also possible to place a comment (<code>#</code>) at the end of a line of code.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#This script creates data and returns TRUE if the mean is less than the median.</span>
 
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span> <span class="co"># Create the number vector (sequence of numbers) called x</span>
@@ -266,7 +269,7 @@ You can switch over to a free individual RStudio Cloud plan once the module is c
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-02-11.</p>
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-02-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
