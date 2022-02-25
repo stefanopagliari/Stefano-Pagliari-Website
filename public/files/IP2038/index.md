@@ -1,7 +1,7 @@
 --- 
 title: "IP2038 - Analysing Political and Economic Data in the Real World - Course Material"
 author: "Stefano Pagliari"
-date: "2022-02-20"
+date: "2022-02-24"
 site: bookdown::bookdown_site
 documentclass: book
 # url: your book url like https://bookdown.org/yihui/bookdown
