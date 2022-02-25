@@ -60,7 +60,8 @@ library(tidyverse)
 
 # load the dataset at the URL below and store it in a element called "oxfordVaccine_DF"
 oxfordVaccine_DF <- read_csv("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_vaccines_full.csv")
-
+#> Warning: One or more parsing issues, see `problems()` for
+#> details
 # Print to the console the initial values of the dataset
 head(oxfordVaccine_DF)
 #> # A tibble: 6 × 171
