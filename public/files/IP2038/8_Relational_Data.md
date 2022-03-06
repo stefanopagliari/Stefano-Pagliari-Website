@@ -18,14 +18,14 @@ library(parlitools)
 bes_2017 <- parlitools::bes_2017
 head(bes_2017)
 #> # A tibble: 6 × 123
-#>    pano ons_const_id constituency_name        country region
-#>   <dbl> <chr>        <chr>                    <chr>   <chr> 
-#> 1     1 W07000049    Aberavon                 Wales   Wales 
-#> 2     2 W07000058    Aberconwy                Wales   Wales 
-#> 3     3 S14000001    Aberdeen North           Scotla… Scotl…
-#> 4     4 S14000002    Aberdeen South           Scotla… Scotl…
-#> 5     5 S14000058    West Aberdeenshire and … Scotla… Scotl…
-#> 6     6 S14000003    Airdrie and Shotts       Scotla… Scotl…
+#>    pano ons_const_id constituency_name       country  region
+#>   <dbl> <chr>        <chr>                   <chr>    <chr> 
+#> 1     1 W07000049    Aberavon                Wales    Wales 
+#> 2     2 W07000058    Aberconwy               Wales    Wales 
+#> 3     3 S14000001    Aberdeen North          Scotland Scotl…
+#> 4     4 S14000002    Aberdeen South          Scotland Scotl…
+#> 5     5 S14000058    West Aberdeenshire and… Scotland Scotl…
+#> 6     6 S14000003    Airdrie and Shotts      Scotland Scotl…
 #> # … with 118 more variables: constituency_type <chr>,
 #> #   winner_17 <fct>, con_17 <dbl>, lab_17 <dbl>,
 #> #   ld_17 <dbl>, snp_17 <dbl>, pc_17 <dbl>, ukip_17 <dbl>,
@@ -45,14 +45,14 @@ library(parlitools)
 census_11 <- parlitools::census_11
 head(census_11)
 #> # A tibble: 6 × 191
-#>    pano ons_const_id constituency_name        country region
-#>   <dbl> <chr>        <fct>                    <fct>   <fct> 
-#> 1     1 W07000049    Aberavon                 Wales   Wales 
-#> 2     2 W07000058    Aberconwy                Wales   Wales 
-#> 3     3 S14000001    Aberdeen North           Scotla… Scotl…
-#> 4     4 S14000002    Aberdeen South           Scotla… Scotl…
-#> 5     5 S14000058    West Aberdeenshire and … Scotla… Scotl…
-#> 6     6 S14000003    Airdrie and Shotts       Scotla… Scotl…
+#>    pano ons_const_id constituency_name       country  region
+#>   <dbl> <chr>        <fct>                   <fct>    <fct> 
+#> 1     1 W07000049    Aberavon                Wales    Wales 
+#> 2     2 W07000058    Aberconwy               Wales    Wales 
+#> 3     3 S14000001    Aberdeen North          Scotland Scotl…
+#> 4     4 S14000002    Aberdeen South          Scotland Scotl…
+#> 5     5 S14000058    West Aberdeenshire and… Scotland Scotl…
+#> 6     6 S14000003    Airdrie and Shotts      Scotland Scotl…
 #> # … with 186 more variables: constituency_type <fct>,
 #> #   population <dbl>, population_density <dbl>, male <dbl>,
 #> #   female <dbl>, households <dbl>, communal <dbl>,
@@ -67,26 +67,15 @@ In order to analyze how different characteristics of the voters are related to t
 
 The dplyr package includes a number of "two-table verbs" that work with two tables at a time. All these verbs work similarly taking as input two tables(`x` and `y`) and returning a new table.
 
-In order to be able to connect different tables, these need to have  a variable (or set of variables) in common. This is often called *keys*. The key will uniquely identify an observation. 
-
-There are two types of keys:
-
-- A **primary key** uniquely identifies an observation in its own table.
-- A **foreign key** uniquely identifies an observation in another table.
- 
-In very simple cases, a single variable is sufficient to identify an observation. Both in the British Electoral Study dataset (`bes_2017`) and in the UK Census data (`census_11`) downloaded before each electoral constituency is characterized by a unique name (e.g. Aberdeen North) and a unique constituency code that is used by the Office for National Statistics (e.g. S14000001 in the case of [Aberdeen North](https://statistics.data.gov.uk/atlas/resource?uri=http://statistics.data.gov.uk/id/statistical-geography/S14000001)). In other cases multiple variables are needed. For instance, when dealing with longitudinal data capturing a number of countries across many years, one observation will be identified by a combination of the `country` variable and the `date` variable. 
-
-A primary key and the corresponding foreign key in another table form a **relation**. As a result we can use this key to identify which observations in one dataset needs to be linked to the observation in the other dataset.
-
----
-	q
 ## Joining Datasets
  
+Let's say we wanted to combine variables from the two tables `bes_2017` and `census_11`. 
 
-Let's say we wanted to combine variables from the two tables `bes_2017` and `census_11`. The dplyr package include different `join` functions that allows us to do this. These function first first matches observations by their keys, then copies across variables from one table to the other, adding them to the right.
+We can combine the data from the British Electoral Studies and the Census. Since both datasets have a large number of variables, we first only select those columns that are of interest to our analysis. In the case of the British Electoral Studies we are interested in the data on the share of votes to the Conservative party in different constituencies. In the case of the Census, we are interested in the % of households that are home-owners in different constituencies (`house_owned`). In the case the case of the British Electoral Studies dataset, we are interested in this case in the variable `con_17` capturing the vote share for the Conservative party crisis across different constitutencies.
 
+Moreover, in order to be able to link the relevant observations from both dataset, we also need a variable uniquely identifying different observations across the two dataset.  Both in the British Electoral Study dataset (`bes_2017`) and in the UK Census data (`census_11`) downloaded before each electoral constituency is characterized by a unique name (e.g. Aberdeen North) and a unique constituency code that is used by the Office for National Statistics (e.g. S14000001 in the case of [Aberdeen North](https://statistics.data.gov.uk/atlas/resource?uri=http://statistics.data.gov.uk/id/statistical-geography/S14000001)).  
+In this case we select the name of the constituency for this purpose as captured by the variable `constituency_name`.
 
-We can combine the data from the British Electoral Studies and the Census. Since both datasets have a large number of variables, we first only select those columns that are of interest to our analysis. In the case of the British Electoral Studies we are interested in the data on the share of votes to the Conservative party in different constituencies. In the case of the Census, we are interested in the % of households that are home-owners in different constituencies (`house_owned`). In the case the case of the British Electoral Studies dataset, we are interested in this case in the variable `con_17` capturing the vote share for the Conservative party crisis across different constitutencies. Moreover, in order to be able to link the relevant observations from both dataset, we also need a variable uniquely identifying different observations across the two dataset. In this case we select the name of the constituency for this purpose as captured by the variable `constituency_name`.
 We merge dataset `census_11` to `bes_2017` join the two datasets using the function `left join`, specifying the key using `by = "constituency_name"`. 
 
 
@@ -136,11 +125,20 @@ ggplot(data = bes_2017_joined,
 <img src="8_Relational_Data_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 
+### Defining keys
 
+In order to be able to connect different tables, these need to have  a variable (or set of variables) in common. This is often called *keys*. The key will uniquely identify an observation. 
+
+There are two types of keys:
+
+- A **primary key** uniquely identifies an observation in its own table.
+- A **foreign key** uniquely identifies an observation in another table.
+ 
+In very simple cases, a single variable is sufficient to identify an observation.
 
 In the example above, the two tables were joined by a single variable, and that variable has the same name in both tables. The key was specified by stating inside the function the parameter `by = "key_name"`.
 
-In a number of cases, a single variable will not be enough to identify a unique observation to be joined. For instance, when we are merging datasets where multiple entities are observed in different periods (e.g. multiple country/years), then we will need to merge two datasets in a way that links observations related to the same country and same year will be. To 
+In other cases multiple variables are needed. For instance, when dealing with longitudinal data capturing a number of countries across many years, one observation will be identified by a combination of the `country` variable and the `date` variable. 
 
 It is possible to specify multiple variables that should be used as key within  a character vector, by = c("x", "y")`. 
 
@@ -164,6 +162,7 @@ gap_extended <- gapminder %>% #Take the gapminder dataset
 gap_extended <- left_join(gapminder, polity, by = c("country", "year"))
 
 head(gap_extended)
+
 ```
 
 
@@ -171,16 +170,18 @@ It is often the  case that the variables to be linked have different names acros
 
 ## Join Functions
 
-The package dplyr contains different functions that can be used to join different datasets.
+The package dplyr contains different `join` functions that can be used to merge different datasets. These function first first matches observations by their keys, then copies across variables from one table to the other, adding them to the right.
+
 In these visualizations, the coloured columns represent the "key" variable used to match the observations in the two tables being joined, while the grey column represents the "value" column that is being added as a result of the join.
-
-
+ 
 ### left_join()
 
-The most commonly used join is the `left_join()`: you use this whenever you look up additional data from another table. For example, a `left_join()` on the dataset `x` and the dataset `y` pulls in variables from `y` while preserving all the observations in `x`. This function preserves the original observations from the first table `x` even when there is not a match `y`. As a result, this is often the default option when joining datasets unless there are specific reasons for wanting a different format.
+The most commonly used join is the `left_join()`: you use this whenever you look up additional data from another table. For example, a `left_join()` on the dataset `x` and the dataset `y` pulls in variables from `y` while preserving all the observations in `x`. This function preserves the original observations from the first table `x` even when there is not a match `y`. NA will appear in cells for which there is no match in `y`. 
+
+This is often the default option when joining datasets unless there are specific reasons for wanting a different format.
 
 
-![](app://local/%2FUsers%2Fstefanopagliari%2FLibrary%2FMobile%20Documents%2FiCloud~md~obsidian%2FDocuments%2FObsidian%20ICloud%2F30.%20Teaching%2F33.%20IP2038%20Data%20Analysis%2FIP2038_Notes%2Fimages%2Fleft-join.gif?1641704222000)![](images/left-join.gif) [source: tidyexplain](https://github.com/gadenbuie/tidyexplain)
+![](images/left-join.gif) [source: tidyexplain](https://github.com/gadenbuie/tidyexplain)
 
 
 
@@ -195,8 +196,6 @@ A `right_join` is similar to `left_join` but it keeps all observations in the se
 
 
 ### Inner_join()
-
-![](images/inner-join.png) [source: Wickham and Grolemund](https://github.com/gadenbuie/tidyexplain)
 
 The `inner_join` keeps observations that appear in both tables. Any observation where the key appears only in one of the two tables will be removed.
 

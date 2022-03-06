@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 10 Relational Data | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
 <meta name="twitter:description" content="While in some cases data analysis involves looking only at a single table of data, often the data we need to arriving at answer to our question is spread across different data. In this case, we...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
@@ -48,11 +48,12 @@
 <li><a class="" href="data-visualization-with-ggplot.html"><span class="header-section-number">6</span> Data Visualization with ggplot</a></li>
 <li><a class="" href="types-of-visualizations.html"><span class="header-section-number">7</span> Types of visualizations</a></li>
 <li><a class="" href="data-wrangling-with-dplyr.html"><span class="header-section-number">8</span> Data Wrangling with dplyr</a></li>
-<li><a class="" href="reshaping-the-data-with-tidyr.html"><span class="header-section-number">9</span> Reshaping the data with tidyr</a></li>
+<li><a class="" href="reshaping-the-data.html"><span class="header-section-number">9</span> Reshaping the data</a></li>
 <li><a class="active" href="relational-data.html"><span class="header-section-number">10</span> Relational Data</a></li>
 <li><a class="" href="missing-data.html"><span class="header-section-number">11</span> Missing Data</a></li>
 <li class="book-part">Appendix</li>
-<li><a class="" href="list-of-datasets.html"><span class="header-section-number">A</span> List of Datasets</a></li>
+<li><a class="" href="assessment-guidance.html"><span class="header-section-number">A</span> Assessment Guidance</a></li>
+<li><a class="" href="list-of-datasets.html"><span class="header-section-number">B</span> List of Datasets</a></li>
 </ul>
 
         <div class="book-extra">
@@ -74,14 +75,14 @@
 <span class="va">bes_2017</span> <span class="op">&lt;-</span> <span class="fu">parlitools</span><span class="fu">::</span><span class="va"><a href="https://docs.evanodell.com/parlitools/reference/bes_2017.html">bes_2017</a></span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">bes_2017</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 123</span>
-<span class="co">#&gt;    pano ons_const_id constituency_name        country region</span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;                    &lt;chr&gt;   &lt;chr&gt; </span>
-<span class="co">#&gt; 1     1 W07000049    Aberavon                 Wales   Wales </span>
-<span class="co">#&gt; 2     2 W07000058    Aberconwy                Wales   Wales </span>
-<span class="co">#&gt; 3     3 S14000001    Aberdeen North           Scotla… Scotl…</span>
-<span class="co">#&gt; 4     4 S14000002    Aberdeen South           Scotla… Scotl…</span>
-<span class="co">#&gt; 5     5 S14000058    West Aberdeenshire and … Scotla… Scotl…</span>
-<span class="co">#&gt; 6     6 S14000003    Airdrie and Shotts       Scotla… Scotl…</span>
+<span class="co">#&gt;    pano ons_const_id constituency_name       country  region</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;                   &lt;chr&gt;    &lt;chr&gt; </span>
+<span class="co">#&gt; 1     1 W07000049    Aberavon                Wales    Wales </span>
+<span class="co">#&gt; 2     2 W07000058    Aberconwy               Wales    Wales </span>
+<span class="co">#&gt; 3     3 S14000001    Aberdeen North          Scotland Scotl…</span>
+<span class="co">#&gt; 4     4 S14000002    Aberdeen South          Scotland Scotl…</span>
+<span class="co">#&gt; 5     5 S14000058    West Aberdeenshire and… Scotland Scotl…</span>
+<span class="co">#&gt; 6     6 S14000003    Airdrie and Shotts      Scotland Scotl…</span>
 <span class="co">#&gt; # … with 118 more variables: constituency_type &lt;chr&gt;,</span>
 <span class="co">#&gt; #   winner_17 &lt;fct&gt;, con_17 &lt;dbl&gt;, lab_17 &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   ld_17 &lt;dbl&gt;, snp_17 &lt;dbl&gt;, pc_17 &lt;dbl&gt;, ukip_17 &lt;dbl&gt;,</span>
@@ -97,14 +98,14 @@
 <span class="va">census_11</span> <span class="op">&lt;-</span> <span class="fu">parlitools</span><span class="fu">::</span><span class="va"><a href="https://docs.evanodell.com/parlitools/reference/census_11.html">census_11</a></span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">census_11</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 191</span>
-<span class="co">#&gt;    pano ons_const_id constituency_name        country region</span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;fct&gt;                    &lt;fct&gt;   &lt;fct&gt; </span>
-<span class="co">#&gt; 1     1 W07000049    Aberavon                 Wales   Wales </span>
-<span class="co">#&gt; 2     2 W07000058    Aberconwy                Wales   Wales </span>
-<span class="co">#&gt; 3     3 S14000001    Aberdeen North           Scotla… Scotl…</span>
-<span class="co">#&gt; 4     4 S14000002    Aberdeen South           Scotla… Scotl…</span>
-<span class="co">#&gt; 5     5 S14000058    West Aberdeenshire and … Scotla… Scotl…</span>
-<span class="co">#&gt; 6     6 S14000003    Airdrie and Shotts       Scotla… Scotl…</span>
+<span class="co">#&gt;    pano ons_const_id constituency_name       country  region</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;fct&gt;                   &lt;fct&gt;    &lt;fct&gt; </span>
+<span class="co">#&gt; 1     1 W07000049    Aberavon                Wales    Wales </span>
+<span class="co">#&gt; 2     2 W07000058    Aberconwy               Wales    Wales </span>
+<span class="co">#&gt; 3     3 S14000001    Aberdeen North          Scotland Scotl…</span>
+<span class="co">#&gt; 4     4 S14000002    Aberdeen South          Scotland Scotl…</span>
+<span class="co">#&gt; 5     5 S14000058    West Aberdeenshire and… Scotland Scotl…</span>
+<span class="co">#&gt; 6     6 S14000003    Airdrie and Shotts      Scotland Scotl…</span>
 <span class="co">#&gt; # … with 186 more variables: constituency_type &lt;fct&gt;,</span>
 <span class="co">#&gt; #   population &lt;dbl&gt;, population_density &lt;dbl&gt;, male &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   female &lt;dbl&gt;, households &lt;dbl&gt;, communal &lt;dbl&gt;,</span>
@@ -114,21 +115,15 @@
 <span class="co">#&gt; #   age_25_to_29 &lt;dbl&gt;, age_30_to_44 &lt;dbl&gt;, …</span></code></pre></div>
 <p>In order to analyze how different characteristics of the voters are related to the share vote of different parties, we need to find a way combine the two datasets (<code>census_11</code> and <code>bes_2017</code>)</p>
 <p>The dplyr package includes a number of “two-table verbs” that work with two tables at a time. All these verbs work similarly taking as input two tables(<code>x</code> and <code>y</code>) and returning a new table.</p>
-<p>In order to be able to connect different tables, these need to have a variable (or set of variables) in common. This is often called <em>keys</em>. The key will uniquely identify an observation.</p>
-<p>There are two types of keys:</p>
-<ul>
-<li>A <strong>primary key</strong> uniquely identifies an observation in its own table.</li>
-<li>A <strong>foreign key</strong> uniquely identifies an observation in another table.</li>
-</ul>
-<p>In very simple cases, a single variable is sufficient to identify an observation. Both in the British Electoral Study dataset (<code>bes_2017</code>) and in the UK Census data (<code>census_11</code>) downloaded before each electoral constituency is characterized by a unique name (e.g. Aberdeen North) and a unique constituency code that is used by the Office for National Statistics (e.g. S14000001 in the case of <a href="https://statistics.data.gov.uk/atlas/resource?uri=http://statistics.data.gov.uk/id/statistical-geography/S14000001">Aberdeen North</a>). In other cases multiple variables are needed. For instance, when dealing with longitudinal data capturing a number of countries across many years, one observation will be identified by a combination of the <code>country</code> variable and the <code>date</code> variable.</p>
-<p>A primary key and the corresponding foreign key in another table form a <strong>relation</strong>. As a result we can use this key to identify which observations in one dataset needs to be linked to the observation in the other dataset.</p>
 <div id="joining-datasets" class="section level2" number="10.1">
 <h2>
 <span class="header-section-number">10.1</span> Joining Datasets<a class="anchor" aria-label="anchor" href="#joining-datasets"><i class="fas fa-link"></i></a>
 </h2>
-<p>Let’s say we wanted to combine variables from the two tables <code>bes_2017</code> and <code>census_11</code>. The dplyr package include different <code>join</code> functions that allows us to do this. These function first first matches observations by their keys, then copies across variables from one table to the other, adding them to the right.</p>
-<p>We can combine the data from the British Electoral Studies and the Census. Since both datasets have a large number of variables, we first only select those columns that are of interest to our analysis. In the case of the British Electoral Studies we are interested in the data on the share of votes to the Conservative party in different constituencies. In the case of the Census, we are interested in the % of households that are home-owners in different constituencies (<code>house_owned</code>). In the case the case of the British Electoral Studies dataset, we are interested in this case in the variable <code>con_17</code> capturing the vote share for the Conservative party crisis across different constitutencies. Moreover, in order to be able to link the relevant observations from both dataset, we also need a variable uniquely identifying different observations across the two dataset. In this case we select the name of the constituency for this purpose as captured by the variable <code>constituency_name</code>.
-We merge dataset <code>census_11</code> to <code>bes_2017</code> join the two datasets using the function <code>left join</code>, specifying the key using <code>by = "constituency_name"</code>.</p>
+<p>Let’s say we wanted to combine variables from the two tables <code>bes_2017</code> and <code>census_11</code>.</p>
+<p>We can combine the data from the British Electoral Studies and the Census. Since both datasets have a large number of variables, we first only select those columns that are of interest to our analysis. In the case of the British Electoral Studies we are interested in the data on the share of votes to the Conservative party in different constituencies. In the case of the Census, we are interested in the % of households that are home-owners in different constituencies (<code>house_owned</code>). In the case the case of the British Electoral Studies dataset, we are interested in this case in the variable <code>con_17</code> capturing the vote share for the Conservative party crisis across different constitutencies.</p>
+<p>Moreover, in order to be able to link the relevant observations from both dataset, we also need a variable uniquely identifying different observations across the two dataset. Both in the British Electoral Study dataset (<code>bes_2017</code>) and in the UK Census data (<code>census_11</code>) downloaded before each electoral constituency is characterized by a unique name (e.g. Aberdeen North) and a unique constituency code that is used by the Office for National Statistics (e.g. S14000001 in the case of <a href="https://statistics.data.gov.uk/atlas/resource?uri=http://statistics.data.gov.uk/id/statistical-geography/S14000001">Aberdeen North</a>).<br>
+In this case we select the name of the constituency for this purpose as captured by the variable <code>constituency_name</code>.</p>
+<p>We merge dataset <code>census_11</code> to <code>bes_2017</code> join the two datasets using the function <code>left join</code>, specifying the key using <code>by = "constituency_name"</code>.</p>
 <div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#install.packages("parlitools")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.evanodell.com/parlitools">parlitools</a></span><span class="op">)</span>  <span class="co">#Load package parlitools</span>
@@ -166,8 +161,19 @@ We merge dataset <code>census_11</code> to <code>bes_2017</code> join the two da
          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="8_Relational_Data_files/figure-html/unnamed-chunk-4-1.png" width="672"></div>
+<div id="defining-keys" class="section level3" number="10.1.1">
+<h3>
+<span class="header-section-number">10.1.1</span> Defining keys<a class="anchor" aria-label="anchor" href="#defining-keys"><i class="fas fa-link"></i></a>
+</h3>
+<p>In order to be able to connect different tables, these need to have a variable (or set of variables) in common. This is often called <em>keys</em>. The key will uniquely identify an observation.</p>
+<p>There are two types of keys:</p>
+<ul>
+<li>A <strong>primary key</strong> uniquely identifies an observation in its own table.</li>
+<li>A <strong>foreign key</strong> uniquely identifies an observation in another table.</li>
+</ul>
+<p>In very simple cases, a single variable is sufficient to identify an observation.</p>
 <p>In the example above, the two tables were joined by a single variable, and that variable has the same name in both tables. The key was specified by stating inside the function the parameter <code>by = "key_name"</code>.</p>
-<p>In a number of cases, a single variable will not be enough to identify a unique observation to be joined. For instance, when we are merging datasets where multiple entities are observed in different periods (e.g. multiple country/years), then we will need to merge two datasets in a way that links observations related to the same country and same year will be. To</p>
+<p>In other cases multiple variables are needed. For instance, when dealing with longitudinal data capturing a number of countries across many years, one observation will be identified by a combination of the <code>country</code> variable and the <code>date</code> variable.</p>
 <p>It is possible to specify multiple variables that should be used as key within a character vector, by = c(“x”, “y”)`.</p>
 <p>For instance, in the example below we are merging the <code>gapminder</code> dataset with another dataset (<code>polity</code>) capturing country/year observations. The <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> specify that the two datasets should be merged on the basis of matching values along two different variables (<code>by = c("country", "year")</code>).</p>
 <div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
@@ -189,17 +195,19 @@ We merge dataset <code>census_11</code> to <code>bes_2017</code> join the two da
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gap_extended</span><span class="op">)</span></code></pre></div>
 <p>It is often the case that the variables to be linked have different names across the two tables. It is possible to use a named character vector: <code>by = c("a" = "b")</code>. This will match variable <code>a</code> in table <code>x</code> to variable <code>b</code> in table <code>y</code>. The variables from <code>x</code> will be used in the output.</p>
 </div>
+</div>
 <div id="join-functions" class="section level2" number="10.2">
 <h2>
 <span class="header-section-number">10.2</span> Join Functions<a class="anchor" aria-label="anchor" href="#join-functions"><i class="fas fa-link"></i></a>
 </h2>
-<p>The package dplyr contains different functions that can be used to join different datasets.
-In these visualizations, the coloured columns represent the “key” variable used to match the observations in the two tables being joined, while the grey column represents the “value” column that is being added as a result of the join.</p>
+<p>The package dplyr contains different <code>join</code> functions that can be used to merge different datasets. These function first first matches observations by their keys, then copies across variables from one table to the other, adding them to the right.</p>
+<p>In these visualizations, the coloured columns represent the “key” variable used to match the observations in the two tables being joined, while the grey column represents the “value” column that is being added as a result of the join.</p>
 <div id="left_join" class="section level3" number="10.2.1">
 <h3>
 <span class="header-section-number">10.2.1</span> left_join()<a class="anchor" aria-label="anchor" href="#left_join"><i class="fas fa-link"></i></a>
 </h3>
-<p>The most commonly used join is the <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>: you use this whenever you look up additional data from another table. For example, a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> on the dataset <code>x</code> and the dataset <code>y</code> pulls in variables from <code>y</code> while preserving all the observations in <code>x</code>. This function preserves the original observations from the first table <code>x</code> even when there is not a match <code>y</code>. As a result, this is often the default option when joining datasets unless there are specific reasons for wanting a different format.</p>
+<p>The most commonly used join is the <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>: you use this whenever you look up additional data from another table. For example, a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> on the dataset <code>x</code> and the dataset <code>y</code> pulls in variables from <code>y</code> while preserving all the observations in <code>x</code>. This function preserves the original observations from the first table <code>x</code> even when there is not a match <code>y</code>. NA will appear in cells for which there is no match in <code>y</code>.</p>
+<p>This is often the default option when joining datasets unless there are specific reasons for wanting a different format.</p>
 <p><img src="images/left-join.gif"><a href="https://github.com/gadenbuie/tidyexplain">source: tidyexplain</a></p>
 </div>
 <div id="right_join" class="section level3" number="10.2.2">
@@ -214,7 +222,6 @@ In these visualizations, the coloured columns represent the “key” variable u
 <h3>
 <span class="header-section-number">10.2.3</span> Inner_join()<a class="anchor" aria-label="anchor" href="#inner_join"><i class="fas fa-link"></i></a>
 </h3>
-<p><img src="images/inner-join.png"><a href="https://github.com/gadenbuie/tidyexplain">source: Wickham and Grolemund</a></p>
 <p>The <code>inner_join</code> keeps observations that appear in both tables. Any observation where the key appears only in one of the two tables will be removed.</p>
 <p><img src="images/inner-join.gif"><a href="https://github.com/gadenbuie/tidyexplain">source: tidyexplain</a></p>
 </div>
@@ -276,13 +283,15 @@ In these visualizations, the coloured columns represent the “key” variable u
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="reshaping-the-data-with-tidyr.html"><span class="header-section-number">9</span> Reshaping the data with tidyr</a></div>
+<div class="prev"><a href="reshaping-the-data.html"><span class="header-section-number">9</span> Reshaping the data</a></div>
 <div class="next"><a href="missing-data.html"><span class="header-section-number">11</span> Missing Data</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#relational-data"><span class="header-section-number">10</span> Relational Data</a></li>
-<li><a class="nav-link" href="#joining-datasets"><span class="header-section-number">10.1</span> Joining Datasets</a></li>
+<li>
+<a class="nav-link" href="#joining-datasets"><span class="header-section-number">10.1</span> Joining Datasets</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#defining-keys"><span class="header-section-number">10.1.1</span> Defining keys</a></li></ul>
+</li>
 <li>
 <a class="nav-link" href="#join-functions"><span class="header-section-number">10.2</span> Join Functions</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#left_join"><span class="header-section-number">10.2.1</span> left_join()</a></li>
@@ -320,7 +329,7 @@ In these visualizations, the coloured columns represent the “key” variable u
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-02-24.</p>
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-03-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

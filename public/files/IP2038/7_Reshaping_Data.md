@@ -1,4 +1,4 @@
-# Reshaping the data with tidyr
+# Reshaping the data
 
 
 
@@ -47,7 +47,7 @@ This long format is often referred to as a 'tidy format' ([Wickham 2014](http://
 - each row represents a single observation
 - each cell contains a single value
 
-![](images/tidy-data-summary.png)
+![](images/tidy-data-summary.png){width=90%}
 
 
 
@@ -68,7 +68,7 @@ In order to more easily manipulate these datasets with dplyr and visualize them 
 
 
 
-![](images/tidy-vs-untidy-table.png)
+![](images/tidy-vs-untidy-table.png){width=80%}
 
 
 
@@ -76,7 +76,7 @@ The function `pivot_longer()` (from the `tidyr` package, part of the `tidyverse`
 
 `pivot_longer()` takes three commands, specifying
 
-- `cols =`: a vector of the names of the columns that need to be reshaped and converted to values in long form. Importantly, in cases where there many column names to convert to long format, it is simpler to use cols = to specify those columns that we don’t want to convert, which are usually the left-most columns. This is done with the `-` symbol 
+- `cols =`: a vector of the names of the columns that need to be reshaped and converted to values in long form. Importantly, in cases where there mant column names to convert to long format, it is simpler to use cols = to specify those columns that we don’t want to convert, which are usually the left-most columns. This is done with the `-` symbol 
 - `names_to =`: a name for the new column containing the names from `cols`. The new column names need to be in quotes.
 - `values_to =`: a name for the new column containing the values corresponding to `cols`. The new column names need to be in quotes 
 
@@ -89,6 +89,7 @@ table4a %>%
   pivot_longer(cols = c(`1999`, `2000`), 
                names_to = "year", 
                values_to = "cases")
+
 ```
 
 In this case:
@@ -116,9 +117,8 @@ head(relig_income)
 #> 4 Catholic       418       617       732       670       638
 #> 5 Don’t kno…      15        14        15        11        10
 #> 6 Evangelic…     575       869      1064       982       881
-#> # … with 5 more variables: `$50-75k` <dbl>,
-#> #   `$75-100k` <dbl>, `$100-150k` <dbl>, `>150k` <dbl>,
-#> #   `Don't know/refused` <dbl>
+#> # … with 5 more variables: $50-75k <dbl>, $75-100k <dbl>,
+#> #   $100-150k <dbl>, >150k <dbl>, Don't know/refused <dbl>
 ```
 
 
@@ -190,11 +190,11 @@ relig_income_longer <- relig_income %>%
 
 While reshaping a dataset from a wider to a longer format with `pivot_longer()` is needed when some of the column names are values of a variable, in some cases the opposite transformation is needed. This is in particular when an observation is spread across multiple rows.
 
-![](images/narrow_to_wide.png)
+![](images/narrow_to_wide.png){width=80%}
 
 For instance, the table on the left (from Wickham and Grolemund) contains information on the `cases` and `population` different different countries in different years, but each country/year observation is found in two different rows.
 
-![](images/long_wide.png)
+![](images/long_wide.png){width=80%}
 
 The function `pivot_wider()` can be used to "widen" the dataset by increasing the number of columns and decreasing the number of observations. It does so by converting the values in one column into new columns names.  
 It’s relatively rare to need pivot_wider() to make tidy data, but it’s often useful for creating summary tables for presentation, or data in a format needed by other tools.
@@ -272,18 +272,18 @@ The `world_bank_pop` (preloaded with the tidyverse) contains data from the World
 ```r
 head(world_bank_pop)
 #> # A tibble: 6 × 20
-#>   country indicator      `2000` `2001` `2002` `2003`  `2004`
-#>   <chr>   <chr>           <dbl>  <dbl>  <dbl>  <dbl>   <dbl>
-#> 1 ABW     SP.URB.TOTL    4.24e4 4.30e4 4.37e4 4.42e4 4.47e+4
-#> 2 ABW     SP.URB.GROW    1.18e0 1.41e0 1.43e0 1.31e0 9.51e-1
-#> 3 ABW     SP.POP.TOTL    9.09e4 9.29e4 9.50e4 9.70e4 9.87e+4
-#> 4 ABW     SP.POP.GROW    2.06e0 2.23e0 2.23e0 2.11e0 1.76e+0
-#> 5 AFG     SP.URB.TOTL    4.44e6 4.65e6 4.89e6 5.16e6 5.43e+6
-#> 6 AFG     SP.URB.GROW    3.91e0 4.66e0 5.13e0 5.23e0 5.12e+0
-#> # … with 13 more variables: `2005` <dbl>, `2006` <dbl>,
-#> #   `2007` <dbl>, `2008` <dbl>, `2009` <dbl>, `2010` <dbl>,
-#> #   `2011` <dbl>, `2012` <dbl>, `2013` <dbl>, `2014` <dbl>,
-#> #   `2015` <dbl>, `2016` <dbl>, `2017` <dbl>
+#>   country indicator    `2000`  `2001`  `2002` `2003`  `2004`
+#>   <chr>   <chr>         <dbl>   <dbl>   <dbl>  <dbl>   <dbl>
+#> 1 ABW     SP.URB.TOTL  4.24e4  4.30e4  4.37e4 4.42e4 4.47e+4
+#> 2 ABW     SP.URB.GROW  1.18e0  1.41e0  1.43e0 1.31e0 9.51e-1
+#> 3 ABW     SP.POP.TOTL  9.09e4  9.29e4  9.50e4 9.70e4 9.87e+4
+#> 4 ABW     SP.POP.GROW  2.06e0  2.23e0  2.23e0 2.11e0 1.76e+0
+#> 5 AFG     SP.URB.TOTL  4.44e6  4.65e6  4.89e6 5.16e6 5.43e+6
+#> 6 AFG     SP.URB.GROW  3.91e0  4.66e0  5.13e0 5.23e0 5.12e+0
+#> # … with 13 more variables: 2005 <dbl>, 2006 <dbl>,
+#> #   2007 <dbl>, 2008 <dbl>, 2009 <dbl>, 2010 <dbl>,
+#> #   2011 <dbl>, 2012 <dbl>, 2013 <dbl>, 2014 <dbl>,
+#> #   2015 <dbl>, 2016 <dbl>, 2017 <dbl>
 ```
 
 We can reshape this dataset with `pivot_longer` in order to bring the value of the population variable in a single column. In this case, instead of manually listing all the columns to be reshaped, we can indicate the range of names (`2000`:`2017`)
@@ -388,7 +388,7 @@ The function takes three values:
 
 The table below on the left (from Wickham and Grolemund) shows an example where the column `rate` provides two different values, the numerator and the denominator, separated by a "/".
 
-![](images/Separate_Example.png)
+![](images/Separate_Example.png){width=80%}
 
 We can split the values in the `rate` column across two different columns by using the `separate()` function. 
 
@@ -417,7 +417,7 @@ While `separate()` can be used to split a column into multiple ones, `unite() ca
 The figure below provides an example from (from Wickham and Grolemund) where the date is split into two different column, one for the century and the other for the year.
 We can use `unite()` to rejoin the century and year columns into a single one.
 
-![](images/tidyr-unite.png)
+![](images/tidyr-unite.png){width=80%}
 
 
 

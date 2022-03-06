@@ -31,8 +31,7 @@ For instance, in thecode below we are loading the dataset called "UK_Inequality"
 
 ```r
 library(tidyverse)
-#> Warning: package 'tidyr' was built under R version 4.0.5
-#> Warning: package 'readr' was built under R version 4.0.5
+
 # Here's how we read that CSV data
 Inequality_DF <- read_csv('data/UK_Inequality.csv')
 
@@ -55,6 +54,7 @@ For instance, the  [Oxford Covid-19 Government Response Tracker](http://bsg.ox.a
 
 
 ```r
+
 # load the tidyverse library to load the read_csv function
 library(tidyverse)
 
@@ -62,10 +62,11 @@ library(tidyverse)
 oxfordVaccine_DF <- read_csv("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_vaccines_full.csv")
 #> Warning: One or more parsing issues, see `problems()` for
 #> details
+
 # Print to the console the initial values of the dataset
 head(oxfordVaccine_DF)
 #> # A tibble: 6 × 171
-#>   CountryName CountryCode     Date `V1_Vaccine Prioritisat…`
+#>   CountryName CountryCode     Date `V1_Vaccine Prioritisati…
 #>   <chr>       <chr>          <dbl>                     <dbl>
 #> 1 Aruba       ABW         20200101                         0
 #> 2 Aruba       ABW         20200102                         0
@@ -73,13 +74,13 @@ head(oxfordVaccine_DF)
 #> 4 Aruba       ABW         20200104                         0
 #> 5 Aruba       ABW         20200105                         0
 #> 6 Aruba       ABW         20200106                         0
-#> # … with 167 more variables: `V1_0-4 yrs infants` <dbl>,
-#> #   `V1_5-15 yrs young people` <dbl>,
-#> #   `V1_Airport/Border/Airline Staff` <dbl>,
-#> #   `V1_At Risk 16-19 yrs` <dbl>,
-#> #   `V1_At Risk 20-24 yrs` <dbl>,
-#> #   `V1_At Risk 25-29 yrs` <dbl>,
-#> #   `V1_At Risk 30-34 yrs` <dbl>, …
+#> # … with 167 more variables: V1_0-4 yrs infants <dbl>,
+#> #   V1_5-15 yrs young people <dbl>,
+#> #   V1_Airport/Border/Airline Staff <dbl>,
+#> #   V1_At Risk 16-19 yrs <dbl>, V1_At Risk 20-24 yrs <dbl>,
+#> #   V1_At Risk 25-29 yrs <dbl>, V1_At Risk 30-34 yrs <dbl>,
+#> #   V1_At Risk 35-39 yrs <dbl>, V1_At Risk 40-44 yrs <dbl>,
+#> #   V1_At Risk 45-49 yrs <dbl>, …
 ```
 
 
@@ -99,6 +100,7 @@ The `readxl` package allows you to get data out of Excel and into R. The package
 library(readxl)
 
 Global_Findex_Database <- read_excel(data/Global_Findex_Database.xlsx)
+
 ```
 
 ### SPSS and STATA 
@@ -147,6 +149,7 @@ desiguales <- import('Data/desiguales.csv')
 
 #Import excel file using "import" function
 desiguales_xlsx <- import("Data/desiguales.xlsx")
+
 ```
 
 ### Importing data via RStudio helper
@@ -189,6 +192,7 @@ library("gapminder")
 #Store data in an object called "gapminder_DF"
 
 gapminder_DF <- gapminder
+
 ```
 
 Running this code will download the gapminder dataset and store it in  in your working environment.
@@ -246,6 +250,7 @@ Some examples of packages that can be used to directly load relevant datasets in
 
 
 ```r
+
 #install the package "hansard"
 #install.packages("hansard")
 
@@ -255,21 +260,7 @@ library(hansard)
 # Download and show data regarding how Jacob Rees-Mogg (MP 4099) voted between 25 Jan 2022 and 4 Feb 2022
 mp_vote_record(4099, start_date = "2021-01-25",
                     end_date = "2021-02-04", verbose = FALSE)
-#> # A tibble: 12 × 6
-#>    about title uin   date_value          date_datatype vote 
-#>    <chr> <chr> <chr> <dttm>              <chr>         <fct>
-#>  1 1280… Draf… CD:2… 2021-01-27 00:00:00 POSIXct       aye  
-#>  2 1280… Cove… CD:2… 2021-01-27 00:00:00 POSIXct       aye  
-#>  3 1280… Cove… CD:2… 2021-01-27 00:00:00 POSIXct       aye  
-#>  4 1280… Cove… CD:2… 2021-01-27 00:00:00 POSIXct       aye  
-#>  5 1280… Cove… CD:2… 2021-01-27 00:00:00 POSIXct       aye  
-#>  6 1280… Cove… CD:2… 2021-01-27 00:00:00 POSIXct       aye  
-#>  7 1283… Exit… CD:2… 2021-02-03 00:00:00 POSIXct       no   
-#>  8 1280… Envi… CD:2… 2021-01-26 00:00:00 POSIXct       no   
-#>  9 1280… Envi… CD:2… 2021-01-26 00:00:00 POSIXct       no   
-#> 10 1280… Envi… CD:2… 2021-01-26 00:00:00 POSIXct       no   
-#> 11 1280… Envi… CD:2… 2021-01-26 00:00:00 POSIXct       no   
-#> 12 1280… Envi… CD:2… 2021-01-26 00:00:00 POSIXct       no
+
 ```
 
 - [`peacesciencer`](https://github.com/svmiller/peacesciencer/): Different datasets related to the study of conflict and peace
@@ -282,6 +273,7 @@ mp_vote_record(4099, start_date = "2021-01-25",
 
 
 ```r
+
 #Install packages
 #install.packages("remotes")
 #remotes::install_github("njtierney/ukpolice")
@@ -309,6 +301,7 @@ crime_data_summary = crime_data %>%
        title = paste0("Crimes commited in ",crime_data$date[1])) +
   coord_flip() +
   theme_minimal()
+
 ```
 
 ![](images/crime_images.png)
