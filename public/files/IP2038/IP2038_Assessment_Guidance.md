@@ -4,48 +4,58 @@
 
 Here are the key steps to complete your assignment
 
-1.  Create a personal copy of the assessment project by selecting "copy" on the right-hand side![](images/Copy Project.png){width=90%}
+1. Open the Project IP2038 Assessment on RStudio Cloud ([link](https://rstudio.cloud/spaces/212048/project/3688736))
 
-2.  Open your copy of the Assessment project
+2.  Open the file "IP2038 Assessment 2021-22.rmd"
 
-3.  Open the file "IP2038 Assessment 2021-22.rmd"
-
-4.  The assessment template lays out 4 main pieces of analysis that you will have to do for the selected data. Complete the different tasks by editing the RMarkdown file you have imported. For each of these tasks:
+3.  The assessment template lays out 4 main pieces of analysis that you will have to do for the selected data. Complete the different tasks by editing the RMarkdown file you have imported. For each of these tasks:
 
     -   ***Part A:*** Complete the R code chunk in the first part of each task with code to produce the required numeric or graphicalresults. This include adding comments to the code using the `#`sign in order to explain what you have done.
     -   **Part B:** Interpret the output of the code chunk
 
-5.  Save the file and export it outside of RStudio into your computer (select More in the File pane --> Export)
+4.  Save the file and export it outside of RStudio into your computer (select More in the File pane --> Export)
 
 ![](images/RStudioCloud_Export.png){width="90%"}
 
-6.  Submit the completed RMarkdown (.rmd) file to the submission pointon Moodle. *Please note that only the version of the assignment submitted on Moodle can be assessed. The copy of the file available on RStudio cannot be considered a valid submission.*
+5.  Submit the completed RMarkdown (.rmd) file to the submission pointon Moodle. *Please note that only the version of the assignment submitted on Moodle can be assessed. The copy of the file available on RStudio cannot be considered a valid submission.*
 
 ## Data
 
 In order to complete the assignment you will have to select, load in your R environment, and analyze of the following datasets (all availablethrough the `owidR` package):
 
-1. Electoral Democracy from the Varieties of Democracy dataset .
+1. **Electoral Democracy from the Varieties of Democracy dataset**
   - Download Code: `data <- owid("electoral-democracy")`
   - More information: http://v-dem.net
-2.  Transparency International Corruption Perception Index
+2.  **Transparency International Corruption Perception Index**
   - Download Code: `data <- owid("TI-corruption-perception-index")`
   - More information: https://www.transparency.org/cpi2018
-3.  OECD Gender Wage Gap Data
+3.  **OECD Gender Wage Gap Data**
   - Download Code: `data <- owid("gender-wage-gap-oecd")`
   - More information:  https://data.oecd.org/earnwage/gender-wage-gap.htm#indicator-chart
-4.  CO2 Emissions Data by Country from the Global Carbon Project
+4.  **CO2 Emissions Data by Country from the Global Carbon Project**
   - Download Code: `data <- owid("annual-co2-emissions-per-country")`
   - More information: https://doi.org/10.5281/zenodo.5569235
-5.  OECD Data on Social Expenditures as a share of GDP
+5.  **OECD Data on Social Expenditures as a share of GDP**
   - Download Code: `data <- owid("social-spending-oecd-longrun")`
   - More information: http://stats.oecd.org/Index.aspx?datasetcode=SOCX_AGG
-6.  SIPRI Military Expenditure Database
+6.  **SIPRI Military Expenditure Database**
   - Download Code: `data <- owid("military-expenditure-total")`
   - More information:  https://www.sipri.org/databases/milex
-7.  World Bank Data on Global Poverty
+7.  **World Bank Data on Global Poverty**
   - Download Code: `data <- owid("above-or-below-extreme-poverty-line-world-bank")`
   - More information: http://iresearch.worldbank.org/PovcalNet/povDuplicateWB.aspx
+8. **World Bank Data on Income Inequality (Gini Index)**
+  - Download Code: `data <- owid("economic-inequality-gini-index")`
+  - More information: https://data.worldbank.org/indicator/SI.POV.GINI
+9 - **United Nations Development Programme (UNDP) Human Development Index**
+  - Download Code: `data <- owid("human-development-index")`
+  - More information: https://hdr.undp.org/en/indicators/137506#
+10 - **World Bank Data on Government Expenditure on Education as a share of GDP**
+  - Download Code: `data <- owid("total-government-expenditure-on-education-gdp")`
+  - More information: http://data.worldbank.org/data-catalog/world-development-indicators
+
+
+
 
 You will need to download the selected data directly from RStudio using the [owidR package](https://github.com/piersyork/owidR).
 
@@ -69,7 +79,6 @@ library(owidR)
 
 #download the "political-regimes" dataset
 data <- owid("political-regimes")
- 
 ```
 
 ## Question 1: Summary of the Selected Data
@@ -133,8 +142,8 @@ In the case of datasets covering a long range of years, it may be appropriate to
 ### Selecting Countries
 When analyzing the evolution of the variable of interest across you time, different options are available regarding the data selected. In this case, you can:
 
-- **Key country**: you could focus on how exploring how the selected variable varies across time in one or few specific countries 
-- **Global Average/Median**: analyze the evolution on the average level of the variable across time
+- **Key country**: you could focus on how exploring how the selected variable varies across time in a selected number of countries (between 1 and 3)
+- **Global Average/Median**: you could analyze the evolution on the average level of the variable across time
 - **Group countries**: you can group countries  based on certain features, such as their location
 
 
@@ -166,6 +175,8 @@ After having identified a dataset of interest, you can find more about it by doi
 3. retrieve more information on the source of the data by using the `owid_source()` function, adding the name of the object where the data is stored within brackets
 
 ![](images/owid_search_political_regime.png){width=90%}
+
+It is answer this question by looking at any of the datasets listed at the beginning of the assessment template.
 
 ### Combining the data
 

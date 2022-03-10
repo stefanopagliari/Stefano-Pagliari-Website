@@ -18,14 +18,14 @@ library(parlitools)
 bes_2017 <- parlitools::bes_2017
 head(bes_2017)
 #> # A tibble: 6 × 123
-#>    pano ons_const_id constituency_name       country  region
-#>   <dbl> <chr>        <chr>                   <chr>    <chr> 
-#> 1     1 W07000049    Aberavon                Wales    Wales 
-#> 2     2 W07000058    Aberconwy               Wales    Wales 
-#> 3     3 S14000001    Aberdeen North          Scotland Scotl…
-#> 4     4 S14000002    Aberdeen South          Scotland Scotl…
-#> 5     5 S14000058    West Aberdeenshire and… Scotland Scotl…
-#> 6     6 S14000003    Airdrie and Shotts      Scotland Scotl…
+#>    pano ons_const_id constituency_name        country region
+#>   <dbl> <chr>        <chr>                    <chr>   <chr> 
+#> 1     1 W07000049    Aberavon                 Wales   Wales 
+#> 2     2 W07000058    Aberconwy                Wales   Wales 
+#> 3     3 S14000001    Aberdeen North           Scotla… Scotl…
+#> 4     4 S14000002    Aberdeen South           Scotla… Scotl…
+#> 5     5 S14000058    West Aberdeenshire and … Scotla… Scotl…
+#> 6     6 S14000003    Airdrie and Shotts       Scotla… Scotl…
 #> # … with 118 more variables: constituency_type <chr>,
 #> #   winner_17 <fct>, con_17 <dbl>, lab_17 <dbl>,
 #> #   ld_17 <dbl>, snp_17 <dbl>, pc_17 <dbl>, ukip_17 <dbl>,
@@ -45,14 +45,14 @@ library(parlitools)
 census_11 <- parlitools::census_11
 head(census_11)
 #> # A tibble: 6 × 191
-#>    pano ons_const_id constituency_name       country  region
-#>   <dbl> <chr>        <fct>                   <fct>    <fct> 
-#> 1     1 W07000049    Aberavon                Wales    Wales 
-#> 2     2 W07000058    Aberconwy               Wales    Wales 
-#> 3     3 S14000001    Aberdeen North          Scotland Scotl…
-#> 4     4 S14000002    Aberdeen South          Scotland Scotl…
-#> 5     5 S14000058    West Aberdeenshire and… Scotland Scotl…
-#> 6     6 S14000003    Airdrie and Shotts      Scotland Scotl…
+#>    pano ons_const_id constituency_name        country region
+#>   <dbl> <chr>        <fct>                    <fct>   <fct> 
+#> 1     1 W07000049    Aberavon                 Wales   Wales 
+#> 2     2 W07000058    Aberconwy                Wales   Wales 
+#> 3     3 S14000001    Aberdeen North           Scotla… Scotl…
+#> 4     4 S14000002    Aberdeen South           Scotla… Scotl…
+#> 5     5 S14000058    West Aberdeenshire and … Scotla… Scotl…
+#> 6     6 S14000003    Airdrie and Shotts       Scotla… Scotl…
 #> # … with 186 more variables: constituency_type <fct>,
 #> #   population <dbl>, population_density <dbl>, male <dbl>,
 #> #   female <dbl>, households <dbl>, communal <dbl>,
@@ -162,7 +162,6 @@ gap_extended <- gapminder %>% #Take the gapminder dataset
 gap_extended <- left_join(gapminder, polity, by = c("country", "year"))
 
 head(gap_extended)
-
 ```
 
 

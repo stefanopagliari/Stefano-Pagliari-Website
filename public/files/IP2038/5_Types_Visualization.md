@@ -133,7 +133,6 @@ Then, rather than joining all the points, we could fit linear regression lines f
 
 
 ```r
-
 gapmindermedian <- gapminder %>%
     group_by(continent, year) %>%
     summarise(lifeExp=median(lifeExp))
@@ -164,7 +163,6 @@ The variable `gdpPercap` is skewed since there are a few observations with a ver
 
 
 ```r
-
 ggplot(data=gapminder,
        mapping = aes(x = gdpPercap, 
                      y = lifeExp)) +

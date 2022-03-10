@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 4 Importing Data into R | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
 <meta name="twitter:description" content="4.1 Importing a Dataframe from an Existing File R includes a variety of packages and functions designed to import data in your working environment and to store them into an object data.frame. A a...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
@@ -85,7 +85,8 @@ The function <code>read_csv</code> takes as argument within brackets the name of
 <p>For instance, in thecode below we are loading the dataset called “UK_Inequality” which is located in the subfolder of our project named “Data”, and store it in the object <code>Inequality_DF</code>. This object is a <code>tibble</code> which is a type of dataframe.</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-
+<span class="co">#&gt; Warning: package 'tidyr' was built under R version 4.0.5</span>
+<span class="co">#&gt; Warning: package 'readr' was built under R version 4.0.5</span>
 <span class="co"># Here's how we read that CSV data</span>
 <span class="va">Inequality_DF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">'data/UK_Inequality.csv'</span><span class="op">)</span>
 
@@ -103,19 +104,17 @@ The function <code>read_csv</code> takes as argument within brackets the name of
 <p><code>read_csv</code> can also be used to import files that are stored on a website. To do so, you need to provide as the main argument the URL.</p>
 <p>For instance, the <a href="http://bsg.ox.ac.uk/covidtracker">Oxford Covid-19 Government Response Tracker</a> is a research project based that collects data on the the policies introduced by different countries in response to the Covid-19 pandemic. Their datasets are stored on an <a href="https://github.com/OxCGRT/covid-policy-tracker">online data repository</a> in a series of <a href="https://github.com/OxCGRT/covid-policy-tracker/tree/master/data">csv files</a> . The URL of these csv files can be passed to <code>read_csv</code> to import the content of the data (please note that to download data from Github you will need to select the “raw” format)</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># load the tidyverse library to load the read_csv function</span>
+<code class="sourceCode R"><span class="co"># load the tidyverse library to load the read_csv function</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="co"># load the dataset at the URL below and store it in a element called "oxfordVaccine_DF"</span>
 <span class="va">oxfordVaccine_DF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_vaccines_full.csv"</span><span class="op">)</span>
 <span class="co">#&gt; Warning: One or more parsing issues, see `problems()` for</span>
 <span class="co">#&gt; details</span>
-
 <span class="co"># Print to the console the initial values of the dataset</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">oxfordVaccine_DF</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 171</span>
-<span class="co">#&gt;   CountryName CountryCode     Date `V1_Vaccine Prioritisati…</span>
+<span class="co">#&gt;   CountryName CountryCode     Date `V1_Vaccine Prioritisat…`</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;                     &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 Aruba       ABW         20200101                         0</span>
 <span class="co">#&gt; 2 Aruba       ABW         20200102                         0</span>
@@ -123,13 +122,13 @@ The function <code>read_csv</code> takes as argument within brackets the name of
 <span class="co">#&gt; 4 Aruba       ABW         20200104                         0</span>
 <span class="co">#&gt; 5 Aruba       ABW         20200105                         0</span>
 <span class="co">#&gt; 6 Aruba       ABW         20200106                         0</span>
-<span class="co">#&gt; # … with 167 more variables: V1_0-4 yrs infants &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   V1_5-15 yrs young people &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   V1_Airport/Border/Airline Staff &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   V1_At Risk 16-19 yrs &lt;dbl&gt;, V1_At Risk 20-24 yrs &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   V1_At Risk 25-29 yrs &lt;dbl&gt;, V1_At Risk 30-34 yrs &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   V1_At Risk 35-39 yrs &lt;dbl&gt;, V1_At Risk 40-44 yrs &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   V1_At Risk 45-49 yrs &lt;dbl&gt;, …</span></code></pre></div>
+<span class="co">#&gt; # … with 167 more variables: `V1_0-4 yrs infants` &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   `V1_5-15 yrs young people` &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   `V1_Airport/Border/Airline Staff` &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   `V1_At Risk 16-19 yrs` &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   `V1_At Risk 20-24 yrs` &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   `V1_At Risk 25-29 yrs` &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   `V1_At Risk 30-34 yrs` &lt;dbl&gt;, …</span></code></pre></div>
 <p>You can find more information on the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function, type <code><a href="https://readr.tidyverse.org/reference/read_delim.html">?read_csv</a></code> in the console.</p>
 </div>
 <div id="excel-files-.xls-.xlsx" class="section level3" number="4.1.2">
@@ -151,14 +150,14 @@ The function <code>read_csv</code> takes as argument within brackets the name of
 To do this, you can use the <code>haven</code> packages within the <code>tidyverse</code> world. Once this package is loaded you can import a data file from stata using the <code><a href="https://haven.tidyverse.org/reference/read_dta.html">read_stata()</a></code> function</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haven.tidyverse.org">haven</a></span><span class="op">)</span>
 
 <span class="co">#Import data</span>
 <span class="va">desiguales_stata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html">read_stata</a></span><span class="op">(</span><span class="st">"Data/desiguales.dta"</span><span class="op">)</span></code></pre></div>
 <p>The <code><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss()</a></code> function can be used to import SPSS data files with extension .sav</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haven.tidyverse.org">haven</a></span><span class="op">)</span>
 
 <span class="co">#Import data</span>
 <span class="va">desiguales_spss</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss</a></span><span class="op">(</span><span class="st">"Data/desiguales.sav"</span><span class="op">)</span></code></pre></div>
@@ -253,8 +252,7 @@ To do this, you can use the <code>haven</code> packages within the <code>tidyver
 <li><p><a href="https://cran.r-project.org/web/packages/hansard/vignettes/introduction.html"><code>hansard</code></a>: package to pull data from the UK parliament through the <a href="http://www.data.parliament.uk/">http://www.data.parliament.uk/</a> API</p></li>
 </ul>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co">#install the package "hansard"</span>
+<code class="sourceCode R"><span class="co">#install the package "hansard"</span>
 <span class="co">#install.packages("hansard")</span>
 
 <span class="co">#load the package "hansard"</span>
@@ -282,8 +280,7 @@ To do this, you can use the <code>haven</code> packages within the <code>tidyver
 </li>
 </ul>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co">#Install packages</span>
+<code class="sourceCode R"><span class="co">#Install packages</span>
 <span class="co">#install.packages("remotes")</span>
 <span class="co">#remotes::install_github("njtierney/ukpolice")</span>
 
@@ -350,7 +347,7 @@ To do this, you can use the <code>haven</code> packages within the <code>tidyver
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-03-06.</p>
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-03-10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
