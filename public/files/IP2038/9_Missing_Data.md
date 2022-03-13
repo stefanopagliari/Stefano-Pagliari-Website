@@ -24,6 +24,7 @@ For instance, in the code below we first create a sample vector that includes mi
 
 
 ```r
+
 #Create vector including the monthly inflation rates in the US
 Inflation_Data <- c(45, 23, NA, 21, NA)
 is.na(Inflation_Data)
@@ -35,6 +36,7 @@ We can calculate the number of missing values by summing up the elements  of the
 
 
 ```r
+
 #Create vector including the monthly inflation rates in the US
 Inflation_Data <- c(45, 23, NA, 21, NA)
 
@@ -80,14 +82,11 @@ For instance, the `vis_miss` function in the `visdat` package can be called to i
 
 
 ```r
+
 #install.packages("visdat") #the package needs to be installed only the first time
 library(visdat)
 
 vis_miss(airquality)
-#> Warning: `gather_()` was deprecated in tidyr 1.2.0.
-#> Please use `gather()` instead.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 <img src="9_Missing_Data_files/figure-html/Vis_miss-1.png" width="672" />
@@ -98,6 +97,7 @@ In the same package the `gg_miss_var()` function can be used to visualise the mi
 
 
 ```r
+
 gg_miss_var(airquality)
 #> Warning: It is deprecated to specify `guide = FALSE` to
 #> remove a guide. Please use `guide = "none"` instead.
@@ -118,8 +118,7 @@ For instance, this vector includes a sequence of numbers capturing the level of 
 
 ```r
 library(tidyverse)
-#> Warning: package 'tidyr' was built under R version 4.0.5
-#> Warning: package 'readr' was built under R version 4.0.5
+
 GDP_Growth <- c(3.2, 2.2, 99, 3.2, 1.7, 1.2, 1.0, 99)
 
 GDP_Growth_Clean <- na_if(GDP_Growth, 99)
@@ -163,6 +162,7 @@ By default, most R operations performed with missing values fail , alerting you 
 For instance, see what happens when we try to calculate the average number of a vector that includes missing values
 
 ```r
+
 #Create vector including the monthly inflation rates in the US
 Votes <- c(45, 23, NA, 21, NA)
 
@@ -179,6 +179,7 @@ vector to carry out the function.
 
 
 ```r
+
 #Create vector including NA value
 Votes <- c(45, 23, NA, 21, NA)
 

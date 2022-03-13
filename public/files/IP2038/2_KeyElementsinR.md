@@ -13,6 +13,7 @@ To see the results of what you stored in the object, you can simply type the nam
 
 
 ```r
+
 British_Prime_Ministers <- c("Baldwin", "Chamberlain", "Churchill", "Attlee", "Churchill", "Eden", "MacMillan", "Douglas-Home", "Heath", "Wilson", "Callaghan", "Tatcher", "Major", "Blair", "Brown", "Cameron", "May", "Johnson")
 
 British_Prime_Ministers
@@ -48,9 +49,11 @@ For instance, can you correct the names below that the code does not return an e
 
 
 ```r
+
 My Name <- "Stefano"
  
 My Name
+
 ```
 
 
@@ -64,6 +67,7 @@ my_name <- "Stefano"
 
 # Check if your name is the one assigned
 My_Name == "Stefano"
+
 ```
 
 Running the code will result in the error `Object "My_Name" not found` since we initially stored our name in the object `my_name`
@@ -125,6 +129,7 @@ Objects can be characters. Any combination of words, numbers, and symbols within
 
 
 ```r
+
   #Store my name in an object called "my_name"
   my_name <- "Stefano"
 
@@ -156,6 +161,7 @@ For instance,  in the code below we would like to calculate the total population
   # Calculate Population United Kingdom
   Pop_UK <- Pop_England + Pop_Scotland + Pop_Wales + Pop_NIreland
 #> Error in Pop_England + Pop_Scotland: non-numeric argument to binary operator
+  
   # Print the results in the console
   Pop_UK
 #> Error in eval(expr, envir, enclos): object 'Pop_UK' not found
@@ -172,6 +178,7 @@ For instance we can check whether an object has a certain value or wether two ob
 
 
 ```r
+
   # Store my name into object called "my_name"
   my_name <- "Stefano"
 
@@ -181,6 +188,7 @@ For instance we can check whether an object has a certain value or wether two ob
   # print the results of am_I_Mark
   am_I_Mark
 #> [1] FALSE
+
   # check what type of object is "am_I_Mark"
   class(am_I_Mark)
 #> [1] "logical"
@@ -205,6 +213,7 @@ We build vectors in R using the function `c()`, which is short for concatenate. 
   
 
 ```r
+
 #Create vector composed of 7 different strings, divided by a comma
 Seven_Dwarves <- c("Doc", "Grumpy", "Happy", "Sleepy", "Bashful", "Sneezy", "Dopey")
 
@@ -244,6 +253,7 @@ US_Inflation_2020 <- c(0.39, 0.27, 0.22, 0.67, 0.002, 0.55, 0.51, 0.32, 0.14, 0.
 #identify the element of the vector with the highest value using 
 max(US_Inflation_2020)
 #> [1] 0.67
+
 min(US_Inflation_2020)
 #> [1] 0.002
 ```
@@ -274,6 +284,7 @@ We can create a dataframe by combining different vectors by using the function `
 
 
 ```r
+
 #Create vector with surname of UK Party Leaders
 Name <- c("Johnson", "Starmer", "Sturgeon")
 
@@ -335,6 +346,7 @@ round(3.6)
 
 
 ```r
+
 my_name <- "Stefano"
 
 paste("Hi, my name is" , my_name)
@@ -345,6 +357,7 @@ paste("Hi, my name is" , my_name)
 
 
 ```r
+
 US_Inflation_Jan2020 <- 0.39
 US_Inflation_Feb2020 <- 0.27
 US_Inflation_Mar2020 <- 0.22
@@ -397,6 +410,7 @@ What do these functions do?
 ```r
 tolower("STRING")
 #> [1] "string"
+
 # You can find more information about this function by typing ?tolower 
 ```
 
@@ -406,6 +420,7 @@ tolower("STRING")
 ```r
 length(c("Doc", "Grumpy", "Happy", "Sleepy", "Bashful", "Sneezy", "Dopey")) 
 #> [1] 7
+
 # You can find more information about this function by typing ?length 
 ```
 
@@ -415,6 +430,7 @@ length(c("Doc", "Grumpy", "Happy", "Sleepy", "Bashful", "Sneezy", "Dopey"))
 ```r
 sqrt(81)
 #> [1] 9
+
 # You can find more information about this function by typing ?sqrt 
 ```
 
@@ -424,6 +440,7 @@ sqrt(81)
 ```r
 gsub("Tuesday", "Wednesday", "Today is Tuesday")
 #> [1] "Today is Wednesday"
+
 # You can find more information about this function by typing ?gsub
 ```
 
@@ -433,6 +450,7 @@ gsub("Tuesday", "Wednesday", "Today is Tuesday")
 ```r
 sort(c(14, 12, 16, 9))
 #> [1]  9 12 14 16
+
 # You can find more information about this function by typing ?sort
 ```
 
@@ -442,6 +460,7 @@ sort(c(14, 12, 16, 9))
 ```r
 grepl("day", "Wednesday")
 #> [1] TRUE
+
 grepl("day", "March")
 #> [1] FALSE
 # You can find more information about this function by typing ?grepl

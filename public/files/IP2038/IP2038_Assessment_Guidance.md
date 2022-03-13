@@ -79,6 +79,7 @@ library(owidR)
 
 #download the "political-regimes" dataset
 data <- owid("political-regimes")
+ 
 ```
 
 ## Question 1: Summary of the Selected Data

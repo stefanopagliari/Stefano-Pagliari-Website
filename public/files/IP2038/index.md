@@ -1,7 +1,7 @@
 --- 
 title: "IP2038 - Analysing Political and Economic Data in the Real World - Course Material"
 author: "Stefano Pagliari"
-date: "2022-03-10"
+date: "2022-03-13"
 site: bookdown::bookdown_site
 documentclass: book
 # url: your book url like https://bookdown.org/yihui/bookdown
@@ -72,8 +72,7 @@ In a similar way, it is possible to write to code to instruct R to download data
 ```r
 library(gapminder)
 library(tidyverse)
-#> Warning: package 'tidyr' was built under R version 4.0.5
-#> Warning: package 'readr' was built under R version 4.0.5
+
 ggplot(data = gapminder, 
        mapping = aes(x = gdpPercap, 
                      y = lifeExp,

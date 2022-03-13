@@ -30,6 +30,7 @@ In this section we will explore  some of the most commonly used `dplyr` function
 In order to access these and other functions that used in this section, you need to load `dplyr` at the beginning of the session. This can also be done by loading the `tidyverse`
 
 ```r
+
 #load tidyverse
 library(tidyverse)
 
@@ -69,6 +70,7 @@ For instance the two lines of code below are equivalent ways to display the top 
 head(gapminder)
 
 gapminder %>% head
+
 ```
 
 Both lines of code will return the same information:
@@ -194,6 +196,7 @@ Instead of specifying the variables that we want to retain, we can also use the 
 
 
 ```r
+
 gap_narrow <- gapminder %>% 
   select(-gdpPercap, -pop)
 ```
@@ -256,8 +259,10 @@ In the case we want to retain a range of variable, it is possible to list the fi
 
 
 ```r
+
 gap_narrow <- gapminder %>% 
   select(year:gdpPercap)
+  
 ```
 
 
@@ -275,6 +280,7 @@ For instance, in this example we take a pre-loaded dataset named `iris` and sele
 
 
 ```r
+
 new_iris <- iris %>% select(Species, starts_with("Petal") & ends_with("Width"))
 
 head(new_iris)
@@ -397,6 +403,7 @@ For instance, in this example we can filter all the rows where the variable `con
 
 
 ```r
+
 gapminder_africa_asia <- gapminder %>%
 	filter(continent == "Africa" | continent == "Asia")  
 ```
@@ -410,6 +417,7 @@ In this example we exclude from the analysis all the rows where the variable `co
 
 
 ```r
+
 gapminder_notOceania <- gapminder %>%
 	filter(continent != "Oceania")  
 ```
@@ -424,6 +432,7 @@ In this case, the `%in%` operator can be called to retain all the rows where the
 
 
 ```r
+
 gapminder_africa_asia <- gapminder %>%
 	filter(continent %in% c("Africa","Asia") ) 
 ```
@@ -440,6 +449,7 @@ For instance, in the example below we want to retain all the observations after 
 
 
 ```r
+
 gapminder_recent <- gapminder %>%
 	filter(year > 1982) 
 ```
@@ -464,14 +474,14 @@ gap_gdp <- gapminder %>%
 
 head(gap_gdp)
 #> # A tibble: 6 × 8
-#>   country   continent  year lifeExp    pop gdpPercap     gdp
-#>   <fct>     <fct>     <int>   <dbl>  <int>     <dbl>   <dbl>
-#> 1 Afghanis… Asia       1952    28.8 8.43e6      779. 6.57e 9
-#> 2 Afghanis… Asia       1957    30.3 9.24e6      821. 7.59e 9
-#> 3 Afghanis… Asia       1962    32.0 1.03e7      853. 8.76e 9
-#> 4 Afghanis… Asia       1967    34.0 1.15e7      836. 9.65e 9
-#> 5 Afghanis… Asia       1972    36.1 1.31e7      740. 9.68e 9
-#> 6 Afghanis… Asia       1977    38.4 1.49e7      786. 1.17e10
+#>   country  continent  year lifeExp     pop gdpPercap     gdp
+#>   <fct>    <fct>     <int>   <dbl>   <int>     <dbl>   <dbl>
+#> 1 Afghani… Asia       1952    28.8  8.43e6      779. 6.57e 9
+#> 2 Afghani… Asia       1957    30.3  9.24e6      821. 7.59e 9
+#> 3 Afghani… Asia       1962    32.0  1.03e7      853. 8.76e 9
+#> 4 Afghani… Asia       1967    34.0  1.15e7      836. 9.65e 9
+#> 5 Afghani… Asia       1972    36.1  1.31e7      740. 9.68e 9
+#> 6 Afghani… Asia       1977    38.4  1.49e7      786. 1.17e10
 #> # … with 1 more variable: gdp_billions <dbl>
 ```
 
@@ -660,6 +670,7 @@ gapminder %>%
 
 
 ```r
+
 gapminder %>%
     group_by(continent) %>%
     tally()
@@ -786,6 +797,7 @@ For instance, the code below takes the  gapminder dataset and manipulates this d
 
 
 ```r
+
 gapminder %>% #take the dataset gap
   filter(year ==2007) %>%   #filter observations where year is equal to 2007
   filter(continent == "Europe") %>% #filter observations where variable continent is "Europe"
