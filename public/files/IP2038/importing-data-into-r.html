@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 4 Importing Data into R | IP2038 - Analysing Political and Economic Data in the Real World - Course Material</title>
+<meta name="author" content="Stefano Pagliari">
+<meta name="description" content="4.1 Importing a Dataframe from an Existing File R includes a variety of packages and functions designed to import data in your working environment and to store them into an object data.frame. A a...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 4 Importing Data into R | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta property="og:type" content="book">
+<meta property="og:description" content="4.1 Importing a Dataframe from an Existing File R includes a variety of packages and functions designed to import data in your working environment and to store them into an object data.frame. A a...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4 Importing Data into R | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta name="twitter:description" content="4.1 Importing a Dataframe from an Existing File R includes a variety of packages and functions designed to import data in your working environment and to store them into an object data.frame. A a...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IP2038 - Analysing Political and Economic Data in the Real World - Course Material</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction to the Module</a></li>
+<li class="book-part">Introduction to R</li>
+<li><a class="" href="rstudio-and-rstudio-cloud.html"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></li>
+<li><a class="" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
+<li class="book-part">Datasets</li>
+<li><a class="active" href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></li>
+<li><a class="" href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
+<li><a class="" href="long-vs.-wide-data.html"><span class="header-section-number">6</span> Long vs. Wide Data</a></li>
+<li><a class="" href="list-of-political-and-economic-datasets.html"><span class="header-section-number">7</span> List of Political and Economic Datasets</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="data-wrangling-with-dplyr.html"><span class="header-section-number">8</span> Data Wrangling with dplyr</a></li>
+<li><a class="" href="working-with-observations.html"><span class="header-section-number">9</span> Working with Observations</a></li>
+<li><a class="" href="working-with-variables.html"><span class="header-section-number">10</span> Working with Variables</a></li>
+<li><a class="" href="grouping-and-summarising-data.html"><span class="header-section-number">11</span> Grouping and Summarising Data</a></li>
+<li><a class="" href="relational-data.html"><span class="header-section-number">12</span> Relational Data</a></li>
+<li><a class="" href="missing-data.html"><span class="header-section-number">13</span> Missing Data</a></li>
+<li class="book-part">Data Visualization</li>
+<li><a class="" href="data-visualization-with-ggplot.html"><span class="header-section-number">14</span> Data Visualization with ggplot</a></li>
+<li><a class="" href="types-of-visualizations.html"><span class="header-section-number">15</span> Types of visualizations</a></li>
+<li class="book-part">Exploratory Analysis</li>
+<li><a class="" href="exploring-numerical-data.html"><span class="header-section-number">16</span> Exploring Numerical Data</a></li>
+<li><a class="" href="exploring-categorical-data.html"><span class="header-section-number">17</span> Exploring Categorical Data</a></li>
+<li><a class="" href="relationship-between-categorical-and-numerical-variables.html"><span class="header-section-number">18</span> Relationship between categorical and numerical variables</a></li>
+<li><a class="" href="relationship-between-numerical-variables.html"><span class="header-section-number">19</span> Relationship between numerical variables</a></li>
+<li><a class="" href="relationship-between-categorical-variables.html"><span class="header-section-number">20</span> Relationship between categorical variables</a></li>
+<li><a class="" href="time-series.html"><span class="header-section-number">21</span> Time Series</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="assessment-guidance.html"><span class="header-section-number">A</span> Assessment Guidance</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="importing-data-into-r" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Importing Data into R<a class="anchor" aria-label="anchor" href="#importing-data-into-r"><i class="fas fa-link"></i></a>
+</h1>
+<div id="importing-a-dataframe-from-an-existing-file" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> Importing a Dataframe from an Existing File<a class="anchor" aria-label="anchor" href="#importing-a-dataframe-from-an-existing-file"><i class="fas fa-link"></i></a>
+</h2>
+<p>R includes a variety of packages and functions designed to import data in your working environment and to store them into an object <code>data.frame</code>. A a <code>tibble</code> is a special type of dataframe.</p>
+<p>Different functions are available depending on the file formats you need to import.</p>
+<div id="csv-files" class="section level3" number="4.1.1">
+<h3>
+<span class="header-section-number">4.1.1</span> CSV files<a class="anchor" aria-label="anchor" href="#csv-files"><i class="fas fa-link"></i></a>
+</h3>
+<p>Comma-separated value (<strong>CSV</strong>) files a common way to store tabular data. They are just plain text files where the columns are separated by commas and the rows are separated by line breaks, like this:</p>
+<pre><code>person, class, role, programme
+Stefano P., IP2038, instructor, IPE
+Niko S., IP2038, student, Pol
+Hana M., IP2038, student, IPE</code></pre>
+<p>Multiple packages are available in R to load a <code>.csv</code> file into your work environment. The <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function is part the <code>readr</code> package, which is one piece of the <code>tidyverse</code>, so make sure you have the <code>tidyverse</code> package loaded.
+The function <code>read_csv</code> takes as argument within brackets the name of the file to be imported. In the case the file is located in a subfolder of the project, you will need to indicate also the path where the file is located in your computer.</p>
+<p>For instance, in thecode below we are loading the dataset called “UK_Inequality” which is located in the subfolder of our project named “Data”, and store it in the object <code>Inequality_DF</code>. This object is a <code>tibble</code> which is a type of dataframe.</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+
+<span class="co"># Here's how we read that CSV data</span>
+<span class="va">Inequality_DF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">'data/UK_Inequality.csv'</span><span class="op">)</span>
+
+<span class="co"># Print the beginning of the dataset imported</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">Inequality_DF</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 × 5</span>
+<span class="co">#&gt;   country variable    year Bottom_50_Perc Top_1_Perc</span>
+<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt;          &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 GB      sptinc992j  1937             NA      0.205</span>
+<span class="co">#&gt; 2 GB      sptinc992j  1949             NA      0.139</span>
+<span class="co">#&gt; 3 GB      sptinc992j  1951             NA      0.132</span>
+<span class="co">#&gt; 4 GB      sptinc992j  1952             NA      0.123</span>
+<span class="co">#&gt; 5 GB      sptinc992j  1953             NA      0.118</span>
+<span class="co">#&gt; 6 GB      sptinc992j  1954             NA      0.117</span></code></pre></div>
+<p><code>read_csv</code> can also be used to import files that are stored on a website. To do so, you need to provide as the main argument the URL.</p>
+<p>For instance, the <a href="http://bsg.ox.ac.uk/covidtracker">Oxford Covid-19 Government Response Tracker</a> is a research project based that collects data on the the policies introduced by different countries in response to the Covid-19 pandemic. Their datasets are stored on an <a href="https://github.com/OxCGRT/covid-policy-tracker">online data repository</a> in a series of <a href="https://github.com/OxCGRT/covid-policy-tracker/tree/master/data">csv files</a> . The URL of these csv files can be passed to <code>read_csv</code> to import the content of the data (please note that to download data from Github you will need to select the “raw” format)</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># load the tidyverse library to load the read_csv function</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+
+<span class="co"># load the dataset at the URL below and store it in a element called "oxfordVaccine_DF"</span>
+<span class="va">oxfordVaccine_DF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_vaccines_full.csv"</span><span class="op">)</span>
+<span class="co">#&gt; Warning: One or more parsing issues, see `problems()` for</span>
+<span class="co">#&gt; details</span>
+
+<span class="co"># Print to the console the initial values of the dataset</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">oxfordVaccine_DF</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 × 225</span>
+<span class="co">#&gt;   CountryName CountryCode     Date `V1_Vaccine Prioritisati…</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;                     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Aruba       ABW         20200101                         0</span>
+<span class="co">#&gt; 2 Aruba       ABW         20200102                         0</span>
+<span class="co">#&gt; 3 Aruba       ABW         20200103                         0</span>
+<span class="co">#&gt; 4 Aruba       ABW         20200104                         0</span>
+<span class="co">#&gt; 5 Aruba       ABW         20200105                         0</span>
+<span class="co">#&gt; 6 Aruba       ABW         20200106                         0</span>
+<span class="co">#&gt; # … with 221 more variables: V1_0-4 yrs infants &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   V1_5-15 yrs young people &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   V1_Airport/Border/Airline Staff &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   V1_At Risk 16-19 yrs &lt;dbl&gt;, V1_At Risk 20-24 yrs &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   V1_At Risk 25-29 yrs &lt;dbl&gt;, V1_At Risk 30-34 yrs &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   V1_At Risk 35-39 yrs &lt;dbl&gt;, V1_At Risk 40-44 yrs &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   V1_At Risk 45-49 yrs &lt;dbl&gt;, …</span></code></pre></div>
+<p>You can find more information on the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function, type <code><a href="https://readr.tidyverse.org/reference/read_delim.html">?read_csv</a></code> in the console.</p>
+</div>
+<div id="excel-files-.xls-.xlsx" class="section level3" number="4.1.2">
+<h3>
+<span class="header-section-number">4.1.2</span> Excel files (.xls, .xlsx)<a class="anchor" aria-label="anchor" href="#excel-files-.xls-.xlsx"><i class="fas fa-link"></i></a>
+</h3>
+<p>While <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> allows you to import csv files, R can read data in many different formats.</p>
+<p>The <code>readxl</code> package allows you to get data out of Excel and into R. The package is part of the tidyverse, but it needs to be loaded using <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>. Once you have loaded the package, you can import excel files using the <code>read_excel</code> function</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>
+
+<span class="va">Global_Findex_Database</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="va">data</span><span class="op">/</span><span class="va">Global_Findex_Database.xlsx</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="spss-and-stata" class="section level3" number="4.1.3">
+<h3>
+<span class="header-section-number">4.1.3</span> SPSS and STATA<a class="anchor" aria-label="anchor" href="#spss-and-stata"><i class="fas fa-link"></i></a>
+</h3>
+<p>Sometimes you will need to access data saved in other statistical packages like STATA and SPSS.
+To do this, you can use the <code>haven</code> packages within the <code>tidyverse</code> world. Once this package is loaded you can import a data file from stata using the <code><a href="https://haven.tidyverse.org/reference/read_dta.html">read_stata()</a></code> function</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Load package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span>
+
+<span class="co">#Import data</span>
+<span class="va">desiguales_stata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html">read_stata</a></span><span class="op">(</span><span class="st">"Data/desiguales.dta"</span><span class="op">)</span></code></pre></div>
+<p>The <code><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss()</a></code> function can be used to import SPSS data files with extension .sav</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Load package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span>
+
+<span class="co">#Import data</span>
+<span class="va">desiguales_spss</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss</a></span><span class="op">(</span><span class="st">"Data/desiguales.sav"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="importing-other-types-of-data" class="section level3" number="4.1.4">
+<h3>
+<span class="header-section-number">4.1.4</span> Importing Other Types of Data<a class="anchor" aria-label="anchor" href="#importing-other-types-of-data"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>rio</code> is a package that can import/export multiple types of data.</p>
+<p>After you have installed and loaded the <code>rio</code> package, the function <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> can be used to import data from a broad range of file formats. For more information on the data format supported by Rio, see the online <a href="https://www.rdocumentation.org/packages/rio/versions/0.5.29">documentation</a> of the package</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#install the package</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rio"</span><span class="op">)</span>
+
+<span class="co">#load the package the package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/rio">rio</a></span><span class="op">)</span>
+
+<span class="co">#Import csv file using "import" function</span>
+<span class="va">desiguales</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">'Data/desiguales.csv'</span><span class="op">)</span>
+
+<span class="co">#Import excel file using "import" function</span>
+<span class="va">desiguales_xlsx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"Data/desiguales.xlsx"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="importing-data-via-rstudio-helper" class="section level3" number="4.1.5">
+<h3>
+<span class="header-section-number">4.1.5</span> Importing data via RStudio helper<a class="anchor" aria-label="anchor" href="#importing-data-via-rstudio-helper"><i class="fas fa-link"></i></a>
+</h3>
+<p>In order to faciliate the task of importing data, RStudio has a data import tool.</p>
+<p>To access this feature, use the “Import Dataset” dropdown from the “Environment” pane</p>
+<p><img src="images/Import_Environment.png" style="width:80.0%">Source: <a href="https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-the-RStudio-IDE">RStudio</a></p>
+<p>Alternatively this can be accessed by selecting the “File” menu, followed by the “Import Dataset” submenu.</p>
+<p><img src="images/Import_File_Menu.png" style="width:80.0%">Source: <a href="https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-the-RStudio-IDE">RStudio</a></p>
+<p>This feature will allow you to import data from CSV files (select “From Text”), from Excel files, as well as from SPSS, SAS, and Stata files. This data importer includes some functionalities to select which columns will be imported and to change the data type. While this is a point-and-click wait to perform the same functions that are described above, the equivalent code can be found in the “code preview”. Paste this code in your script to ensure the reprodicibility of your code.</p>
+<p><img src="images/data-import-rstudio-overview.gif" style="width:80.0%" alt="Source">Source: <a href="https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-the-RStudio-IDE">RStudio</a></p>
+<p>For more information on this RStudio feature, please consult the documentation on the <a href="https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-the-RStudio-IDE">RStudio webpage</a></p>
+</div>
+</div>
+<div id="import-data-from-a-package" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Import Data From a Package<a class="anchor" aria-label="anchor" href="#import-data-from-a-package"><i class="fas fa-link"></i></a>
+</h2>
+<p>In a number of cases, it is possible to load datasets in your working environment by using ad-hoc packages. This contains one or more functions designed to download entire datasets or part of datasets from an online source.</p>
+<p>One example of this type that is often used for the purpose of teaching is the <code>gapminder</code> package which downloads a small subset of the data found in the website gapminder.org.</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Install the package. This needs to be run only the first time the package is installed</span>
+<span class="co"># install.packages("gapminder") </span>
+
+<span class="co">#Load package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/jennybc/gapminder">"gapminder"</a></span><span class="op">)</span> 
+
+<span class="co">#Store data in an object called "gapminder_DF"</span>
+
+<span class="va">gapminder_DF</span> <span class="op">&lt;-</span> <span class="va">gapminder</span></code></pre></div>
+<p>Running this code will download the gapminder dataset and store it in in your working environment.</p>
+<div class="inline-figure"><img src="images/Gapminder_Object.png"></div>
+<p>Other packages instead will allow you to select the specific parts of a larger dataset to be imported in your working environment.</p>
+<p>For instance, the <a href="https://vincentarelbundock.github.io/WDI/"><code>WDI</code></a> package allows users to search and download data from over 40 datasets hosted by the World Bank, including the World Development Indicators (‘WDI’), International Debt Statistics, Doing Business, Human Capital Index, and Sub-national Poverty indicators. In this case, after having installed and loaded the package, we can use the <code>WDIsearch</code> function to search the available datasets containing a certain keyword.</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># The package needs to be installed only the first time it is run</span>
+<span class="co">#install.packages('WDI')</span>
+
+<span class="co">#Load the package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://vincentarelbundock.github.io/WDI/">"WDI"</a></span><span class="op">)</span>
+
+<span class="co">#Search available datasets</span>
+<span class="fu"><a href="https://vincentarelbundock.github.io/WDI/reference/WDIsearch.html">WDIsearch</a></span><span class="op">(</span><span class="st">'gdp per capita'</span><span class="op">)</span> </code></pre></div>
+<p>Once we have identified the dataset we are interested in exploring, we can download it on our working environment using the <code>WDI</code> function. The code example below downloads the GDP per capita of Canada, Mexico, and United States from 1960 to 2020 and plot it</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># The package needs to be installed only the first time it is run</span>
+<span class="co">#install.packages('WDI')</span>
+
+<span class="co">#Load the package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://vincentarelbundock.github.io/WDI/">"WDI"</a></span><span class="op">)</span>
+
+<span class="co">#Download the data regarding GDP per capita (constant 2000 US$) for a certain period and store it in an object called dat</span>
+<span class="va">dat</span> <span class="op">=</span> <span class="fu"><a href="https://vincentarelbundock.github.io/WDI/reference/WDI.html">WDI</a></span><span class="op">(</span>indicator<span class="op">=</span><span class="st">'NY.GDP.PCAP.KD'</span>, country<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'MX'</span>,<span class="st">'CA'</span>,<span class="st">'US'</span><span class="op">)</span>, start<span class="op">=</span><span class="fl">1960</span>, end<span class="op">=</span><span class="fl">2020</span><span class="op">)</span>
+
+<span class="co">#plot the data</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">NY.GDP.PCAP.KD</span>, color<span class="op">=</span><span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'Year'</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">'GDP per capita'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="images/WorldBankGDP.png" style="width:80.0%"></div>
+<div id="examples-of-dataset-available-from-a-package" class="section level3" number="4.2.1">
+<h3>
+<span class="header-section-number">4.2.1</span> Examples of dataset available from a package<a class="anchor" aria-label="anchor" href="#examples-of-dataset-available-from-a-package"><i class="fas fa-link"></i></a>
+</h3>
+<p>Some examples of packages that can be used to directly load relevant datasets in your working environment are:</p>
+<ul>
+<li><p><a href="https://cran.r-project.org/web/packages/unvotes/index.html"><code>unvotes</code></a>: Historical voting data of the United Nations General Assembly.</p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/hansard/vignettes/introduction.html"><code>hansard</code></a>: package to pull data from the UK parliament through the <a href="http://www.data.parliament.uk/">http://www.data.parliament.uk/</a> API</p></li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co">#install the package "hansard"</span>
+<span class="co">#install.packages("hansard")</span>
+
+<span class="co">#load the package "hansard"</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.evanodell.com/hansard">hansard</a></span><span class="op">)</span>
+
+<span class="co"># Download and show data regarding how Jacob Rees-Mogg (MP 4099) voted between 25 Jan 2022 and 4 Feb 2022</span>
+<span class="fu"><a href="https://docs.evanodell.com/hansard/reference/mp_vote_record.html">mp_vote_record</a></span><span class="op">(</span><span class="fl">4099</span>, start_date <span class="op">=</span> <span class="st">"2021-01-25"</span>,
+                    end_date <span class="op">=</span> <span class="st">"2021-02-04"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<ul>
+<li>
+<a href="https://github.com/svmiller/peacesciencer/"><code>peacesciencer</code></a>: Different datasets related to the study of conflict and peace</li>
+<li>
+<a href="https://github.com/WIDworld/wid-r-tool">wid-r-tool</a>: data from the <a href="https://wid.world">World Wealth and Income Database (WID.world)</a>
+</li>
+<li>
+<a href="https://ropengov.github.io/rqog/articles/rqog_tutorial.html"><code>rqog</code></a>: data from the Quality of Government Institute dataset</li>
+<li>
+<a href="https://github.com/christophergandrud/imfr"><code>imfr</code></a>: download data from the International Monetary Fund’s data API</li>
+<li>
+<a href="https://github.com/vdeminstitute/vdemdata"><code>vdemdata</code></a>: load the most recent <a href="https://www.v-dem.net/en/data/data/v-dem-dataset/">V-Dem (Varieties of Democracy)</a> and <a href="https://www.v-dem.net/en/data/data/v-party-dataset/">V-Party</a>datasets.</li>
+<li>
+<a href="https://github.com/expersso/OECD"><code>OECD</code></a>: allows the user to download data from the OECD’s API</li>
+<li>
+<a href="https://github.com/njtierney/ukpolice"><code>ukpolice</code></a>: data from the <a href="https://data.police.uk/">UK police database</a>
+</li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co">#Install packages</span>
+<span class="co">#install.packages("remotes")</span>
+<span class="co">#remotes::install_github("njtierney/ukpolice")</span>
+
+<span class="co"># load package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://njtierney.com/ukpolice">ukpolice</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+
+<span class="co"># Load the data regarding crime committed in a given location</span>
+<span class="va">crime_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ukpolice/man/ukp_crime.html">ukp_crime</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">51.52765231</span>, lng <span class="op">=</span> <span class="op">-</span><span class="fl">0.1024097940746401</span><span class="op">)</span>
+
+<span class="co">#Calculate the number of crimes by category</span>
+<span class="va">crime_data_summary</span> <span class="op">=</span> <span class="va">crime_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">category</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>number_crimes <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> 
+  
+<span class="co">#Plot the crimes committed in the selected location over last month</span>
+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">crime_data_summary</span>, 
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">category</span>, <span class="va">number_crimes</span><span class="op">)</span>,
+             y <span class="op">=</span> <span class="va">number_crimes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Crime Type"</span>,
+       y <span class="op">=</span> <span class="st">"Number of Crimes"</span>,
+       title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Crimes commited in "</span>,<span class="va">crime_data</span><span class="op">$</span><span class="va">date</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="images/crime_images.png"></div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></div>
+<div class="next"><a href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#importing-data-into-r"><span class="header-section-number">4</span> Importing Data into R</a></li>
+<li>
+<a class="nav-link" href="#importing-a-dataframe-from-an-existing-file"><span class="header-section-number">4.1</span> Importing a Dataframe from an Existing File</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#csv-files"><span class="header-section-number">4.1.1</span> CSV files</a></li>
+<li><a class="nav-link" href="#excel-files-.xls-.xlsx"><span class="header-section-number">4.1.2</span> Excel files (.xls, .xlsx)</a></li>
+<li><a class="nav-link" href="#spss-and-stata"><span class="header-section-number">4.1.3</span> SPSS and STATA</a></li>
+<li><a class="nav-link" href="#importing-other-types-of-data"><span class="header-section-number">4.1.4</span> Importing Other Types of Data</a></li>
+<li><a class="nav-link" href="#importing-data-via-rstudio-helper"><span class="header-section-number">4.1.5</span> Importing data via RStudio helper</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#import-data-from-a-package"><span class="header-section-number">4.2</span> Import Data From a Package</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#examples-of-dataset-available-from-a-package"><span class="header-section-number">4.2.1</span> Examples of dataset available from a package</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-03-20.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

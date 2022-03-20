@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 9 Working with Observations | IP2038 - Analysing Political and Economic Data in the Real World - Course Material</title>
+<meta name="author" content="Stefano Pagliari">
+<meta name="description" content="9.1 Introduction This chapter will explore different tools used to manipulate observations (i.e. rows) of a data frame or tibble: The filter() function extracts a subset of observations based on...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 9 Working with Observations | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta property="og:type" content="book">
+<meta property="og:description" content="9.1 Introduction This chapter will explore different tools used to manipulate observations (i.e. rows) of a data frame or tibble: The filter() function extracts a subset of observations based on...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 9 Working with Observations | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta name="twitter:description" content="9.1 Introduction This chapter will explore different tools used to manipulate observations (i.e. rows) of a data frame or tibble: The filter() function extracts a subset of observations based on...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IP2038 - Analysing Political and Economic Data in the Real World - Course Material</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction to the Module</a></li>
+<li class="book-part">Introduction to R</li>
+<li><a class="" href="rstudio-and-rstudio-cloud.html"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></li>
+<li><a class="" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
+<li class="book-part">Datasets</li>
+<li><a class="" href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></li>
+<li><a class="" href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
+<li><a class="" href="long-vs.-wide-data.html"><span class="header-section-number">6</span> Long vs. Wide Data</a></li>
+<li><a class="" href="list-of-political-and-economic-datasets.html"><span class="header-section-number">7</span> List of Political and Economic Datasets</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="data-wrangling-with-dplyr.html"><span class="header-section-number">8</span> Data Wrangling with dplyr</a></li>
+<li><a class="active" href="working-with-observations.html"><span class="header-section-number">9</span> Working with Observations</a></li>
+<li><a class="" href="working-with-variables.html"><span class="header-section-number">10</span> Working with Variables</a></li>
+<li><a class="" href="grouping-and-summarising-data.html"><span class="header-section-number">11</span> Grouping and Summarising Data</a></li>
+<li><a class="" href="relational-data.html"><span class="header-section-number">12</span> Relational Data</a></li>
+<li><a class="" href="missing-data.html"><span class="header-section-number">13</span> Missing Data</a></li>
+<li class="book-part">Data Visualization</li>
+<li><a class="" href="data-visualization-with-ggplot.html"><span class="header-section-number">14</span> Data Visualization with ggplot</a></li>
+<li><a class="" href="types-of-visualizations.html"><span class="header-section-number">15</span> Types of visualizations</a></li>
+<li class="book-part">Exploratory Analysis</li>
+<li><a class="" href="exploring-numerical-data.html"><span class="header-section-number">16</span> Exploring Numerical Data</a></li>
+<li><a class="" href="exploring-categorical-data.html"><span class="header-section-number">17</span> Exploring Categorical Data</a></li>
+<li><a class="" href="relationship-between-categorical-and-numerical-variables.html"><span class="header-section-number">18</span> Relationship between categorical and numerical variables</a></li>
+<li><a class="" href="relationship-between-numerical-variables.html"><span class="header-section-number">19</span> Relationship between numerical variables</a></li>
+<li><a class="" href="relationship-between-categorical-variables.html"><span class="header-section-number">20</span> Relationship between categorical variables</a></li>
+<li><a class="" href="time-series.html"><span class="header-section-number">21</span> Time Series</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="assessment-guidance.html"><span class="header-section-number">A</span> Assessment Guidance</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="working-with-observations" class="section level1" number="9">
+<h1>
+<span class="header-section-number">9</span> Working with Observations<a class="anchor" aria-label="anchor" href="#working-with-observations"><i class="fas fa-link"></i></a>
+</h1>
+<div id="introduction" class="section level2" number="9.1">
+<h2>
+<span class="header-section-number">9.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction"><i class="fas fa-link"></i></a>
+</h2>
+<p>This chapter will explore different tools used to manipulate observations (i.e. rows) of a data frame or tibble:</p>
+<ul>
+<li>The <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function extracts a subset of observations based on supplied conditions involving the variables in our data.</li>
+<li>The <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> function reorders the rows according to the values in one or more variables.</li>
+</ul>
+<div id="getting-started" class="section level3" number="9.1.1">
+<h3>
+<span class="header-section-number">9.1.1</span> Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"><i class="fas fa-link"></i></a>
+</h3>
+<p>A script that uses dplyr will typically start by loading and attaching the package:</p>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'dplyr'</span>
+<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     filter, lag</span>
+<span class="co">#&gt; The following objects are masked from 'package:base':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     intersect, setdiff, setequal, union</span></code></pre></div>
+<p>The dplyr package is also part of the tidyverse package, and it can be loaded from there. Remember that you will need first to have first installed dplyr package for this to work.</p>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></code></pre></div>
+<p>We’ll use the <code>gapminder</code> data set in the datasets package to illustrate the working of the functions presented in this chapter. This is loaded from the <code>gapminder</code> package. We can also store the dataset in an object called gapminder, although this is not required.</p>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/jennybc/gapminder">"gapminder"</a></span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="subset-observations-with-filter" class="section level2" number="9.2">
+<h2>
+<span class="header-section-number">9.2</span> Subset Observations with Filter()<a class="anchor" aria-label="anchor" href="#subset-observations-with-filter"><i class="fas fa-link"></i></a>
+</h2>
+<div class="inline-figure"><img src="images/Filter_Dplyr.png" style="width:80.0%"></div>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function is used to subset a data frame, retaining all rows where the condition expressed within the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> is true.</p>
+<p>For instance, it is possible to retain only those observations (row) where a variable takes a certain value.</p>
+<p>In the example below we want to retain only those observations from the gapminder dataset that pertain to Argentina. In order to do so, we filter those rows where the variable <code>country</code> is equal to (<code>==</code>) the string <code>Argentina</code></p>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder_argentina</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"Argentina"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span> <span class="op">(</span><span class="va">gapminder_argentina</span><span class="op">)</span>  
+<span class="co">#&gt; # A tibble: 6 × 6</span>
+<span class="co">#&gt;   country   continent  year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt;   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Argentina Americas   1952    62.5 17876956     5911.</span>
+<span class="co">#&gt; 2 Argentina Americas   1957    64.4 19610538     6857.</span>
+<span class="co">#&gt; 3 Argentina Americas   1962    65.1 21283783     7133.</span>
+<span class="co">#&gt; 4 Argentina Americas   1967    65.6 22934225     8053.</span>
+<span class="co">#&gt; 5 Argentina Americas   1972    67.1 24779799     9443.</span>
+<span class="co">#&gt; 6 Argentina Americas   1977    68.5 26983828    10079.</span></code></pre></div>
+<div id="logical-operations" class="section level3" number="9.2.1">
+<h3>
+<span class="header-section-number">9.2.1</span> Logical operations<a class="anchor" aria-label="anchor" href="#logical-operations"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> functions can also be used to filter rows that match multiple conditions. The rows that will be returned in this case depends on the logical operator that connects these conditions.</p>
+<div id="and" class="section level4" number="9.2.1.1">
+<h4>
+<span class="header-section-number">9.2.1.1</span> &amp; (and)<a class="anchor" aria-label="anchor" href="#and"><i class="fas fa-link"></i></a>
+</h4>
+<p>The boolean operator <code>&amp;</code> (<code>*and*</code>) can be used to retain those rows that meet multiple conditions</p>
+<p>When multiple expressions are listed within parentheses separated by a comma, the function will only retain those rows where all the criteria are met.</p>
+<p>In this example we filter those observations that pertains to African countries after the year 1982. In the first example, the two conditions are separated by the <code>&amp;</code> operator within the same <code>filter</code> function, in the second example by a comma, and in the third example by calling different filters in sequential order.</p>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder_africa</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span> <span class="st">"Africa"</span> <span class="op">&amp;</span> <span class="va">year</span> <span class="op">&gt;</span> <span class="fl">1982</span><span class="op">)</span> 
+
+<span class="co">#Alternative formulation</span>
+<span class="va">gapminder_africa</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span> <span class="st">"Africa"</span>,
+         <span class="va">year</span> <span class="op">&gt;</span> <span class="fl">1982</span><span class="op">)</span>  
+
+
+<span class="co">#Alternative formulation</span>
+<span class="va">gapminder_africa</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span> <span class="st">"Africa"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">&gt;</span> <span class="fl">1982</span><span class="op">)</span> 
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gapminder_africa</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 × 6</span>
+<span class="co">#&gt;   country continent  year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Algeria Africa     1987    65.8 23254956     5681.</span>
+<span class="co">#&gt; 2 Algeria Africa     1992    67.7 26298373     5023.</span>
+<span class="co">#&gt; 3 Algeria Africa     1997    69.2 29072015     4797.</span>
+<span class="co">#&gt; 4 Algeria Africa     2002    71.0 31287142     5288.</span>
+<span class="co">#&gt; 5 Algeria Africa     2007    72.3 33333216     6223.</span>
+<span class="co">#&gt; 6 Angola  Africa     1987    39.9  7874230     2430.</span></code></pre></div>
+</div>
+<div id="or" class="section level4" number="9.2.1.2">
+<h4>
+<span class="header-section-number">9.2.1.2</span> | (or)<a class="anchor" aria-label="anchor" href="#or"><i class="fas fa-link"></i></a>
+</h4>
+<p>While the boolean operator <code>&amp;</code> can be used to retain those rows that meet multiple conditions, the boolean operator <code>or (</code>|`) can be used to retain the rows that meet any of multiple conditions.</p>
+<p>For instance, in this example we can filter all the rows where the variable <code>continent</code> takes the value “Africa” or “Asia”.</p>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">gapminder_africa_asia</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span> <span class="st">"Africa"</span> <span class="op">|</span> <span class="va">continent</span> <span class="op">==</span> <span class="st">"Asia"</span><span class="op">)</span>  </code></pre></div>
+</div>
+</div>
+<div id="not" class="section level3" number="9.2.2">
+<h3>
+<span class="header-section-number">9.2.2</span> ! (<em>not</em>)<a class="anchor" aria-label="anchor" href="#not"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code>!</code> operator can be used to check if a condition is “not” present. For instance, we can use <code>!=</code> to filter observations that are different from a given value.</p>
+<p>In this example we exclude from the analysis all the rows where the variable <code>continent</code> takes the value “Oceania”.</p>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">gapminder_notOceania</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span>  </code></pre></div>
+</div>
+<div id="in-helper" class="section level3" number="9.2.3">
+<h3>
+<span class="header-section-number">9.2.3</span> %in% helper<a class="anchor" aria-label="anchor" href="#in-helper"><i class="fas fa-link"></i></a>
+</h3>
+<p>When we are interested in a subset of rows that can contain several different values, instead of writing a long OR command, its useful to just give a vector of values of interest.
+In this case, the <code>%in%</code> operator can be called to retain all the rows where the value includes one of multiple values using</p>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">gapminder_africa_asia</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Africa"</span>,<span class="st">"Asia"</span><span class="op">)</span> <span class="op">)</span> </code></pre></div>
+</div>
+<div id="filter-using-comparison-operators" class="section level3" number="9.2.4">
+<h3>
+<span class="header-section-number">9.2.4</span> Filter using Comparison operators<a class="anchor" aria-label="anchor" href="#filter-using-comparison-operators"><i class="fas fa-link"></i></a>
+</h3>
+<p>Observations can be filtered using <a href="https://rdrr.io/r/base/Comparison.html">comparison operators</a> such as
+- <code>==</code> (equal to)
+- <code>&gt;</code> (greater than)
+- <code>&gt;=</code> (greater or equal to)
+- <code>&lt;</code> (smaller than), etc…</p>
+<p>For instance, in the example below we want to retain all the observations after the year 1982.</p>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">gapminder_recent</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">&gt;</span> <span class="fl">1982</span><span class="op">)</span> </code></pre></div>
+</div>
+</div>
+<div id="sorting-observations" class="section level2" number="9.3">
+<h2>
+<span class="header-section-number">9.3</span> Sorting observations<a class="anchor" aria-label="anchor" href="#sorting-observations"><i class="fas fa-link"></i></a>
+</h2>
+<p>We can use the <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> to sort the rows in our data frame according to values in a certain column.</p>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,704 × 6</span>
+<span class="co">#&gt;    country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">#&gt;  2 Albania     Europe     1952    55.2  1282697     1601.</span>
+<span class="co">#&gt;  3 Algeria     Africa     1952    43.1  9279525     2449.</span>
+<span class="co">#&gt;  4 Angola      Africa     1952    30.0  4232095     3521.</span>
+<span class="co">#&gt;  5 Argentina   Americas   1952    62.5 17876956     5911.</span>
+<span class="co">#&gt;  6 Australia   Oceania    1952    69.1  8691212    10040.</span>
+<span class="co">#&gt;  7 Austria     Europe     1952    66.8  6927772     6137.</span>
+<span class="co">#&gt;  8 Bahrain     Asia       1952    50.9   120447     9867.</span>
+<span class="co">#&gt;  9 Bangladesh  Asia       1952    37.5 46886859      684.</span>
+<span class="co">#&gt; 10 Belgium     Europe     1952    68    8730405     8343.</span>
+<span class="co">#&gt; # … with 1,694 more rows</span></code></pre></div>
+<div id="desc-helper-function" class="section level3" number="9.3.1">
+<h3>
+<span class="header-section-number">9.3.1</span> desc() helper function<a class="anchor" aria-label="anchor" href="#desc-helper-function"><i class="fas fa-link"></i></a>
+</h3>
+<p>When we call the <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> function, the default is to order numbers from lowest -&gt; highest.
+To invert the standard order, we can use the ‘descending’ desc() helper function.</p>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,704 × 6</span>
+<span class="co">#&gt;    country     continent  year lifeExp       pop gdpPercap</span>
+<span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Afghanistan Asia       2007    43.8  31889923      975.</span>
+<span class="co">#&gt;  2 Albania     Europe     2007    76.4   3600523     5937.</span>
+<span class="co">#&gt;  3 Algeria     Africa     2007    72.3  33333216     6223.</span>
+<span class="co">#&gt;  4 Angola      Africa     2007    42.7  12420476     4797.</span>
+<span class="co">#&gt;  5 Argentina   Americas   2007    75.3  40301927    12779.</span>
+<span class="co">#&gt;  6 Australia   Oceania    2007    81.2  20434176    34435.</span>
+<span class="co">#&gt;  7 Austria     Europe     2007    79.8   8199783    36126.</span>
+<span class="co">#&gt;  8 Bahrain     Asia       2007    75.6    708573    29796.</span>
+<span class="co">#&gt;  9 Bangladesh  Asia       2007    64.1 150448339     1391.</span>
+<span class="co">#&gt; 10 Belgium     Europe     2007    79.4  10392226    33693.</span>
+<span class="co">#&gt; # … with 1,694 more rows</span></code></pre></div>
+</div>
+<div id="sorting-by-multiple-columns" class="section level3" number="9.3.2">
+<h3>
+<span class="header-section-number">9.3.2</span> Sorting by multiple columns<a class="anchor" aria-label="anchor" href="#sorting-by-multiple-columns"><i class="fas fa-link"></i></a>
+</h3>
+<p>It is possible to refine the order by giving additional columns of data.
+In the example below we organize our rows first by <code>year</code> (recent first), and then by <code>continent</code>.</p>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder_with_extra_vars</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">continent</span>, <span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>mean_gdpPercap <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">gdpPercap</span><span class="op">)</span>,
+              sd_gdpPercap <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">gdpPercap</span><span class="op">)</span>,
+              mean_pop <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">pop</span><span class="op">)</span>,
+              sd_pop <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span>, <span class="va">continent</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gapminder_with_extra_vars</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 × 10</span>
+<span class="co">#&gt; # Groups:   continent, year [1]</span>
+<span class="co">#&gt;   country      continent  year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt;   &lt;fct&gt;        &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Algeria      Africa     2007    72.3 33333216     6223.</span>
+<span class="co">#&gt; 2 Angola       Africa     2007    42.7 12420476     4797.</span>
+<span class="co">#&gt; 3 Benin        Africa     2007    56.7  8078314     1441.</span>
+<span class="co">#&gt; 4 Botswana     Africa     2007    50.7  1639131    12570.</span>
+<span class="co">#&gt; 5 Burkina Faso Africa     2007    52.3 14326203     1217.</span>
+<span class="co">#&gt; 6 Burundi      Africa     2007    49.6  8390505      430.</span>
+<span class="co">#&gt; # … with 4 more variables: mean_gdpPercap &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   sd_gdpPercap &lt;dbl&gt;, mean_pop &lt;dbl&gt;, sd_pop &lt;dbl&gt;</span></code></pre></div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="data-wrangling-with-dplyr.html"><span class="header-section-number">8</span> Data Wrangling with dplyr</a></div>
+<div class="next"><a href="working-with-variables.html"><span class="header-section-number">10</span> Working with Variables</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#working-with-observations"><span class="header-section-number">9</span> Working with Observations</a></li>
+<li>
+<a class="nav-link" href="#introduction"><span class="header-section-number">9.1</span> Introduction</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#getting-started"><span class="header-section-number">9.1.1</span> Getting Started</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#subset-observations-with-filter"><span class="header-section-number">9.2</span> Subset Observations with Filter()</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#logical-operations"><span class="header-section-number">9.2.1</span> Logical operations</a></li>
+<li><a class="nav-link" href="#not"><span class="header-section-number">9.2.2</span> ! (not)</a></li>
+<li><a class="nav-link" href="#in-helper"><span class="header-section-number">9.2.3</span> %in% helper</a></li>
+<li><a class="nav-link" href="#filter-using-comparison-operators"><span class="header-section-number">9.2.4</span> Filter using Comparison operators</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#sorting-observations"><span class="header-section-number">9.3</span> Sorting observations</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#desc-helper-function"><span class="header-section-number">9.3.1</span> desc() helper function</a></li>
+<li><a class="nav-link" href="#sorting-by-multiple-columns"><span class="header-section-number">9.3.2</span> Sorting by multiple columns</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-03-20.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 10 Working with Variables | IP2038 - Analysing Political and Economic Data in the Real World - Course Material</title>
+<meta name="author" content="Stefano Pagliari">
+<meta name="description" content="10.1 Introduction This chapter will explore different verbs from the dplyr package that can be used to operate on the variables (i.e. the columns) of a data frame: The select() function selects a...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 10 Working with Variables | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta property="og:type" content="book">
+<meta property="og:description" content="10.1 Introduction This chapter will explore different verbs from the dplyr package that can be used to operate on the variables (i.e. the columns) of a data frame: The select() function selects a...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 10 Working with Variables | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta name="twitter:description" content="10.1 Introduction This chapter will explore different verbs from the dplyr package that can be used to operate on the variables (i.e. the columns) of a data frame: The select() function selects a...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IP2038 - Analysing Political and Economic Data in the Real World - Course Material</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction to the Module</a></li>
+<li class="book-part">Introduction to R</li>
+<li><a class="" href="rstudio-and-rstudio-cloud.html"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></li>
+<li><a class="" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
+<li class="book-part">Datasets</li>
+<li><a class="" href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></li>
+<li><a class="" href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
+<li><a class="" href="long-vs.-wide-data.html"><span class="header-section-number">6</span> Long vs. Wide Data</a></li>
+<li><a class="" href="list-of-political-and-economic-datasets.html"><span class="header-section-number">7</span> List of Political and Economic Datasets</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="data-wrangling-with-dplyr.html"><span class="header-section-number">8</span> Data Wrangling with dplyr</a></li>
+<li><a class="" href="working-with-observations.html"><span class="header-section-number">9</span> Working with Observations</a></li>
+<li><a class="active" href="working-with-variables.html"><span class="header-section-number">10</span> Working with Variables</a></li>
+<li><a class="" href="grouping-and-summarising-data.html"><span class="header-section-number">11</span> Grouping and Summarising Data</a></li>
+<li><a class="" href="relational-data.html"><span class="header-section-number">12</span> Relational Data</a></li>
+<li><a class="" href="missing-data.html"><span class="header-section-number">13</span> Missing Data</a></li>
+<li class="book-part">Data Visualization</li>
+<li><a class="" href="data-visualization-with-ggplot.html"><span class="header-section-number">14</span> Data Visualization with ggplot</a></li>
+<li><a class="" href="types-of-visualizations.html"><span class="header-section-number">15</span> Types of visualizations</a></li>
+<li class="book-part">Exploratory Analysis</li>
+<li><a class="" href="exploring-numerical-data.html"><span class="header-section-number">16</span> Exploring Numerical Data</a></li>
+<li><a class="" href="exploring-categorical-data.html"><span class="header-section-number">17</span> Exploring Categorical Data</a></li>
+<li><a class="" href="relationship-between-categorical-and-numerical-variables.html"><span class="header-section-number">18</span> Relationship between categorical and numerical variables</a></li>
+<li><a class="" href="relationship-between-numerical-variables.html"><span class="header-section-number">19</span> Relationship between numerical variables</a></li>
+<li><a class="" href="relationship-between-categorical-variables.html"><span class="header-section-number">20</span> Relationship between categorical variables</a></li>
+<li><a class="" href="time-series.html"><span class="header-section-number">21</span> Time Series</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="assessment-guidance.html"><span class="header-section-number">A</span> Assessment Guidance</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="working-with-variables" class="section level1" number="10">
+<h1>
+<span class="header-section-number">10</span> Working with Variables<a class="anchor" aria-label="anchor" href="#working-with-variables"><i class="fas fa-link"></i></a>
+</h1>
+<div id="introduction-1" class="section level2" number="10.1">
+<h2>
+<span class="header-section-number">10.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>This chapter will explore different verbs from the <code>dplyr</code> package that can be used to operate on the variables (i.e. the columns) of a data frame:</p>
+<ul>
+<li>The <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> function selects a subset of variables to retain</li>
+<li>The <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function creates new variables from preexisting ones and retains the original variables.</li>
+<li>The <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> function renames one or more variables while keeping the remaining variable names unchanged.</li>
+</ul>
+<div id="getting-started-1" class="section level3" number="10.1.1">
+<h3>
+<span class="header-section-number">10.1.1</span> Getting Started<a class="anchor" aria-label="anchor" href="#getting-started-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>A script that uses dplyr will typically start by loading and attaching the package:</p>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span></code></pre></div>
+<p>The dplyr package is also part of the tidyverse package, and it can be loaded from there. Remember that you will need first to have first installed dplyr package for this to work.</p>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></code></pre></div>
+<p>We’ll use the <code>gapminder</code> data set in the datasets package to illustrate the working of the functions presented in this chapter. This is loaded from the <code>gapminder</code> package. We can also store the dataset in an object called gapminder, although this is not required.</p>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/jennybc/gapminder">"gapminder"</a></span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="selecting-variables" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> Selecting Variables<a class="anchor" aria-label="anchor" href="#selecting-variables"><i class="fas fa-link"></i></a>
+</h2>
+<div class="inline-figure"><img src="images/Select_Dplyr.png" style="width:80.0%"></div>
+<p>While many real-world datasets include a large number of variables (columns), sometimes we need to include only a subset of these in our analysis.
+The <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> function can be used to select variables in a data frame based on their name.
+In order to call the subset the variables we need to:</p>
+<ul>
+<li>call the function <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>,</li>
+<li>within parentheses, first specify the name of the dataset</li>
+<li>and then list the name variables (without quotation marks and separated by a comma) we would like to retain in the order in which they should appear</li>
+</ul>
+<div class="inline-figure"><img src="images/dplyr-select1.png" style="width:60.0%"></div>
+<p>In the example below we first load the <code>gapminder</code> dataset and then select the <code>year</code>, <code>country</code>, and <code>gdpPercap</code> variables. This narrower dataset is then stored in a different object.</p>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+
+<span class="co"># Load gapmidner data</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+
+<span class="co">#Select three variables and place them in a new object </span>
+<span class="va">gap_narrow</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span>, <span class="va">country</span>, <span class="va">gdpPercap</span><span class="op">)</span>
+
+<span class="co">#print the first rows of the gap_narrow dataset</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gap_narrow</span> <span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 × 3</span>
+<span class="co">#&gt;    year country     gdpPercap</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;fct&gt;           &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  1952 Afghanistan      779.</span>
+<span class="co">#&gt; 2  1957 Afghanistan      821.</span>
+<span class="co">#&gt; 3  1962 Afghanistan      853.</span>
+<span class="co">#&gt; 4  1967 Afghanistan      836.</span>
+<span class="co">#&gt; 5  1972 Afghanistan      740.</span>
+<span class="co">#&gt; 6  1977 Afghanistan      786.</span></code></pre></div>
+<p>Alternatively it is possible to insert this function in a chain of transformation using the pipe symbol <code>%&gt;%</code>. This includes the following steps:</p>
+<ul>
+<li>summon the dataframe</li>
+<li>pass it on to the next step using the pipe symbol <code>%&gt;%</code>
+</li>
+<li>use the <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> function to choose which variables we want, listing these within parentheses.</li>
+</ul>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Alternative approach with %&gt;% to select three variables and place them in a new object </span>
+<span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">country</span>, <span class="va">gdpPercap</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,704 × 3</span>
+<span class="co">#&gt;     year country     gdpPercap</span>
+<span class="co">#&gt;    &lt;int&gt; &lt;fct&gt;           &lt;dbl&gt;</span>
+<span class="co">#&gt;  1  1952 Afghanistan      779.</span>
+<span class="co">#&gt;  2  1957 Afghanistan      821.</span>
+<span class="co">#&gt;  3  1962 Afghanistan      853.</span>
+<span class="co">#&gt;  4  1967 Afghanistan      836.</span>
+<span class="co">#&gt;  5  1972 Afghanistan      740.</span>
+<span class="co">#&gt;  6  1977 Afghanistan      786.</span>
+<span class="co">#&gt;  7  1982 Afghanistan      978.</span>
+<span class="co">#&gt;  8  1987 Afghanistan      852.</span>
+<span class="co">#&gt;  9  1992 Afghanistan      649.</span>
+<span class="co">#&gt; 10  1997 Afghanistan      635.</span>
+<span class="co">#&gt; # … with 1,694 more rows</span></code></pre></div>
+<div id="removing-variables" class="section level3" number="10.2.1">
+<h3>
+<span class="header-section-number">10.2.1</span> Removing variables<a class="anchor" aria-label="anchor" href="#removing-variables"><i class="fas fa-link"></i></a>
+</h3>
+<p>Instead of specifying the variables that we want to retain, we can also use the <code>select</code> function to specify which variables we would like to drop. In order to do this, we need to add a minus (<code>-</code>) sign in front of the name of the variable we would like to remove.
+The code below has removed the variable <code>gdpPercap</code> and <code>pop</code> from the gapminder dataset, while retaining the existing variables in their order</p>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">gdpPercap</span>, <span class="op">-</span><span class="va">pop</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,704 × 4</span>
+<span class="co">#&gt;    country     continent  year lifeExp</span>
+<span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Afghanistan Asia       1952    28.8</span>
+<span class="co">#&gt;  2 Afghanistan Asia       1957    30.3</span>
+<span class="co">#&gt;  3 Afghanistan Asia       1962    32.0</span>
+<span class="co">#&gt;  4 Afghanistan Asia       1967    34.0</span>
+<span class="co">#&gt;  5 Afghanistan Asia       1972    36.1</span>
+<span class="co">#&gt;  6 Afghanistan Asia       1977    38.4</span>
+<span class="co">#&gt;  7 Afghanistan Asia       1982    39.9</span>
+<span class="co">#&gt;  8 Afghanistan Asia       1987    40.8</span>
+<span class="co">#&gt;  9 Afghanistan Asia       1992    41.7</span>
+<span class="co">#&gt; 10 Afghanistan Asia       1997    41.8</span>
+<span class="co">#&gt; # … with 1,694 more rows</span></code></pre></div>
+</div>
+<div id="selecting-a-range-of-variables" class="section level3" number="10.2.2">
+<h3>
+<span class="header-section-number">10.2.2</span> Selecting a Range of Variables<a class="anchor" aria-label="anchor" href="#selecting-a-range-of-variables"><i class="fas fa-link"></i></a>
+</h3>
+<p>In the case we want to retain a range of variable, it is possible to list the first and last variable we want to retain from the existing dataset, separated by <code>:</code>.</p>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">gap_narrow</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">year</span><span class="op">:</span><span class="va">gdpPercap</span><span class="op">)</span>
+  </code></pre></div>
+</div>
+<div id="selection-helpers" class="section level3" number="10.2.3">
+<h3>
+<span class="header-section-number">10.2.3</span> Selection Helpers<a class="anchor" aria-label="anchor" href="#selection-helpers"><i class="fas fa-link"></i></a>
+</h3>
+<p>It is possible to use <strong>selection helpers</strong> to select all variables whose name includes certain characters. Examples of functions that can be called inside <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> include:</p>
+<ul>
+<li>
+<a href="https://tidyselect.r-lib.org/reference/starts_with.html"><code>starts_with()</code></a>: select all variables whose name starts with a prefix.</li>
+<li>
+<a href="https://tidyselect.r-lib.org/reference/starts_with.html"><code>ends_with()</code></a>: select all variables whose name ends with a suffix.</li>
+<li>
+<a href="https://tidyselect.r-lib.org/reference/starts_with.html"><code>contains()</code></a>: select all variables whose name contains a literal string.</li>
+<li>
+<a href="https://tidyselect.r-lib.org/reference/starts_with.html"><code>matches()</code></a>: Matches a regular expression.</li>
+</ul>
+<p>For instance, in this example we take a pre-loaded dataset named <code>iris</code> and select those variable whose name starts with “Petal” and ends with “Width”</p>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">new_iris</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Species</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"Petal"</span><span class="op">)</span> <span class="op">&amp;</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"Width"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">new_iris</span><span class="op">)</span>
+<span class="co">#&gt;   Species Petal.Width</span>
+<span class="co">#&gt; 1  setosa         0.2</span>
+<span class="co">#&gt; 2  setosa         0.2</span>
+<span class="co">#&gt; 3  setosa         0.2</span>
+<span class="co">#&gt; 4  setosa         0.2</span>
+<span class="co">#&gt; 5  setosa         0.2</span>
+<span class="co">#&gt; 6  setosa         0.4</span></code></pre></div>
+</div>
+</div>
+<div id="rename-variables" class="section level2" number="10.3">
+<h2>
+<span class="header-section-number">10.3</span> Rename Variables<a class="anchor" aria-label="anchor" href="#rename-variables"><i class="fas fa-link"></i></a>
+</h2>
+<p>It is often the case that the name of the variables in a dataset are not clearly informative of the content of the variable.
+We can change the name of columns in our dataset with the <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> function. This function takes the syntax <code>"new_name" = "old_name"</code> within parentheses.
+When using this function, column names are changed but rows and the column order are not affected.</p>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#load gapminder data</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+
+<span class="va">gap_renamed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span> <span class="va">gapminder</span>, <span class="st">"population"</span> <span class="op">=</span> <span class="st">"pop"</span><span class="op">)</span>
+
+<span class="co">#List the name of the columns</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">gap_renamed</span><span class="op">)</span> 
+<span class="co">#&gt; [1] "country"    "continent"  "year"       "lifeExp"   </span>
+<span class="co">#&gt; [5] "population" "gdpPercap"</span></code></pre></div>
+<p>Similarly to other functions that are part of dplyr, it is possible to use the pipe <code>%&gt;%</code> operator to chain the function.</p>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gap_renamed</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="st">"population"</span> <span class="op">=</span> <span class="va">pop</span><span class="op">)</span>
+
+<span class="co">#Print the name of the variables</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">gap_renamed</span><span class="op">)</span>
+<span class="co">#&gt; [1] "country"    "continent"  "year"       "lifeExp"   </span>
+<span class="co">#&gt; [5] "population" "gdpPercap"</span></code></pre></div>
+</div>
+<div id="create-variables-with-mutate" class="section level2" number="10.4">
+<h2>
+<span class="header-section-number">10.4</span> Create variables with <code>mutate</code><a class="anchor" aria-label="anchor" href="#create-variables-with-mutate"><i class="fas fa-link"></i></a>
+</h2>
+<p>The data that we find in a dataset is often not in the right format. For instance, in many cases there may be a mismatch between the data available in a variable and the concept we are interested in exploring. In other cases, the data as made available to us is not in a format that can easily be visualized or analyzed. In all these cases, we may need to take steps create new variables or transform the values in one or more variables of our dataset.</p>
+<p>There are two main ways to transform the values included in a variable in R.</p>
+<div id="applying-function-to-specific-column-using" class="section level3" number="10.4.1">
+<h3>
+<span class="header-section-number">10.4.1</span> Applying function to specific column (using $)<a class="anchor" aria-label="anchor" href="#applying-function-to-specific-column-using"><i class="fas fa-link"></i></a>
+</h3>
+<p>First, in base R (that is, R without loading any additional package) it is possible to target the values of a specific variables in a dataset or create a new one by using the expression <code>Dataframe$VariableName</code>.</p>
+<p>For instance, the expression below will create a new variable to the gapminder dataset called <code>gdpPercapRound</code> whose value is the result of applying the <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> function to all the values in the <code>gdpPercap</code> variable of the same dataset</p>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+<span class="va">gapminder</span><span class="op">$</span><span class="va">gdpPercapRound</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">gdpPercap</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="using-mutate-from-the-dplyr-package" class="section level3" number="10.4.2">
+<h3>
+<span class="header-section-number">10.4.2</span> Using <code>mutate()</code> from the <code>dplyr</code> package<a class="anchor" aria-label="anchor" href="#using-mutate-from-the-dplyr-package"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>gdpPercapRound <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="images/Mutate_Dplyr.png" style="width:80.0%"></div>
+<p>The function <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> from the <code>dplyr</code> package can be used to add new variables or to overwrite existing variables with the same name.</p>
+<ul>
+<li>In order to create a new variable, we need to assign the results of the mutate function to a new variable name</li>
+<li>In order to overwrite an existing variable, we need to assign the results of the mutate function to this variable</li>
+</ul>
+</div>
+<div id="types-of-transformations" class="section level3" number="10.4.3">
+<h3>
+<span class="header-section-number">10.4.3</span> Types of transformations<a class="anchor" aria-label="anchor" href="#types-of-transformations"><i class="fas fa-link"></i></a>
+</h3>
+<p>A number of different transformations of our data are possible using the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function.</p>
+<div id="arithmetical-operations" class="section level4" number="10.4.3.1">
+<h4>
+<span class="header-section-number">10.4.3.1</span> Arithmetical Operations<a class="anchor" aria-label="anchor" href="#arithmetical-operations"><i class="fas fa-link"></i></a>
+</h4>
+<p>In the case our variable is a numerical one, we can specify a number of mathematical transformations that will then be applied to each value of the same variable.
+For instance, in the example below we create a new variable called <code>pop_million</code> where we transform the scale of the <code>pop</code> variable by dividing the value by one million.</p>
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pop_million <span class="op">=</span> <span class="va">pop</span><span class="op">/</span><span class="fl">1000000</span><span class="op">)</span>  <span class="co">#create variable to express population of a country in millions </span>
+<span class="co">#&gt; # A tibble: 1,704 × 8</span>
+<span class="co">#&gt;    country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">#&gt;  2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">#&gt;  3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">#&gt;  4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">#&gt;  5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">#&gt;  6 Afghanistan Asia       1977    38.4 14880372      786.</span>
+<span class="co">#&gt;  7 Afghanistan Asia       1982    39.9 12881816      978.</span>
+<span class="co">#&gt;  8 Afghanistan Asia       1987    40.8 13867957      852.</span>
+<span class="co">#&gt;  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
+<span class="co">#&gt; 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
+<span class="co">#&gt; # … with 1,694 more rows, and 2 more variables:</span>
+<span class="co">#&gt; #   gdpPercapRound &lt;dbl&gt;, pop_million &lt;dbl&gt;</span></code></pre></div>
+</div>
+<div id="create-new-variable-by-from-existing-variables" class="section level4" number="10.4.3.2">
+<h4>
+<span class="header-section-number">10.4.3.2</span> Create new variable by from existing variables<a class="anchor" aria-label="anchor" href="#create-new-variable-by-from-existing-variables"><i class="fas fa-link"></i></a>
+</h4>
+<p>We can create new variables or amend the value of an existing one on the basis of the data found in other existing variables in our dataset.</p>
+<p>For instance, in the example below we first create a new variable called <code>gdp</code> by multiplying the values for each observations of two existing variables (gdp per capita and population). Here the newly created column will contain the results of a mathematical operation, performed row by row.</p>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Create new variable by from existing variables</span>
+<span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>gdp <span class="op">=</span> <span class="va">gdpPercap</span> <span class="op">*</span> <span class="va">pop</span><span class="op">)</span> <span class="co">#create "gdp" variable multiplying gdpPercap by population</span>
+<span class="co">#&gt; # A tibble: 1,704 × 8</span>
+<span class="co">#&gt;    country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">#&gt;  2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">#&gt;  3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">#&gt;  4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">#&gt;  5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">#&gt;  6 Afghanistan Asia       1977    38.4 14880372      786.</span>
+<span class="co">#&gt;  7 Afghanistan Asia       1982    39.9 12881816      978.</span>
+<span class="co">#&gt;  8 Afghanistan Asia       1987    40.8 13867957      852.</span>
+<span class="co">#&gt;  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
+<span class="co">#&gt; 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
+<span class="co">#&gt; # … with 1,694 more rows, and 2 more variables:</span>
+<span class="co">#&gt; #   gdpPercapRound &lt;dbl&gt;, gdp &lt;dbl&gt;</span></code></pre></div>
+</div>
+</div>
+<div id="use-function-to-transform-a-variable" class="section level3" number="10.4.4">
+<h3>
+<span class="header-section-number">10.4.4</span> Use function to transform a variable<a class="anchor" aria-label="anchor" href="#use-function-to-transform-a-variable"><i class="fas fa-link"></i></a>
+</h3>
+<p>It is possible to transform a variable by applying a function, using the following format:</p>
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># Round numerical variable</span>
+<span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>gdpPercap_Round <span class="op">=</span>
+           <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="co">#remove decimals from GDP Per capita</span>
+<span class="co">#&gt; # A tibble: 1,704 × 8</span>
+<span class="co">#&gt;    country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">#&gt;  2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">#&gt;  3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">#&gt;  4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">#&gt;  5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">#&gt;  6 Afghanistan Asia       1977    38.4 14880372      786.</span>
+<span class="co">#&gt;  7 Afghanistan Asia       1982    39.9 12881816      978.</span>
+<span class="co">#&gt;  8 Afghanistan Asia       1987    40.8 13867957      852.</span>
+<span class="co">#&gt;  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
+<span class="co">#&gt; 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
+<span class="co">#&gt; # … with 1,694 more rows, and 2 more variables:</span>
+<span class="co">#&gt; #   gdpPercapRound &lt;dbl&gt;, gdpPercap_Round &lt;dbl&gt;</span></code></pre></div>
+</div>
+</div>
+<div id="logical-filtering" class="section level2" number="10.5">
+<h2>
+<span class="header-section-number">10.5</span> Logical filtering<a class="anchor" aria-label="anchor" href="#logical-filtering"><i class="fas fa-link"></i></a>
+</h2>
+<p>While the examples below illustrate how <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> can be used to perform the same transformations to all the rows of the same dataset, in some cases we would like to return a different transformation based on certain conditions. The creation of new variable or the manipulation of existing variables can be associated with a logical test.</p>
+<div id="recode" class="section level3" number="10.5.1">
+<h3>
+<span class="header-section-number">10.5.1</span> Recode()<a class="anchor" aria-label="anchor" href="#recode"><i class="fas fa-link"></i></a>
+</h3>
+<p>The recode function from the <code>dplyr</code> package can be used to change or recode specific values in a variable.</p>
+<p>For instance, in the example below we take the <em>continent</em> variable in the gapminder dataset and replaces all the values in this variable from “Asia” to “Asian Continent”. All the other observations where the value of the same variable is different from Asia are left untouched.</p>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>continent <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">continent</span>, <span class="st">"Asia"</span> <span class="op">=</span> <span class="st">"Asian Continent"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,704 × 7</span>
+<span class="co">#&gt;    country     continent      year lifeExp     pop gdpPercap</span>
+<span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;         &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Afghanistan Asian Contin…  1952    28.8  8.43e6      779.</span>
+<span class="co">#&gt;  2 Afghanistan Asian Contin…  1957    30.3  9.24e6      821.</span>
+<span class="co">#&gt;  3 Afghanistan Asian Contin…  1962    32.0  1.03e7      853.</span>
+<span class="co">#&gt;  4 Afghanistan Asian Contin…  1967    34.0  1.15e7      836.</span>
+<span class="co">#&gt;  5 Afghanistan Asian Contin…  1972    36.1  1.31e7      740.</span>
+<span class="co">#&gt;  6 Afghanistan Asian Contin…  1977    38.4  1.49e7      786.</span>
+<span class="co">#&gt;  7 Afghanistan Asian Contin…  1982    39.9  1.29e7      978.</span>
+<span class="co">#&gt;  8 Afghanistan Asian Contin…  1987    40.8  1.39e7      852.</span>
+<span class="co">#&gt;  9 Afghanistan Asian Contin…  1992    41.7  1.63e7      649.</span>
+<span class="co">#&gt; 10 Afghanistan Asian Contin…  1997    41.8  2.22e7      635.</span>
+<span class="co">#&gt; # … with 1,694 more rows, and 1 more variable:</span>
+<span class="co">#&gt; #   gdpPercapRound &lt;dbl&gt;</span></code></pre></div>
+</div>
+<div id="ifelse" class="section level3" number="10.5.2">
+<h3>
+<span class="header-section-number">10.5.2</span> ifelse()<a class="anchor" aria-label="anchor" href="#ifelse"><i class="fas fa-link"></i></a>
+</h3>
+<p>Alternatively, we can combine the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function with the <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> statement.
+<code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> is a function that tests each value in a column of data for a particular condition (a logical test), and returns one answer when the condition==TRUE, and another when the condition==FALSE.</p>
+<p><code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> statements takes three commands <code>ifelse(test_expression, x, y)</code>, where:</p>
+<ul>
+<li>
+<code>test_expression</code> is a statement that returns a true or false (logic) outcome (e.g. <code>continent == "Africa"</code>, <code>gdpPercap&gt; 1000</code>)</li>
+<li>
+<code>x</code> is the value returned if <code>test_expression</code> is <code>TRUE</code>
+</li>
+<li>
+<code>y</code> is the value returned it <code>test_expression</code> is <code>FALSE</code>.</li>
+</ul>
+<p>For instance, below we create a new variable called <code>development</code> which takes the value <code>developed country</code> if the GDP per capita is above $25,000, and the value <code>developing country</code> if the GDP per capita is below or equal to the same threshold. Remember that we need two closing brackets, one for the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function, and one for the <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> inside it.</p>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gap_dev</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>development <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">gdpPercap</span><span class="op">&gt;</span> <span class="fl">25000</span>, 
+                                <span class="st">"developed country"</span>, 
+                                <span class="st">"developing country"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">gdpPercap</span>, <span class="va">development</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gap_dev</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 × 3</span>
+<span class="co">#&gt;   country     gdpPercap development       </span>
+<span class="co">#&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;chr&gt;             </span>
+<span class="co">#&gt; 1 Afghanistan      779. developing country</span>
+<span class="co">#&gt; 2 Afghanistan      821. developing country</span>
+<span class="co">#&gt; 3 Afghanistan      853. developing country</span>
+<span class="co">#&gt; 4 Afghanistan      836. developing country</span>
+<span class="co">#&gt; 5 Afghanistan      740. developing country</span>
+<span class="co">#&gt; 6 Afghanistan      786. developing country</span></code></pre></div>
+</div>
+<div id="case_when" class="section level3" number="10.5.3">
+<h3>
+<span class="header-section-number">10.5.3</span> case_when()<a class="anchor" aria-label="anchor" href="#case_when"><i class="fas fa-link"></i></a>
+</h3>
+<p>At times we want to create a label column that tests multiple conditions. One option is to put multiple ifelse() commands inside each other (<code>ifelse(test1, valueiftest3true, ifelse(test2, valueiftest2true, ifelse(test 3, valueiftest3true)))</code>). This however would be difficult to read.</p>
+<p>An alternative option is to use the function <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code>.</p>
+<p>This command takes multiple conditions and tests them in order.
+case_when() takes a conditional command in the same format as the first command in ifelse(), however only the action for the TRUE condition is given, separated with a tilde ~.
+The catch-all command for rows that do not satisfy any other conditions, is given at the end.</p>
+<p>Let’s use case_when() to make a label for the level of development of countries, distinguishing between low-income countries, middle-income countries, and advanced economies, and assign observations in the gapminder dataset to these categories based on their level of GDP per capita.</p>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gap_dev</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>development <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+      <span class="va">gdpPercap</span><span class="op">&lt;</span> <span class="fl">25000</span> <span class="op">~</span> <span class="st">"low-income country"</span>,
+      <span class="va">gdpPercap</span><span class="op">&gt;=</span> <span class="fl">25000</span> <span class="op">&amp;</span> <span class="va">gdpPercap</span><span class="op">&lt;</span><span class="fl">50000</span>  <span class="op">~</span> <span class="st">"middle- income country"</span>, 
+      <span class="va">gdpPercap</span><span class="op">&gt;=</span> <span class="fl">50000</span>  <span class="op">~</span> <span class="st">"advanced economy"</span>,
+      <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">'other'</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">gdpPercap</span>, <span class="va">development</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gap_dev</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 × 3</span>
+<span class="co">#&gt;   country     gdpPercap development       </span>
+<span class="co">#&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;chr&gt;             </span>
+<span class="co">#&gt; 1 Afghanistan      779. low-income country</span>
+<span class="co">#&gt; 2 Afghanistan      821. low-income country</span>
+<span class="co">#&gt; 3 Afghanistan      853. low-income country</span>
+<span class="co">#&gt; 4 Afghanistan      836. low-income country</span>
+<span class="co">#&gt; 5 Afghanistan      740. low-income country</span>
+<span class="co">#&gt; 6 Afghanistan      786. low-income country</span></code></pre></div>
+<p>Because we have captured the possible numerical values of GDP per capita, we don’t expect the catch-all output, “other”, to be present in the new variable.</p>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="working-with-observations.html"><span class="header-section-number">9</span> Working with Observations</a></div>
+<div class="next"><a href="grouping-and-summarising-data.html"><span class="header-section-number">11</span> Grouping and Summarising Data</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#working-with-variables"><span class="header-section-number">10</span> Working with Variables</a></li>
+<li>
+<a class="nav-link" href="#introduction-1"><span class="header-section-number">10.1</span> Introduction</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#getting-started-1"><span class="header-section-number">10.1.1</span> Getting Started</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#selecting-variables"><span class="header-section-number">10.2</span> Selecting Variables</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#removing-variables"><span class="header-section-number">10.2.1</span> Removing variables</a></li>
+<li><a class="nav-link" href="#selecting-a-range-of-variables"><span class="header-section-number">10.2.2</span> Selecting a Range of Variables</a></li>
+<li><a class="nav-link" href="#selection-helpers"><span class="header-section-number">10.2.3</span> Selection Helpers</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#rename-variables"><span class="header-section-number">10.3</span> Rename Variables</a></li>
+<li>
+<a class="nav-link" href="#create-variables-with-mutate"><span class="header-section-number">10.4</span> Create variables with mutate</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#applying-function-to-specific-column-using"><span class="header-section-number">10.4.1</span> Applying function to specific column (using $)</a></li>
+<li><a class="nav-link" href="#using-mutate-from-the-dplyr-package"><span class="header-section-number">10.4.2</span> Using mutate() from the dplyr package</a></li>
+<li><a class="nav-link" href="#types-of-transformations"><span class="header-section-number">10.4.3</span> Types of transformations</a></li>
+<li><a class="nav-link" href="#use-function-to-transform-a-variable"><span class="header-section-number">10.4.4</span> Use function to transform a variable</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#logical-filtering"><span class="header-section-number">10.5</span> Logical filtering</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#recode"><span class="header-section-number">10.5.1</span> Recode()</a></li>
+<li><a class="nav-link" href="#ifelse"><span class="header-section-number">10.5.2</span> ifelse()</a></li>
+<li><a class="nav-link" href="#case_when"><span class="header-section-number">10.5.3</span> case_when()</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-03-20.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

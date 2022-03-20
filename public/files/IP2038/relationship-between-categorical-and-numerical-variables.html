@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 18 Relationship between categorical and numerical variables | IP2038 - Analysing Political and Economic Data in the Real World - Course Material</title>
+<meta name="author" content="Stefano Pagliari">
+<meta name="description" content="18.1 Summary Statistics across different Categories Numerical summaries can be constructed by taking the various ideas we’ve explored for numeric variables (means, medians, etc), and applying them...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 18 Relationship between categorical and numerical variables | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta property="og:type" content="book">
+<meta property="og:description" content="18.1 Summary Statistics across different Categories Numerical summaries can be constructed by taking the various ideas we’ve explored for numeric variables (means, medians, etc), and applying them...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 18 Relationship between categorical and numerical variables | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta name="twitter:description" content="18.1 Summary Statistics across different Categories Numerical summaries can be constructed by taking the various ideas we’ve explored for numeric variables (means, medians, etc), and applying them...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IP2038 - Analysing Political and Economic Data in the Real World - Course Material</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction to the Module</a></li>
+<li class="book-part">Introduction to R</li>
+<li><a class="" href="rstudio-and-rstudio-cloud.html"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></li>
+<li><a class="" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
+<li class="book-part">Datasets</li>
+<li><a class="" href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></li>
+<li><a class="" href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
+<li><a class="" href="long-vs.-wide-data.html"><span class="header-section-number">6</span> Long vs. Wide Data</a></li>
+<li><a class="" href="list-of-political-and-economic-datasets.html"><span class="header-section-number">7</span> List of Political and Economic Datasets</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="data-wrangling-with-dplyr.html"><span class="header-section-number">8</span> Data Wrangling with dplyr</a></li>
+<li><a class="" href="working-with-observations.html"><span class="header-section-number">9</span> Working with Observations</a></li>
+<li><a class="" href="working-with-variables.html"><span class="header-section-number">10</span> Working with Variables</a></li>
+<li><a class="" href="grouping-and-summarising-data.html"><span class="header-section-number">11</span> Grouping and Summarising Data</a></li>
+<li><a class="" href="relational-data.html"><span class="header-section-number">12</span> Relational Data</a></li>
+<li><a class="" href="missing-data.html"><span class="header-section-number">13</span> Missing Data</a></li>
+<li class="book-part">Data Visualization</li>
+<li><a class="" href="data-visualization-with-ggplot.html"><span class="header-section-number">14</span> Data Visualization with ggplot</a></li>
+<li><a class="" href="types-of-visualizations.html"><span class="header-section-number">15</span> Types of visualizations</a></li>
+<li class="book-part">Exploratory Analysis</li>
+<li><a class="" href="exploring-numerical-data.html"><span class="header-section-number">16</span> Exploring Numerical Data</a></li>
+<li><a class="" href="exploring-categorical-data.html"><span class="header-section-number">17</span> Exploring Categorical Data</a></li>
+<li><a class="active" href="relationship-between-categorical-and-numerical-variables.html"><span class="header-section-number">18</span> Relationship between categorical and numerical variables</a></li>
+<li><a class="" href="relationship-between-numerical-variables.html"><span class="header-section-number">19</span> Relationship between numerical variables</a></li>
+<li><a class="" href="relationship-between-categorical-variables.html"><span class="header-section-number">20</span> Relationship between categorical variables</a></li>
+<li><a class="" href="time-series.html"><span class="header-section-number">21</span> Time Series</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="assessment-guidance.html"><span class="header-section-number">A</span> Assessment Guidance</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="relationship-between-categorical-and-numerical-variables" class="section level1" number="18">
+<h1>
+<span class="header-section-number">18</span> Relationship between categorical and numerical variables<a class="anchor" aria-label="anchor" href="#relationship-between-categorical-and-numerical-variables"><i class="fas fa-link"></i></a>
+</h1>
+<div id="summary-statistics-across-different-categories" class="section level2" number="18.1">
+<h2>
+<span class="header-section-number">18.1</span> Summary Statistics across different Categories<a class="anchor" aria-label="anchor" href="#summary-statistics-across-different-categories"><i class="fas fa-link"></i></a>
+</h2>
+<p>Numerical summaries can be constructed by taking the various ideas we’ve explored for numeric variables (means, medians, etc), and applying them to subsets of data defined by the values of the categorical variable. This is easy to do with the dplyr <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> pipeline.</p>
+<p>For instance, in this example, after we grouped together different observations with the same value for the <code>continent</code> variable, we can calculate the average, lowest, and highest life expectancy (<code>lifeExp</code> variable) among all the observations of that group.</p>
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">continent</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_le <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span>,
+              min_le <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span>,
+              max_le <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> 
+<span class="co">#&gt; # A tibble: 5 × 4</span>
+<span class="co">#&gt;   continent mean_le min_le max_le</span>
+<span class="co">#&gt;   &lt;fct&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Africa       48.9   23.6   76.4</span>
+<span class="co">#&gt; 2 Americas     64.7   37.6   80.7</span>
+<span class="co">#&gt; 3 Asia         60.1   28.8   82.6</span>
+<span class="co">#&gt; 4 Europe       71.9   43.6   81.8</span>
+<span class="co">#&gt; 5 Oceania      74.3   69.1   81.2</span></code></pre></div>
+</div>
+<div id="graphical-summary" class="section level2" number="18.2">
+<h2>
+<span class="header-section-number">18.2</span> Graphical Summary<a class="anchor" aria-label="anchor" href="#graphical-summary"><i class="fas fa-link"></i></a>
+</h2>
+<p>While the visualizations and summary statistics described above gives us important insights into a given numerical variable, often our analysis requires us to break down how these vary across different groups that are mapped in a categorical variable.</p>
+<div id="boxplot-and-violin-plots-of-different-qualities" class="section level3" number="18.2.1">
+<h3>
+<span class="header-section-number">18.2.1</span> Boxplot and Violin Plots of different qualities<a class="anchor" aria-label="anchor" href="#boxplot-and-violin-plots-of-different-qualities"><i class="fas fa-link"></i></a>
+</h3>
+<p>The most common visualisation for exploring categorical-numerical relationships is the ‘box plot’.</p>
+<p>Within ggplot, we can draw a boxplot using the <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code> function that compares the distribution of a numerical variable across different levels of a categorical variable. This function requires the following variable (within <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>):</p>
+<ul>
+<li><p>y = the numerical variable</p></li>
+<li><p>x = the categorical variable to be mapped on the x axis</p></li>
+</ul>
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co">#Filter the data for the year 2007</span>
+<span class="va">gap_2007</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span> 
+
+<span class="co">#Plot the distribution of gdp per capita in 2007</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gap_2007</span>,
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">gdpPercap</span>, 
+                   x <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span>  </code></pre></div>
+<div class="inline-figure"><img src="94_Bivariate_Relationships_files/figure-html/unnamed-chunk-1-1.png" width="672"></div>
+<p>This visualization is helpful to summarise the distribution of the numeric variable within each of the categories (in this case the gdp per capita across different countries divided by their continent).</p>
+<p>Alternatively a violin plot is similar to box plot but shows the density within groups. It can be drawn using <code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin()</a></code>.</p>
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co">#Filter the data for the year 2007</span>
+<span class="va">gap_2007</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span> 
+
+<span class="co">#Plot the distribution of gdp per capita in 2007</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gap_2007</span>,
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">gdpPercap</span>, 
+                   x <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span><span class="op">)</span>  </code></pre></div>
+<div class="inline-figure"><img src="94_Bivariate_Relationships_files/figure-html/unnamed-chunk-2-1.png" width="672"></div>
+</div>
+<div id="multiple-histograms" class="section level3" number="18.2.2">
+<h3>
+<span class="header-section-number">18.2.2</span> Multiple Histograms<a class="anchor" aria-label="anchor" href="#multiple-histograms"><i class="fas fa-link"></i></a>
+</h3>
+<p>Boxplots of different qualities compactly present information about the central tendency, dispersion and skewness of each distribution, as well as the presence of outliers.
+However, there are cases where we may want to know more about how the distribution of the numerical variable changes across categories. One option in this case it to drop multiple histograms.</p>
+<p>Histograms can be used to compare distributions of the same variable across different groups of observations. One option to achieve this objective is to assign the categorical variable to the <code>fill</code> mapping in order to colour the different bin according to the value of the selected variable. We also set the position argument to “identity”. This tells ggplot2 not to stack the histograms on top of one another. Instead, they are allowed to overlap. It’s for this reason that we also made them semi-transparent by setting the alpha argument.</p>
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lifeExp</span>, fill <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"identity"</span>, alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span>  </code></pre></div>
+<p><img src="94_Bivariate_Relationships_files/figure-html/unnamed-chunk-3-1.png" width="672">
+This plot overlays different histograms one in front of the other, in a way that could be difficult to interpret in the case the different distributions overlap significantly. If this is the case, it may be preferable to split histograms in different plot window (<em>facet</em>), producing a different plot for each category.</p>
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co">#Select the dataset to be plotted</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span>  <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">continent</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="94_Bivariate_Relationships_files/figure-html/unnamed-chunk-4-1.png" width="672"></div>
+</div>
+<div id="stacked-and-conditional-density-plots" class="section level3" number="18.2.3">
+<h3>
+<span class="header-section-number">18.2.3</span> Stacked and Conditional Density Plots<a class="anchor" aria-label="anchor" href="#stacked-and-conditional-density-plots"><i class="fas fa-link"></i></a>
+</h3>
+<p>Similarly to the case of histograms described above, it is possible to use a density plot to compare the distribution of the same variable across groups of observations based on the value on a different variable. This can be achieved by assigning this variable to the colour and/or fill aesthetics.</p>
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lifeExp</span>, fill <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co">#Select the dataset to be plotted</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </code></pre></div>
+<div class="inline-figure"><img src="94_Bivariate_Relationships_files/figure-html/unnamed-chunk-5-1.png" width="672"></div>
+<p>It is also possible to “<em>stack</em>” different groups of observations (stacked density plot) by adding <code>position = "stack"</code> to the <code>geom_density</code> function.
+In this case, it is helpful to specify that the y value should be a ‘count’ by using the expression <code>y = after_stat(count)</code>.</p>
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lifeExp</span>, 
+                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span>, 
+                     fill <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"stack"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="94_Bivariate_Relationships_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
+<p>A <strong>conditional density</strong> plot is a way to visualize the conditional distribution of a categorical variable <code>y</code> changes over a numerical variable <code>x</code>.
+You can use <code>position="fill"</code> within <code>geom_density</code> to produce a conditional density estimate.</p>
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lifeExp</span>, 
+                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span>, 
+                     fill <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="94_Bivariate_Relationships_files/figure-html/unnamed-chunk-7-1.png" width="672"></div>
+</div>
+<div id="bar-charts" class="section level3" number="18.2.4">
+<h3>
+<span class="header-section-number">18.2.4</span> Bar Charts<a class="anchor" aria-label="anchor" href="#bar-charts"><i class="fas fa-link"></i></a>
+</h3>
+<p>Bar charts are helpful to compare the the value that a single continuous variables takes across different levels of a categorical value.</p>
+<p>For instance, in the figure before we visualize the gdp per capita of different European countries in a single year.
+In order to rank the different countries from the one with the highest life expectancy to the lowest, we use the function <code><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder()</a></code></p>
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">Europe_2007</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span> <span class="st">"Europe"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Europe_2007</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lifeExp</span>, 
+                     y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">lifeExp</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>, hjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span> <span class="op">+</span>
+   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Life Expectancy"</span>,
+       y <span class="op">=</span> <span class="st">"Country"</span>,
+       title <span class="op">=</span> <span class="st">"Life Expectancy across Europe  in 2007"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="94_Bivariate_Relationships_files/figure-html/unnamed-chunk-8-1.png" width="672"></div>
+<p>Bar charts can also be used to compare variation in values between small number of items (or categories) with respect to a fixed reference.</p>
+<p>For instance, in the figure below we still compare the life expectancy across different European countries, but we visualize to what extent each country diverge from the average. Countries whose life expectancy is above the average have positive values, while countries whose life is below the average have negative values.</p>
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># Filter observations for Europe in 2007</span>
+<span class="va">Europe_2007</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span> <span class="st">"Europe"</span><span class="op">)</span> 
+
+<span class="co"># Calculate the average life expectancy</span>
+<span class="va">Average_LifeExp</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Europe_2007</span><span class="op">$</span><span class="va">lifeExp</span><span class="op">)</span>
+
+<span class="co"># Calculate how much life expectancy in different countries varies from the average</span>
+<span class="va">Europe_2007</span> <span class="op">&lt;-</span> <span class="va">Europe_2007</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Diff_Average <span class="op">=</span> <span class="va">lifeExp</span> <span class="op">-</span> <span class="va">Average_LifeExp</span><span class="op">)</span> 
+
+<span class="co"># Calculate if life expectancy is above or below average</span>
+<span class="va">Europe_2007</span> <span class="op">&lt;-</span> <span class="va">Europe_2007</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>AboveLifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">Diff_Average</span><span class="op">&gt;</span><span class="fl">0</span>, <span class="st">"Above Average"</span>, <span class="st">"Below Average"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">#Plot</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Europe_2007</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Diff_Average</span>, 
+                     y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">Diff_Average</span><span class="op">)</span>,
+                     fill <span class="op">=</span> <span class="va">AboveLifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">lifeExp</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>, hjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span> <span class="op">+</span>
+   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Life Expectancy"</span>,
+       y <span class="op">=</span> <span class="st">"Country"</span>,
+       title <span class="op">=</span> <span class="st">"Life Expectancy across Europe  in 2007"</span>,
+       subtitle <span class="op">=</span> <span class="st">"Difference from the Average"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="94_Bivariate_Relationships_files/figure-html/unnamed-chunk-9-1.png" width="672"></div>
+</div>
+<div id="dot-plots" class="section level3" number="18.2.5">
+<h3>
+<span class="header-section-number">18.2.5</span> Dot Plots<a class="anchor" aria-label="anchor" href="#dot-plots"><i class="fas fa-link"></i></a>
+</h3>
+<p>The same information conveyed by the bar charts can also be expressed by replacing the bar with dot, using <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>.</p>
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">Europe_2007</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span> <span class="st">"Europe"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Europe_2007</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lifeExp</span>, 
+                     y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">lifeExp</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>, hjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.25</span>, size <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span> <span class="op">+</span>
+   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Life Expectancy"</span>,
+       y <span class="op">=</span> <span class="st">"Country"</span>,
+       title <span class="op">=</span> <span class="st">"Life Expectancy across Europe  in 2007"</span><span class="op">)</span></code></pre></div>
+<p><img src="94_Bivariate_Relationships_files/figure-html/unnamed-chunk-10-1.png" width="672">
+This plot is pretty similar to our bar plot from earlier. However, notice that the x-axis of this <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> plot starts around 70, while the x-axis of our bar plot began at 0.
+ggplot2 requires that the numerical axis of a bar plots starts at 0.
+As a result, the choice between points and bars is largely a choice between comparing values to 0 or comparing values to each other.</p>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="exploring-categorical-data.html"><span class="header-section-number">17</span> Exploring Categorical Data</a></div>
+<div class="next"><a href="relationship-between-numerical-variables.html"><span class="header-section-number">19</span> Relationship between numerical variables</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#relationship-between-categorical-and-numerical-variables"><span class="header-section-number">18</span> Relationship between categorical and numerical variables</a></li>
+<li><a class="nav-link" href="#summary-statistics-across-different-categories"><span class="header-section-number">18.1</span> Summary Statistics across different Categories</a></li>
+<li>
+<a class="nav-link" href="#graphical-summary"><span class="header-section-number">18.2</span> Graphical Summary</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#boxplot-and-violin-plots-of-different-qualities"><span class="header-section-number">18.2.1</span> Boxplot and Violin Plots of different qualities</a></li>
+<li><a class="nav-link" href="#multiple-histograms"><span class="header-section-number">18.2.2</span> Multiple Histograms</a></li>
+<li><a class="nav-link" href="#stacked-and-conditional-density-plots"><span class="header-section-number">18.2.3</span> Stacked and Conditional Density Plots</a></li>
+<li><a class="nav-link" href="#bar-charts"><span class="header-section-number">18.2.4</span> Bar Charts</a></li>
+<li><a class="nav-link" href="#dot-plots"><span class="header-section-number">18.2.5</span> Dot Plots</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-03-20.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

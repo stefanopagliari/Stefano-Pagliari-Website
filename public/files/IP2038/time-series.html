@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 21 Time Series | IP2038 - Analysing Political and Economic Data in the Real World - Course Material</title>
+<meta name="author" content="Stefano Pagliari">
+<meta name="description" content="21.1 The Concept Much of political economy analysis examines times series data. Time series data refer to data for a single unit of analysis but over time. In other words, univariate time series...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 21 Time Series | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta property="og:type" content="book">
+<meta property="og:description" content="21.1 The Concept Much of political economy analysis examines times series data. Time series data refer to data for a single unit of analysis but over time. In other words, univariate time series...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 21 Time Series | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta name="twitter:description" content="21.1 The Concept Much of political economy analysis examines times series data. Time series data refer to data for a single unit of analysis but over time. In other words, univariate time series...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IP2038 - Analysing Political and Economic Data in the Real World - Course Material</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction to the Module</a></li>
+<li class="book-part">Introduction to R</li>
+<li><a class="" href="rstudio-and-rstudio-cloud.html"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></li>
+<li><a class="" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
+<li class="book-part">Datasets</li>
+<li><a class="" href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></li>
+<li><a class="" href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
+<li><a class="" href="long-vs.-wide-data.html"><span class="header-section-number">6</span> Long vs. Wide Data</a></li>
+<li><a class="" href="list-of-political-and-economic-datasets.html"><span class="header-section-number">7</span> List of Political and Economic Datasets</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="data-wrangling-with-dplyr.html"><span class="header-section-number">8</span> Data Wrangling with dplyr</a></li>
+<li><a class="" href="working-with-observations.html"><span class="header-section-number">9</span> Working with Observations</a></li>
+<li><a class="" href="working-with-variables.html"><span class="header-section-number">10</span> Working with Variables</a></li>
+<li><a class="" href="grouping-and-summarising-data.html"><span class="header-section-number">11</span> Grouping and Summarising Data</a></li>
+<li><a class="" href="relational-data.html"><span class="header-section-number">12</span> Relational Data</a></li>
+<li><a class="" href="missing-data.html"><span class="header-section-number">13</span> Missing Data</a></li>
+<li class="book-part">Data Visualization</li>
+<li><a class="" href="data-visualization-with-ggplot.html"><span class="header-section-number">14</span> Data Visualization with ggplot</a></li>
+<li><a class="" href="types-of-visualizations.html"><span class="header-section-number">15</span> Types of visualizations</a></li>
+<li class="book-part">Exploratory Analysis</li>
+<li><a class="" href="exploring-numerical-data.html"><span class="header-section-number">16</span> Exploring Numerical Data</a></li>
+<li><a class="" href="exploring-categorical-data.html"><span class="header-section-number">17</span> Exploring Categorical Data</a></li>
+<li><a class="" href="relationship-between-categorical-and-numerical-variables.html"><span class="header-section-number">18</span> Relationship between categorical and numerical variables</a></li>
+<li><a class="" href="relationship-between-numerical-variables.html"><span class="header-section-number">19</span> Relationship between numerical variables</a></li>
+<li><a class="" href="relationship-between-categorical-variables.html"><span class="header-section-number">20</span> Relationship between categorical variables</a></li>
+<li><a class="active" href="time-series.html"><span class="header-section-number">21</span> Time Series</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="assessment-guidance.html"><span class="header-section-number">A</span> Assessment Guidance</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="time-series" class="section level1" number="21">
+<h1>
+<span class="header-section-number">21</span> Time Series<a class="anchor" aria-label="anchor" href="#time-series"><i class="fas fa-link"></i></a>
+</h1>
+<div id="the-concept" class="section level2" number="21.1">
+<h2>
+<span class="header-section-number">21.1</span> The Concept<a class="anchor" aria-label="anchor" href="#the-concept"><i class="fas fa-link"></i></a>
+</h2>
+<p>Much of political economy analysis examines <strong><em>times series</em></strong> data. Time series data refer to data for a single unit of analysis but over time.
+In other words, <strong><em>univariate time series</em></strong> is a sequence of values for a single variable collected over time for the same unit of analysis</p>
+<div id="differences-from-cross-sectional-data" class="section level3" number="21.1.1">
+<h3>
+<span class="header-section-number">21.1.1</span> Differences from Cross Sectional Data<a class="anchor" aria-label="anchor" href="#differences-from-cross-sectional-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>Time series data are very different from cross sectional data in two ways:</p>
+<ol style="list-style-type: decimal">
+<li>The values for any variable are NOT independent from one another. The value of each observation depends on the chronologically prior observation.</li>
+<li>Data order matters because there is a chronological dependency of each observation on the prior observation. Changing this order would change the meaning and interpretation of the data.</li>
+</ol>
+</div>
+<div id="what-we-look-for-in-time-series-data" class="section level3" number="21.1.2">
+<h3>
+<span class="header-section-number">21.1.2</span> What we look for in Time Series Data<a class="anchor" aria-label="anchor" href="#what-we-look-for-in-time-series-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>When looking at a time series, we want to know:</p>
+<ul>
+<li>Is there a trend (does the series rise on average or fall on average)?</li>
+<li>Is there seasonality (regularly repeating pattern of highs and lows related to calendar time)?</li>
+<li>Are there outliers (are there any points away from the general trend)?</li>
+<li>Is there constant variance over time, or is the variance non-constant?</li>
+<li>Are there any abrupt changes to either the level of the series or the variance of the series (that is, are there structural breaks)?</li>
+</ul>
+</div>
+</div>
+<div id="plotting-country-year-time-series" class="section level2" number="21.2">
+<h2>
+<span class="header-section-number">21.2</span> Plotting Country-Year Time Series<a class="anchor" aria-label="anchor" href="#plotting-country-year-time-series"><i class="fas fa-link"></i></a>
+</h2>
+<div id="line-plot-for-single-country" class="section level3" number="21.2.1">
+<h3>
+<span class="header-section-number">21.2.1</span> Line Plot for Single Country<a class="anchor" aria-label="anchor" href="#line-plot-for-single-country"><i class="fas fa-link"></i></a>
+</h3>
+<p>The most common way to plot a time series is through a <strong>line plot</strong>.</p>
+<p>In this section we will work with the gapminder dataset and plot the evolution of gdp per capita over time for different countries in the data.
+We start by connecting observations in order of the variable on the x-axis by limiting the analysis to a single country</p>
+<p>In the graph below we first filter the ‘gapminder’ data to include only observations related to the United Kingdom. We then plot this data usong ggplot, using the <code>geom_line</code>, listing the variable to be mapped on the x (year) and y (gdpPercap) axis.</p>
+<p>In the visualization below we also mark the observations with a point <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>. Including points is important, however, if your data is irregularly distributed or the observations are sparse.</p>
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="co">#&gt; ── Attaching packages ─────────────────── tidyverse 1.3.1 ──</span>
+<span class="co">#&gt; ✓ ggplot2 3.3.5     ✓ purrr   0.3.4</span>
+<span class="co">#&gt; ✓ tibble  3.1.6     ✓ dplyr   1.0.7</span>
+<span class="co">#&gt; ✓ tidyr   1.1.4     ✓ stringr 1.4.0</span>
+<span class="co">#&gt; ✓ readr   2.1.1     ✓ forcats 0.5.1</span>
+<span class="co">#&gt; ── Conflicts ────────────────────── tidyverse_conflicts() ──</span>
+<span class="co">#&gt; x dplyr::filter() masks stats::filter()</span>
+<span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+
+<span class="va">UK_gap</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"United Kingdom"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UK_gap</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="95_Time_Series_files/figure-html/unnamed-chunk-1-1.png" width="672"></div>
+</div>
+<div id="line-plot-for-multiple-countries" class="section level3" number="21.2.2">
+<h3>
+<span class="header-section-number">21.2.2</span> Line Plot for Multiple Countries<a class="anchor" aria-label="anchor" href="#line-plot-for-multiple-countries"><i class="fas fa-link"></i></a>
+</h3>
+<p>What happens if we want to compare the evolution across time of gdp per capita in multiple countries? In the graph below we filter the observations in the gapminder dataset for multiple countries and then plot the graph using <code>geom_line</code>.</p>
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">UK_Ger_gap</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"United Kingdom"</span> <span class="op">|</span> <span class="va">country</span> <span class="op">==</span> <span class="st">"Germany"</span> <span class="op">|</span> <span class="va">country</span> <span class="op">==</span> <span class="st">"China"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UK_Ger_gap</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="95_Time_Series_files/figure-html/unnamed-chunk-2-1.png" width="672"></div>
+<p>By simply listing the variable to be mapped on the x (year) and y (gdpPercap) axis, ggplot does not have the information regarding what the yearly observations should be connected to. As a result ggplot tries to connect all the lines for for each particular year in the order they appear in the dataset.
+We have to specify that the line should be grouped by country by mapping the <code>group</code> variable. Grouping the data by country results in the right countries being connected. We also map the country to the <code>colour</code> of the line in order to differentiate between different countries.</p>
+<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">UK_Ger_gap</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"United Kingdom"</span> <span class="op">|</span> <span class="va">country</span> <span class="op">==</span> <span class="st">"Germany"</span> <span class="op">|</span> <span class="va">country</span> <span class="op">==</span> <span class="st">"China"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UK_Ger_gap</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, 
+                     y <span class="op">=</span> <span class="va">gdpPercap</span>,
+                     group<span class="op">=</span> <span class="va">country</span>,
+                     colour <span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="95_Time_Series_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
+</div>
+<div id="visualizing-time-series-for-large-number-of-countries" class="section level3" number="21.2.3">
+<h3>
+<span class="header-section-number">21.2.3</span> Visualizing Time Series for Large Number of Countries<a class="anchor" aria-label="anchor" href="#visualizing-time-series-for-large-number-of-countries"><i class="fas fa-link"></i></a>
+</h3>
+<p>As the number of countries we want to visualize increase, so does the number of lines, making the results difficult to interpret</p>
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, 
+                     y <span class="op">=</span> <span class="va">gdpPercap</span>,
+                     group<span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="95_Time_Series_files/figure-html/unnamed-chunk-4-1.png" width="672"></div>
+<p>One option to improve the visualization is to break the graph into smaller plots based on the value of another categorical variable. In the graph below we break the graph across continents by adding <code>facet_wrap(~continent)</code>.</p>
+<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"gray70"</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>group<span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_dollar.html">dollar</a></span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">continent</span>, ncol <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span> <span class="st">"Year"</span>, 
+       y <span class="op">=</span> <span class="st">"GDP per capita"</span>, 
+       title <span class="op">=</span> <span class="st">"GDP per capita on Five Continents"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="95_Time_Series_files/figure-html/unnamed-chunk-5-1.png" width="672"></div>
+<p>Another option is to visualize a smoother (using <code>geom_smooth</code>) that summarize the tendency for each group.</p>
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">gdpPercap</span>, color <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"loess"</span><span class="op">)</span>
+<span class="co">#&gt; `geom_smooth()` using formula 'y ~ x'</span></code></pre></div>
+<div class="inline-figure"><img src="95_Time_Series_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
+<p>Another option is to highlight specific lines of interest to compare select values to the rest of the data. In the graph below we highlight the line associated with the UK by colouring this in red.</p>
+<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"gray70"</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>group<span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"United Kingdom"</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_dollar.html">dollar</a></span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span> <span class="st">"Year"</span>, 
+       y <span class="op">=</span> <span class="st">"GDP per capita"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="95_Time_Series_files/figure-html/unnamed-chunk-7-1.png" width="672"></div>
+<p>Alternatively we treat the year as a categorical variable and visualize the distribution of our numerical variable of interest across different points in time.</p>
+<p>In the plot below we transform the numerical variable <code>lifeExp</code> into a categorical variable using the function `as.factor().</p>
+<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span> <span class="st">"Year"</span>, 
+       y <span class="op">=</span> <span class="st">"Life Expectancy"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="95_Time_Series_files/figure-html/unnamed-chunk-8-1.png" width="672"></div>
+
+</div>
+</div>
+</div>
+
+
+
+<div class="chapter-nav">
+<div class="prev"><a href="relationship-between-categorical-variables.html"><span class="header-section-number">20</span> Relationship between categorical variables</a></div>
+<div class="next"><a href="assessment-guidance.html"><span class="header-section-number">A</span> Assessment Guidance</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#time-series"><span class="header-section-number">21</span> Time Series</a></li>
+<li>
+<a class="nav-link" href="#the-concept"><span class="header-section-number">21.1</span> The Concept</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#differences-from-cross-sectional-data"><span class="header-section-number">21.1.1</span> Differences from Cross Sectional Data</a></li>
+<li><a class="nav-link" href="#what-we-look-for-in-time-series-data"><span class="header-section-number">21.1.2</span> What we look for in Time Series Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#plotting-country-year-time-series"><span class="header-section-number">21.2</span> Plotting Country-Year Time Series</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#line-plot-for-single-country"><span class="header-section-number">21.2.1</span> Line Plot for Single Country</a></li>
+<li><a class="nav-link" href="#line-plot-for-multiple-countries"><span class="header-section-number">21.2.2</span> Line Plot for Multiple Countries</a></li>
+<li><a class="nav-link" href="#visualizing-time-series-for-large-number-of-countries"><span class="header-section-number">21.2.3</span> Visualizing Time Series for Large Number of Countries</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+</div>
+  
+
+  
+
+</div>
+ <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-03-20.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

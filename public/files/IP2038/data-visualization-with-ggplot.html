@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 14 Data Visualization with ggplot | IP2038 - Analysing Political and Economic Data in the Real World - Course Material</title>
+<meta name="author" content="Stefano Pagliari">
+<meta name="description" content="14.1 Introduction to ggplot The ggplot2 package is widely used package for making plots in R. It allows us to draw a wide variety of graphs while preserving a consistent approach to building...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 14 Data Visualization with ggplot | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta property="og:type" content="book">
+<meta property="og:description" content="14.1 Introduction to ggplot The ggplot2 package is widely used package for making plots in R. It allows us to draw a wide variety of graphs while preserving a consistent approach to building...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 14 Data Visualization with ggplot | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta name="twitter:description" content="14.1 Introduction to ggplot The ggplot2 package is widely used package for making plots in R. It allows us to draw a wide variety of graphs while preserving a consistent approach to building...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IP2038 - Analysing Political and Economic Data in the Real World - Course Material</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction to the Module</a></li>
+<li class="book-part">Introduction to R</li>
+<li><a class="" href="rstudio-and-rstudio-cloud.html"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></li>
+<li><a class="" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
+<li class="book-part">Datasets</li>
+<li><a class="" href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></li>
+<li><a class="" href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
+<li><a class="" href="long-vs.-wide-data.html"><span class="header-section-number">6</span> Long vs. Wide Data</a></li>
+<li><a class="" href="list-of-political-and-economic-datasets.html"><span class="header-section-number">7</span> List of Political and Economic Datasets</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="data-wrangling-with-dplyr.html"><span class="header-section-number">8</span> Data Wrangling with dplyr</a></li>
+<li><a class="" href="working-with-observations.html"><span class="header-section-number">9</span> Working with Observations</a></li>
+<li><a class="" href="working-with-variables.html"><span class="header-section-number">10</span> Working with Variables</a></li>
+<li><a class="" href="grouping-and-summarising-data.html"><span class="header-section-number">11</span> Grouping and Summarising Data</a></li>
+<li><a class="" href="relational-data.html"><span class="header-section-number">12</span> Relational Data</a></li>
+<li><a class="" href="missing-data.html"><span class="header-section-number">13</span> Missing Data</a></li>
+<li class="book-part">Data Visualization</li>
+<li><a class="active" href="data-visualization-with-ggplot.html"><span class="header-section-number">14</span> Data Visualization with ggplot</a></li>
+<li><a class="" href="types-of-visualizations.html"><span class="header-section-number">15</span> Types of visualizations</a></li>
+<li class="book-part">Exploratory Analysis</li>
+<li><a class="" href="exploring-numerical-data.html"><span class="header-section-number">16</span> Exploring Numerical Data</a></li>
+<li><a class="" href="exploring-categorical-data.html"><span class="header-section-number">17</span> Exploring Categorical Data</a></li>
+<li><a class="" href="relationship-between-categorical-and-numerical-variables.html"><span class="header-section-number">18</span> Relationship between categorical and numerical variables</a></li>
+<li><a class="" href="relationship-between-numerical-variables.html"><span class="header-section-number">19</span> Relationship between numerical variables</a></li>
+<li><a class="" href="relationship-between-categorical-variables.html"><span class="header-section-number">20</span> Relationship between categorical variables</a></li>
+<li><a class="" href="time-series.html"><span class="header-section-number">21</span> Time Series</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="assessment-guidance.html"><span class="header-section-number">A</span> Assessment Guidance</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="data-visualization-with-ggplot" class="section level1" number="14">
+<h1>
+<span class="header-section-number">14</span> Data Visualization with ggplot<a class="anchor" aria-label="anchor" href="#data-visualization-with-ggplot"><i class="fas fa-link"></i></a>
+</h1>
+<div id="introduction-to-ggplot" class="section level2" number="14.1">
+<h2>
+<span class="header-section-number">14.1</span> Introduction to ggplot<a class="anchor" aria-label="anchor" href="#introduction-to-ggplot"><i class="fas fa-link"></i></a>
+</h2>
+<p>The ggplot2 package is widely used package for making plots in R. It allows us to draw a wide variety of graphs while preserving a consistent approach to building impressive data visualizations.</p>
+<p>The ‘gg’ at the begin of ggplot stands for the ‘grammar of graphics’, a reference to Leland Wilkinson’s book ‘Grammar of Graphics’ (1999). The Grammar of Graphics puts forward the notion that any plot (e.g. scatterplot, barplot) can be expressed from the same set of components that make up a plot or graphic, such as how data are represented on the plot (as lines, points, etc.), how variables are mapped to coordinates or plotting shape or color, what transformation or statistical summary is required, and so on.</p>
+<p><code>ggplot</code> allows you to build a visualization layer-by-layer by specifying</p>
+<ol style="list-style-type: decimal">
+<li>the <code>data</code> from which the individual variables will be extracted</li>
+<li>a <code>geom</code> which specifies how the data is represented in the plot (e.g. points, lines, bars)</li>
+<li>aesthetics (<code>aes</code>) that map variabels in the dataset to graphical elements in the plot (e.g. position on the axes, size, shape, colour)</li>
+</ol>
+<p>Additional steps often necessary to improve the visualizations include adding layers to our graph to:</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Specifying the coordinates</li>
+<li>Specifying the scales</li>
+<li>Setting labels and guides</li>
+<li>Dividing the visualization in different mini-plots (<code>facet</code>)</li>
+</ol>
+<p>In what follows below we will build this graph step by step while introducing the key commands that part of <code>ggplot</code>.</p>
+</div>
+<div id="selecting-the-data" class="section level2" number="14.2">
+<h2>
+<span class="header-section-number">14.2</span> Selecting the Data<a class="anchor" aria-label="anchor" href="#selecting-the-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>The initial step in drawing a plot with <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> involves selecting the dataset that we want to draw. Most of the functions used within ggplot require the data to have been ‘tidied’, which means, organizing the data so that every column is a variable, every row is an observation, and every cell is a single value</p>
+<p>We specify the dataset by calling the <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> function and including within brackets the name of the dataframe we want to draw from.</p>
+<p>In the examples below we will plot the <code>gapminder</code> dataset. For each of 142 countries, the package provides values for life expectancy, GDP per capita, and population, every five years, from 1952 to 2007. The dataset can be loaded through the package <code>gapminder</code>.</p>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Install package</span>
+<span class="co">#install.packages("gapminder")</span>
+
+<span class="co">#Load the package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+
+<span class="co">#Show the first few rows</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 × 6</span>
+<span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt;   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372      786.</span></code></pre></div>
+<p>We can tell ggplot to use this data by typing <code>ggplot(data = gapminder)</code> (the code will also work if we omit <code>data =</code> and simply specify the dataset within parentheses)</p>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#load ggplot (it could be loaded from the tidyverse package)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/ggplotdata-1.png" width="672"></div>
+<p>Only specifying the dataset within the <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> function without any additional command will result in the plotting of an empty grey panel. This is because we need to specify how different columns of the data frame should be represented in the plot.</p>
+</div>
+<div id="map-variables-to-plot-elements-aes" class="section level2" number="14.3">
+<h2>
+<span class="header-section-number">14.3</span> Map variables to plot elements (‘aes’)<a class="anchor" aria-label="anchor" href="#map-variables-to-plot-elements-aes"><i class="fas fa-link"></i></a>
+</h2>
+<p>Generating visualization in R requires that we specify the connections between the variables in our data and the plot elements on the screen, such as colours, points, and shapes. When using <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> these connections are called <em>aesthetic</em> mappings.</p>
+<p>In ggplot we map variables in our data to properties we can see in the graph using the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> function (<em>aes</em> is short for ‘aesthetic’).
+Column names are given as ‘aesthetic’ elements to the ggplot function, and are wrapped in the <code>mapping = aes(...)</code> argument. We give these specifications separated by a comma and without quotation marks.</p>
+<p>The most common aesthetics that are defined within the <code>mapping = aes(...)</code> argument are:</p>
+<ul>
+<li>
+<code>x</code>: variable whose values will be plotted on the x axis</li>
+<li>
+<code>y</code>: variable whose values will be plotted on the y axis</li>
+</ul>
+<p>In this example from Kieran Healy’s book <a href="https://socviz.co">“<em>Data Visualization. A Practical Introduction</em>”</a> we will plot life expectancy against per capita GDP for all country-years in the data. In the code below, we are specifying what dataset we will work with (<code>gapminder</code>), which variable we want to plot on the <em>x</em> axis (<code>gdpPercap</code>) and on the <em>y</em> axis (<code>lifeExp</code>)</p>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/ggplotaes-1.png" width="672"></div>
+<p>Specifying the dataset within the <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> function and the mappings (variables to be visualized) will however only generate an empty plot with the variables listed on the axis. This is because we have yet to declare what sort of plot we want to use to visualize these variables. In order to plot our selected variables we need to add a layer to the plot by picking a <code>geom_</code> functions.</p>
+</div>
+<div id="select-the-geometric-representations-geom" class="section level2" number="14.4">
+<h2>
+<span class="header-section-number">14.4</span> Select the geometric representations (‘geom’)<a class="anchor" aria-label="anchor" href="#select-the-geometric-representations-geom"><i class="fas fa-link"></i></a>
+</h2>
+<p>Once we have specified the mapping, we add another ‘layer’ by calling a function specifying what graphical representation of our mappings we would like to see. We do this by calling one of the many <code>geom_</code> functions. This is preceded by a <code>+</code> sign because we are adding a <strong>layer</strong> to the plot.</p>
+<p>In the example below, we select the function <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> to plot the x and y values in a scatterplot. Each row in the gapminder dataset now has an x coordinate (<code>gdpPercap</code>), a y coordinate (<code>lifeExp</code>), and a designated geometric representation (point).</p>
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/ggplotdatapoint-1.png" width="672"></div>
+<div id="available-geoms" class="section level3" number="14.4.1">
+<h3>
+<span class="header-section-number">14.4.1</span> Available geoms<a class="anchor" aria-label="anchor" href="#available-geoms"><i class="fas fa-link"></i></a>
+</h3>
+<p>In the graph below, we have represented the variables <code>gdpPercap</code> and <code>lifeExp</code> as coordinates for points by selecting the geom <code>geom_point</code>.</p>
+<p>A broader range of of geometric representation is available in a ggplot graph:</p>
+<ul>
+<li>
+<strong>Bar charts</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html"><code>geom_bar()</code></a> <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html"><code>geom_col()</code></a><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html"><code>stat_count()</code></a>
+</li>
+</ul>
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/unnamed-chunk-1-1.png" width="672"></div>
+<ul>
+<li>
+<strong>Histograms and frequency polygons</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html"><code>geom_freqpoly()</code></a><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html"><code>geom_histogram()</code></a><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html"><code>stat_bin()</code></a>
+</li>
+</ul>
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">gapminder</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">60</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/unnamed-chunk-2-1.png" width="672"></div>
+<ul>
+<li>
+<strong>Smoothed density estimates</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_density.html"><code>geom_density()</code></a><a href="https://ggplot2.tidyverse.org/reference/geom_density.html"><code>stat_density()</code></a>
+</li>
+</ul>
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">gapminder</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
+<ul>
+<li>
+<strong>A box and whiskers plot</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html"><code>geom_boxplot()</code></a><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html"><code>stat_boxplot()</code></a>
+</li>
+</ul>
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">gapminder</span>, 
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">continent</span>, 
+           y<span class="op">=</span><span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>outlier.size<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/unnamed-chunk-4-1.png" width="672"></div>
+<ul>
+<li>
+<strong>Connect observations</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_path.html"><code>geom_path()</code></a> <a href="https://ggplot2.tidyverse.org/reference/geom_path.html"><code>geom_line()</code></a> <a href="https://ggplot2.tidyverse.org/reference/geom_path.html"><code>geom_step()</code></a>
+</li>
+</ul>
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"United Kingdom"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, 
+                     y <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/unnamed-chunk-5-1.png" width="672"></div>
+<ul>
+<li><p><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html"><img src="https://ggplot2.tidyverse.org/reference/icons/geom_abline.png"></a> <strong>Reference lines: horizontal, vertical, and diagonal</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_abline.html"><code>geom_abline()</code></a> <a href="https://ggplot2.tidyverse.org/reference/geom_abline.html"><code>geom_hline()</code></a><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html"><code>geom_vline()</code></a></p></li>
+<li><p><a href="https://ggplot2.tidyverse.org/reference/geom_bin_2d.html"><img src="https://ggplot2.tidyverse.org/reference/icons/geom_bin2d.png"></a> <strong>Heatmap of 2d bin counts</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_bin_2d.html"><code>geom_bin_2d()</code></a><a href="https://ggplot2.tidyverse.org/reference/geom_bin_2d.html"><code>stat_bin_2d()</code></a></p></li>
+<li><p><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html"><img src="https://ggplot2.tidyverse.org/reference/icons/geom_dotplot.png"></a> <strong>Dot plot</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html"><code>geom_dotplot()</code></a></p></li>
+<li><p><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html"><img src="https://ggplot2.tidyverse.org/reference/icons/geom_jitter.png"></a> <strong>Jittered points</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html"><code>geom_jitter()</code></a></p></li>
+<li><p><a href="https://ggplot2.tidyverse.org/reference/geom_map.html"><img src="https://ggplot2.tidyverse.org/reference/icons/geom_map.png"></a> <strong>Polygons from a reference map</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_map.html"><code>geom_map()</code></a></p></li>
+<li><p><a href="https://ggplot2.tidyverse.org/reference/geom_point.html"><img src="https://ggplot2.tidyverse.org/reference/icons/geom_point.png"></a> <strong>Points</strong> <a href="https://ggplot2.tidyverse.org/reference/geom_point.html"><code>geom_point()</code></a></p></li>
+<li><p><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html"><img src="https://ggplot2.tidyverse.org/reference/icons/geom_smooth.png"></a> <strong>Smoothed conditional means</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html"><code>geom_smooth()</code></a><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html"><code>stat_smooth()</code></a></p></li>
+<li><p><a href="https://ggplot2.tidyverse.org/reference/geom_text.html"><img src="https://ggplot2.tidyverse.org/reference/icons/geom_text.png"></a> <strong>Text</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_text.html"><code>geom_label()</code></a><a href="https://ggplot2.tidyverse.org/reference/geom_text.html"><code>geom_text()</code></a></p></li>
+<li><p><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html"><img src="https://ggplot2.tidyverse.org/reference/icons/geom_raster.png"></a> <strong>Rectangles</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_tile.html"><code>geom_raster()</code></a> <a href="https://ggplot2.tidyverse.org/reference/geom_tile.html"><code>geom_rect()</code></a><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html"><code>geom_tile()</code></a></p></li>
+<li><p><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html"><img src="https://ggplot2.tidyverse.org/reference/icons/geom_violin.png"></a> <strong>Violin plot</strong> with <a href="https://ggplot2.tidyverse.org/reference/geom_violin.html"><code>geom_violin()</code></a></p></li>
+</ul>
+<p>Additional geoms can be loaded through specific packages that extends the functionalities of ggplot. Some popular examples are:</p>
+<ul>
+<li>
+<a href="https://www.rdocumentation.org/packages/ggridges/versions/0.5.0">ggridges</a> package to create ridgeline plots</li>
+<li>
+<a href="https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html">ggrepel</a> package to repel overlapping text labels.</li>
+</ul>
+</div>
+<div id="layer-different-geoms" class="section level3" number="14.4.2">
+<h3>
+<span class="header-section-number">14.4.2</span> Layer different geoms<a class="anchor" aria-label="anchor" href="#layer-different-geoms"><i class="fas fa-link"></i></a>
+</h3>
+<p>It is possible to layer different <code>geom_</code> on the same plot (e.g. a line on top of a scatterplot) by using the <code>+</code> sign to introduce a new layer. Any <code>geom_</code> function will inherit from the ggplot function the instructions regarding what variables should be mapped, although it is possible to give geoms different commands regarding the variables to be plotted within parentheses.</p>
+<p>For instance, in the example below we add an additional layer on top of our scatterplot by calling <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> to calculate and draw a smoothed line, including a ribbon showing the standard error.</p>
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/ggplotdatapointline-1.png" width="672"></div>
+<p>Note that the trend line is blocking out certain points, because it is the ‘top layer’ of the plot. The <code>geom</code> layers that appear early in the command are drawn first, and can be obscured by the <code>geom</code> layers that come after them.</p>
+</div>
+</div>
+<div id="additional-aesthetics" class="section level2" number="14.5">
+<h2>
+<span class="header-section-number">14.5</span> Additional aesthetics<a class="anchor" aria-label="anchor" href="#additional-aesthetics"><i class="fas fa-link"></i></a>
+</h2>
+<p>The position of an element on the x and y axis are not the only aesthetics of the plot that can be defined. Other aesthetics that are common in different ggplot visualizations are:</p>
+<ul>
+<li>
+<code>color</code>: variable whose values will determine the color of lines and points</li>
+<li>
+<code>fill</code>: variable whose values will determine the color of filled objects</li>
+<li>
+<code>size</code>: variable whose values will determine the size of points</li>
+<li>
+<code>shape</code>: variable whose values will determine the shapes of points</li>
+<li>
+<code>linetype</code>: variable whose values will determine the line type</li>
+</ul>
+<div id="mapping-aesthetics-to-a-variable" class="section level3" number="14.5.1">
+<h3>
+<span class="header-section-number">14.5.1</span> Mapping Aesthetics to a Variable<a class="anchor" aria-label="anchor" href="#mapping-aesthetics-to-a-variable"><i class="fas fa-link"></i></a>
+</h3>
+<p>The first way is to map an aesthetic to the values of a variable in our dataset. To do so, we need to set the properties inside the <code>mapping = aes()</code> function. The name of the variable does not need to be wrapped within quotation marks.</p>
+<p>For instance in the figure below individual data points have been colored according to the continent of the country represented. As a result, 5 different colours have been selected, one for each distinct value of the <code>continent</code> variable. A legend explaining which colors have been linked to which continents is added automatically to the plot. It is also possible to map continuous variables to the color aesthetic. In this case ggplot will produce a gradient scale.</p>
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, 
+                  y <span class="op">=</span> <span class="va">lifeExp</span>, 
+                  color <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>    </code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/ggplotdatapointcolour-1.png" width="672"></div>
+<p>When mapping the <code>fill</code> or <code>colour</code> aesthetic to a variable, the colour applied to each value are selected automatically by ggplot out of a colour scale. It is possible to change this scale by applying a different colour palette.</p>
+<p>For instance, <code>scale_fill_brewer</code> (for the inside of the geom) and <code>scale_colour_brewer</code> (for the border of the geom) can also be added to use some of the pre-created palettes from <a href="https://colorbrewer2.org" class="uri">https://colorbrewer2.org</a> (for a list see <a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="uri">https://ggplot2.tidyverse.org/reference/scale_brewer.html</a>)</p>
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, color <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Greens"</span><span class="op">)</span> </code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
+<p>It is also possible to set manually the colour assigned to the variables using <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual()</a></code>.</p>
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Import the dataset world</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, color <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual</a></span><span class="op">(</span>values<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"gray"</span>, <span class="st">"pink"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/unnamed-chunk-7-1.png" width="672"></div>
+</div>
+<div id="setting-the-aesthetic-manually" class="section level3" number="14.5.2">
+<h3>
+<span class="header-section-number">14.5.2</span> Setting the aesthetic manually<a class="anchor" aria-label="anchor" href="#setting-the-aesthetic-manually"><i class="fas fa-link"></i></a>
+</h3>
+<p>In some cases however we may want to set a property to a specific value (e.g. to change the colour of all the points in our scatterplot to blue). To do so, we need to set the properties outside the <code>mapping = aes() layer</code> and instead do this inside the <code>geom()</code>. When the value we are assigning is not the name of an object in the R environment, this needs to be wrapped within quotation marks.</p>
+<p>For instance, in the example below from Healy we have set the color of the points in the scatterplot to purple, set the color of the line to orange, and manually set its size.</p>
+<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"orange"</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/ggplotdatapointpurple-1.png" width="672"></div>
+<p>Colours can be assigned using:
+- <strong>Colour name</strong> (e.g. <code>geom_bar(colour="red")</code>)
+- <strong>Hexidecimal Color Codes</strong>: (e.g. <code>geom_bar(colour="#FF9999")</code>). See <a href="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/">http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/</a></p>
+<p>Other aesthetic be specified manually by setting their value inside of the specific geom. For instance, in the visualization below we have specified not only the colour of the points, but also their shape (<code>pch</code>), size (<code>size</code>), and transparency (<code>alpha</code>).</p>
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"blue"</span>, pch<span class="op">=</span><span class="fl">17</span>, size<span class="op">=</span><span class="fl">2</span>, alpha<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"orange"</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/unnamed-chunk-8-1.png" width="672"></div>
+</div>
+</div>
+<div id="axes" class="section level2" number="14.6">
+<h2>
+<span class="header-section-number">14.6</span> Axes<a class="anchor" aria-label="anchor" href="#axes"><i class="fas fa-link"></i></a>
+</h2>
+<p>ggplot will automatically pick the scale for each axis, and the type of coordinate space. Most plots are in Cartesian (linear X vs linear Y) coordinate space.</p>
+<div id="axis-limits" class="section level3" number="14.6.1">
+<h3>
+<span class="header-section-number">14.6.1</span> Axis Limits<a class="anchor" aria-label="anchor" href="#axis-limits"><i class="fas fa-link"></i></a>
+</h3>
+<p>In the case of the plot of gapminder, the axes are selected based on the values in the data and the origin of the x and y axis is not set to zero.
+It is possible to modify the limits of the x axis using the function <code>xlim(START, END)</code> and the y axis using the function <code>ylim(START, END)</code></p>
+<p>For instance, we may want to plot the life expectancy on a scale that starts from 0 instead of the lowest value in the plot</p>
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"orange"</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">90</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/ggplotdatapointpurpleylim-1.png" width="672"></div>
+</div>
+<div id="transform-the-coordinates" class="section level3" number="14.6.2">
+<h3>
+<span class="header-section-number">14.6.2</span> Transform the Coordinates<a class="anchor" aria-label="anchor" href="#transform-the-coordinates"><i class="fas fa-link"></i></a>
+</h3>
+<p>Further, we can control the coordinate space using coord() functions.</p>
+<p><code><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip()</a></code> interchanges the X and Y axes. For instance, in the code below, we use <code><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip()</a></code> to make a horizontal bar chart.</p>
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">..count..</span><span class="op">/</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y<span class="op">=</span><span class="st">"Number of countries"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/unnamed-chunk-9-1.png" width="672"></div>
+</div>
+</div>
+<div id="scales" class="section level2" number="14.7">
+<h2>
+<span class="header-section-number">14.7</span> Scales<a class="anchor" aria-label="anchor" href="#scales"><i class="fas fa-link"></i></a>
+</h2>
+<p>A graph scale, or simply scale, refers to a set of numbers that indicate certain intervals on a graph used for measurement. In simple words, a scale is a set of numbers that help to measure or quantify objects.</p>
+<p>When using ggplot2, scales are automatically generated, but the packages provides a set of tools to override the default breaks, labels, and transformations when this is necessary to facilitate the interpretation of thed data</p>
+<p>For instance in the example above from Healy’s book, the GDP per Capita has a few countries with a comparative high gdp per capita on the right end of the x axis, while a large number of observations are bunched up on the left side. In order to improve the legibility of the graph is possible to transform the x-axis scale from a linear scale to a log scale using the <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10()</a></code> function.</p>
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/ggplotdatapointscale-1.png" width="672"></div>
+<p>Some of the built in functions for axis transformations in the case of numberical variables are:</p>
+<ul>
+<li>scale_x_log10(), scale_y_log10() : for log10 transformation</li>
+<li>scale_x_sqrt(), scale_y_sqrt() : for sqrt transformation</li>
+<li>scale_x_reverse(), scale_y_reverse() : to reverse coordinates</li>
+</ul>
+<p>By default ggplot will present large numbers such as those on the x axis using the scientific notation. We can replace the scientific notation on the x-axis with the dollar value it actually represents using the scale_ functions.</p>
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_dollar.html">dollar</a></span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/ggplotdatapointscalelabels-1.png" width="672"></div>
+<p>For more examples on how to manually alter the scales in a graph, see this <a href="https://bookdown.org/Maxine/ggplot2-maps/posts/2019-11-27-using-scales-package-to-modify-ggplot2-scale/">page</a>.</p>
+</div>
+<div id="labels" class="section level2" number="14.8">
+<h2>
+<span class="header-section-number">14.8</span> Labels<a class="anchor" aria-label="anchor" href="#labels"><i class="fas fa-link"></i></a>
+</h2>
+<p>In ggplot we can alter the labels found on our graph using the <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> function. Values that can be set within this function include:</p>
+<ul>
+<li><code>x</code></li>
+<li><code>y</code></li>
+<li><code>title</code></li>
+<li><code>subtitle</code></li>
+<li><code>caption</code></li>
+</ul>
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_dollar.html">dollar</a></span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"GDP Per Capita"</span>, 
+         y <span class="op">=</span> <span class="st">"Life Expectancy in Years"</span>, 
+         title <span class="op">=</span> <span class="st">"Economic Growth and Life Expectancy"</span>, 
+         subtitle <span class="op">=</span> <span class="st">"Data points are country-years"</span>, 
+         caption <span class="op">=</span> <span class="st">"Source: Gapminder."</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/ggplotdatapointscaleplus-1.png" width="672"></div>
+</div>
+<div id="facets" class="section level2" number="14.9">
+<h2>
+<span class="header-section-number">14.9</span> Facets<a class="anchor" aria-label="anchor" href="#facets"><i class="fas fa-link"></i></a>
+</h2>
+<p>In some cases there is too much data to display clearly in a single plot. As a result, we want to break up a single plot into sub-plots according to the values of one or more variables. This is called ‘faceting’. Facets are commonly used when there is too much data to display clearly in a single plot.</p>
+<div id="facet_wrap" class="section level3" number="14.9.1">
+<h3>
+<span class="header-section-number">14.9.1</span> facet_wrap()<a class="anchor" aria-label="anchor" href="#facet_wrap"><i class="fas fa-link"></i></a>
+</h3>
+<p>To do this we call the function<code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code>. Within this command, we the use the tilde symbol ‘~’ to indicate the column name that will form each facet. We can also use the <code>ncol</code> argument to facet_wrap() to control the number of columns used to lay out the facets.</p>
+<p>Overall, the facet_wrap() function is best used when you want a series of small multiples based on a single categorical variable.</p>
+<p>In the example below we break down the visualization into different facets, each of them containing the observations for a given value in the variable <code>continent</code>.</p>
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_dollar.html">dollar</a></span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"GDP Per Capita"</span>, 
+         y <span class="op">=</span> <span class="st">"Life Expectancy in Years"</span>, 
+         title <span class="op">=</span> <span class="st">"Economic Growth and Life Expectancy"</span>, 
+         subtitle <span class="op">=</span> <span class="st">"Data points are country-years"</span>, 
+         caption <span class="op">=</span> <span class="st">"Source: Gapminder."</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">continent</span>, ncol<span class="op">=</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/ggplotdatapointcontinent-1.png" width="672"></div>
+</div>
+<div id="facet_grid" class="section level3" number="14.9.2">
+<h3>
+<span class="header-section-number">14.9.2</span> facet_grid()<a class="anchor" aria-label="anchor" href="#facet_grid"><i class="fas fa-link"></i></a>
+</h3>
+<p>It is also possible to cross-classify some data by two categorical variables. In that case you can use the function <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid()</a></code> to lay out your plot in a true two-dimensional arrangement.</p>
+<p>For instance, in the graph below we break the plot into separate sub-plot, each one including only the data for one specific year and one continent. These are organized in a grid using <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid()</a></code>.</p>
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1977</span>, <span class="fl">1987</span>, <span class="fl">1997</span>, <span class="fl">2007</span><span class="op">)</span><span class="op">)</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Life Expectancy in Years"</span>, 
+         title <span class="op">=</span> <span class="st">"Life Expectancy"</span>, 
+         caption <span class="op">=</span> <span class="st">"Source: Gapminder."</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">~</span> <span class="va">year</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/ggplotdatafacet_grid-1.png" width="672"></div>
+</div>
+</div>
+<div id="themes" class="section level2" number="14.10">
+<h2>
+<span class="header-section-number">14.10</span> Themes<a class="anchor" aria-label="anchor" href="#themes"><i class="fas fa-link"></i></a>
+</h2>
+<p>The overall appearance of the plot can be modified using theme() functions. The default theme has a grey background which maximizes contrast, but a number of other existing themes can be loaded.</p>
+<p>For instance, in the figure below the apply to our plot the <code>theme_bw</code>.</p>
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_dollar.html">dollar</a></span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"GDP Per Capita"</span>, 
+         y <span class="op">=</span> <span class="st">"Life Expectancy in Years"</span>, 
+         title <span class="op">=</span> <span class="st">"Economic Growth and Life Expectancy"</span>, 
+         subtitle <span class="op">=</span> <span class="st">"Data points are country-years"</span>, 
+         caption <span class="op">=</span> <span class="st">"Source: Gapminder."</span><span class="op">)</span> <span class="op">+</span>
+     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/ggplotdatapointcontinenttheme-1.png" width="672"></div>
+<p>GGplot comes with a list of complete graphical themes that can be applied to your graph and further customised (see <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="uri">https://ggplot2.tidyverse.org/reference/ggtheme.html</a>)</p>
+<ul>
+<li><code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey()</a></code></li>
+<li><code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code></li>
+<li><code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_linedraw()</a></code></li>
+<li><code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code></li>
+<li><code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_dark()</a></code></li>
+<li><code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code></li>
+<li><code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic()</a></code></li>
+<li><code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void()</a></code></li>
+<li><code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_test()</a></code></li>
+</ul>
+<p>Other custom themes can be launched by installing and loading packages:</p>
+<ul>
+<li>E.g. package <code>ggthemes</code> (<a href="https://jrnold.github.io/ggthemes/index.html" class="uri">https://jrnold.github.io/ggthemes/index.html</a>) includes an “Economist”-type theme</li>
+</ul>
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#install.packages("ggthemes")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span>
+
+<span class="co">#Plotting geom_bar without count variable</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, 
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_dollar.html">dollar</a></span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"GDP Per Capita"</span>, 
+         y <span class="op">=</span> <span class="st">"Life Expectancy in Years"</span>, 
+         title <span class="op">=</span> <span class="st">"Economic Growth and Life Expectancy"</span>, 
+         subtitle <span class="op">=</span> <span class="st">"Data points are country-years"</span>, 
+         caption <span class="op">=</span> <span class="st">"Source: Gapminder."</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span><span class="op">(</span><span class="op">)</span> </code></pre></div>
+<div class="inline-figure"><img src="71_Data_Visualization_files/figure-html/unnamed-chunk-10-1.png" width="672"></div>
+<div id="customizing-themes" class="section level3" number="14.10.1">
+<h3>
+<span class="header-section-number">14.10.1</span> Customizing Themes<a class="anchor" aria-label="anchor" href="#customizing-themes"><i class="fas fa-link"></i></a>
+</h3>
+<p>The function <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> can be used to manually define different graphical elements of the plot, including legends, axis lines, grid lines, panel borders, background color, etc.</p>
+<p>Through the function <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> it is possible to edit:</p>
+<ul>
+<li>Some elements affect the plot as a whole</li>
+</ul>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Element</th>
+<th>Setter</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>plot.background</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_rect()</code></a></td>
+<td>plot background</td>
+</tr>
+<tr class="even">
+<td>plot.title</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_text()</code></a></td>
+<td>plot title</td>
+</tr>
+<tr class="odd">
+<td>plot.margin</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>margin()</code></a></td>
+<td>margins around plot</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Axes Elements</li>
+</ul>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Element</th>
+<th>Setter</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>axis.line</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_line()</code></a></td>
+<td>line parallel to axis (hidden in default themes)</td>
+</tr>
+<tr class="even">
+<td>axis.text</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_text()</code></a></td>
+<td>tick labels</td>
+</tr>
+<tr class="odd">
+<td>axis.text.x</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_text()</code></a></td>
+<td>x-axis tick labels</td>
+</tr>
+<tr class="even">
+<td>axis.text.y</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_text()</code></a></td>
+<td>y-axis tick labels</td>
+</tr>
+<tr class="odd">
+<td>axis.title</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_text()</code></a></td>
+<td>axis titles</td>
+</tr>
+<tr class="even">
+<td>axis.title.x</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_text()</code></a></td>
+<td>x-axis title</td>
+</tr>
+<tr class="odd">
+<td>axis.title.y</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_text()</code></a></td>
+<td>y-axis title</td>
+</tr>
+<tr class="even">
+<td>axis.ticks</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_line()</code></a></td>
+<td>axis tick marks</td>
+</tr>
+<tr class="odd">
+<td>axis.ticks.length</td>
+<td><a href="https://rdrr.io/r/grid/unit.html"><code>unit()</code></a></td>
+<td>length of tick marks</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Legend</li>
+</ul>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Element</th>
+<th>Setter</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>legend.background</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_rect()</code></a></td>
+<td>legend background</td>
+</tr>
+<tr class="even">
+<td>legend.key</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_rect()</code></a></td>
+<td>background of legend keys</td>
+</tr>
+<tr class="odd">
+<td>legend.key.size</td>
+<td><a href="https://rdrr.io/r/grid/unit.html"><code>unit()</code></a></td>
+<td>legend key size</td>
+</tr>
+<tr class="even">
+<td>legend.key.height</td>
+<td><a href="https://rdrr.io/r/grid/unit.html"><code>unit()</code></a></td>
+<td>legend key height</td>
+</tr>
+<tr class="odd">
+<td>legend.key.width</td>
+<td><a href="https://rdrr.io/r/grid/unit.html"><code>unit()</code></a></td>
+<td>legend key width</td>
+</tr>
+<tr class="even">
+<td>legend.margin</td>
+<td><a href="https://rdrr.io/r/grid/unit.html"><code>unit()</code></a></td>
+<td>legend margin</td>
+</tr>
+<tr class="odd">
+<td>legend.text</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_text()</code></a></td>
+<td>legend labels</td>
+</tr>
+<tr class="even">
+<td>legend.text.align</td>
+<td>0–1</td>
+<td>legend label alignment (0 = right, 1 = left)</td>
+</tr>
+<tr class="odd">
+<td>legend.title</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_text()</code></a></td>
+<td>legend name</td>
+</tr>
+<tr class="even">
+<td>legend.title.align</td>
+<td>0–1</td>
+<td>legend name alignment (0 = right, 1 = left)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Panel Element</strong></li>
+</ul>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Element</th>
+<th>Setter</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>panel.background</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_rect()</code></a></td>
+<td>panel background (under data)</td>
+</tr>
+<tr class="even">
+<td>panel.border</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_rect()</code></a></td>
+<td>panel border (over data)</td>
+</tr>
+<tr class="odd">
+<td>panel.grid.major</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_line()</code></a></td>
+<td>major grid lines</td>
+</tr>
+<tr class="even">
+<td>panel.grid.major.x</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_line()</code></a></td>
+<td>vertical major grid lines</td>
+</tr>
+<tr class="odd">
+<td>panel.grid.major.y</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_line()</code></a></td>
+<td>horizontal major grid lines</td>
+</tr>
+<tr class="even">
+<td>panel.grid.minor</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_line()</code></a></td>
+<td>minor grid lines</td>
+</tr>
+<tr class="odd">
+<td>panel.grid.minor.x</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_line()</code></a></td>
+<td>vertical minor grid lines</td>
+</tr>
+<tr class="even">
+<td>panel.grid.minor.y</td>
+<td><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_line()</code></a></td>
+<td>horizontal minor grid lines</td>
+</tr>
+<tr class="odd">
+<td>aspect.ratio</td>
+<td>numeric</td>
+<td>plot aspect ratio</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="legend-position" class="section level3" number="14.10.2">
+<h3>
+<span class="header-section-number">14.10.2</span> Legend Position<a class="anchor" aria-label="anchor" href="#legend-position"><i class="fas fa-link"></i></a>
+</h3>
+<p>You can control the position of the legend using <code>legend.position</code> within the theme.</p>
+<ul>
+<li>
+<code>theme(legend.position="none")</code> to hide the legend</li>
+<li>
+<code>theme(legend.position="bottom")</code> to move the legend underneath the graph</li>
+<li>
+<code>theme(legend.position="top")</code> to move the legend above the graph</li>
+<li>
+<code>theme(legend.position="left")</code> to move the legend on the left of the graph</li>
+<li>
+<code>theme(legend.position=c(0.2, 0.7))</code>to move the legend on a specific point within the graph</li>
+</ul>
+</div>
+</div>
+<div id="exporting-a-graph" class="section level2" number="14.11">
+<h2>
+<span class="header-section-number">14.11</span> Exporting a graph<a class="anchor" aria-label="anchor" href="#exporting-a-graph"><i class="fas fa-link"></i></a>
+</h2>
+<p>There are multiple ways to export your graphs.</p>
+<div id="ggsave" class="section level3" number="14.11.1">
+<h3>
+<span class="header-section-number">14.11.1</span> GGSave()<a class="anchor" aria-label="anchor" href="#ggsave"><i class="fas fa-link"></i></a>
+</h3>
+<p>You can use the <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code> function to save the most recent plot displayed. This function requires that you specify the name of the file. to be generated.</p>
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"my_figure.png"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="rmarkdown" class="section level3" number="14.11.2">
+<h3>
+<span class="header-section-number">14.11.2</span> RMarkdown<a class="anchor" aria-label="anchor" href="#rmarkdown"><i class="fas fa-link"></i></a>
+</h3>
+<p>If your code is within a RMarkdown document, then the plot will be automatically be embedded in your report once this is knitted. It is possible to specify the size of the figure by setting the parameter <code>fig.width</code> and <code>fig.height</code> inside the curly braces at the beginning of the code chunk. For instance, starting a code chunk with <code>{r mygraph, fig.width = 9, fig.height = 6}</code> in the braces section will resize the image and make a figure that is 9 inch wide and 6 inch high.</p>
+</div>
+</div>
+<div id="extensions-and-galleries" class="section level2" number="14.12">
+<h2>
+<span class="header-section-number">14.12</span> Extensions and Galleries<a class="anchor" aria-label="anchor" href="#extensions-and-galleries"><i class="fas fa-link"></i></a>
+</h2>
+<div id="graph-gallery" class="section level3" number="14.12.1">
+<h3>
+<span class="header-section-number">14.12.1</span> Graph Gallery<a class="anchor" aria-label="anchor" href="#graph-gallery"><i class="fas fa-link"></i></a>
+</h3>
+<p>Numerous galleries and examples of plots generated using ggplot can be found online.
+An excellent starting point to understand the different types of visualizations that can be built using ggplot is <a href="https://www.r-graph-gallery.com/">r-graph-gallery.com</a></p>
+<p>You can browse the examples available and identify the code snippets that can be reused in your code:</p>
+<div class="inline-figure"><img src="images/R_Graph_Gallery.png" witdh="90%"></div>
+</div>
+<div id="extensions" class="section level3" number="14.12.2">
+<h3>
+<span class="header-section-number">14.12.2</span> Extensions<a class="anchor" aria-label="anchor" href="#extensions"><i class="fas fa-link"></i></a>
+</h3>
+<p>While the ggplot package is able to draw a large number of plot types and it is capable of handling an almost endless range of customizations, it is also possible to augment its functionalities by installing extensions that come in the form of packages that can be installed and loaded in your R environment.</p>
+<p>An helpful starting point to identify these extensions is the <a href="https://exts.ggplot2.tidyverse.org/gallery/">ggplot2 Extension Gallery</a>.</p>
+<div class="inline-figure"><img src="images/Ggplot_Extension_Gallery.png" witdh="90%"></div>
+</div>
+<div id="esquisse" class="section level3" number="14.12.3">
+<h3>
+<span class="header-section-number">14.12.3</span> Esquisse<a class="anchor" aria-label="anchor" href="#esquisse"><i class="fas fa-link"></i></a>
+</h3>
+<p>Esquisse is an extension that provide a point-and-click interface to help you generating the code required to generate ggplot visualisations.</p>
+<p>This extension is contained in a package that needs to be installed (only the first time) and loaded before as any other package</p>
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"esquisse"</span><span class="op">)</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dreamrs.github.io/esquisse/">esquisse</a></span><span class="op">)</span></code></pre></div>
+<p>Once the package is loaded, you can initiate the plotting of a dataset in your environment by using the function <code><a href="https://dreamrs.github.io/esquisse/reference/esquisser.html">esquisser()</a></code>, adding the name of the dataset within parentheses.</p>
+<p>For instance, to plot the gapminder dataset we can use the following code</p>
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#load gapminder dataset</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+
+<span class="co">#load esquisse</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dreamrs.github.io/esquisse/">esquisse</a></span><span class="op">)</span>
+
+<span class="fu"><a href="https://dreamrs.github.io/esquisse/reference/esquisser.html">esquisser</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span></code></pre></div>
+<p>The <code><a href="https://dreamrs.github.io/esquisse/reference/esquisser.html">esquisser()</a></code> will launch this interface</p>
+<div class="inline-figure"><img src="images/Esquisse_Interface.png" witdh="90%"></div>
+<p>You can then map variables onto the different graphical elements by selecting the variable names and then drag-and-drop into aesthetics boxes.</p>
+<div class="inline-figure"><img src="images/Esquisse_aes.png" witdh="90%"></div>
+<p>Finally, you can select an other geom with button in top left corner. A geometry is automatically selected to represent the data, according to data type.</p>
+<div class="inline-figure"><img src="images/Esquisse_geom.png" witdh="90%"></div>
+<p>In the bottom-right corner you can retrieve the code used to produce the plot. You can copy code to clipboard and insert in your current script, where you can amend it further.</p>
+<div class="inline-figure"><img src="images/Esquisse_code.png" witdh="90%"></div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="missing-data.html"><span class="header-section-number">13</span> Missing Data</a></div>
+<div class="next"><a href="types-of-visualizations.html"><span class="header-section-number">15</span> Types of visualizations</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#data-visualization-with-ggplot"><span class="header-section-number">14</span> Data Visualization with ggplot</a></li>
+<li><a class="nav-link" href="#introduction-to-ggplot"><span class="header-section-number">14.1</span> Introduction to ggplot</a></li>
+<li><a class="nav-link" href="#selecting-the-data"><span class="header-section-number">14.2</span> Selecting the Data</a></li>
+<li><a class="nav-link" href="#map-variables-to-plot-elements-aes"><span class="header-section-number">14.3</span> Map variables to plot elements (‘aes’)</a></li>
+<li>
+<a class="nav-link" href="#select-the-geometric-representations-geom"><span class="header-section-number">14.4</span> Select the geometric representations (‘geom’)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#available-geoms"><span class="header-section-number">14.4.1</span> Available geoms</a></li>
+<li><a class="nav-link" href="#layer-different-geoms"><span class="header-section-number">14.4.2</span> Layer different geoms</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#additional-aesthetics"><span class="header-section-number">14.5</span> Additional aesthetics</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#mapping-aesthetics-to-a-variable"><span class="header-section-number">14.5.1</span> Mapping Aesthetics to a Variable</a></li>
+<li><a class="nav-link" href="#setting-the-aesthetic-manually"><span class="header-section-number">14.5.2</span> Setting the aesthetic manually</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#axes"><span class="header-section-number">14.6</span> Axes</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#axis-limits"><span class="header-section-number">14.6.1</span> Axis Limits</a></li>
+<li><a class="nav-link" href="#transform-the-coordinates"><span class="header-section-number">14.6.2</span> Transform the Coordinates</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#scales"><span class="header-section-number">14.7</span> Scales</a></li>
+<li><a class="nav-link" href="#labels"><span class="header-section-number">14.8</span> Labels</a></li>
+<li>
+<a class="nav-link" href="#facets"><span class="header-section-number">14.9</span> Facets</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#facet_wrap"><span class="header-section-number">14.9.1</span> facet_wrap()</a></li>
+<li><a class="nav-link" href="#facet_grid"><span class="header-section-number">14.9.2</span> facet_grid()</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#themes"><span class="header-section-number">14.10</span> Themes</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#customizing-themes"><span class="header-section-number">14.10.1</span> Customizing Themes</a></li>
+<li><a class="nav-link" href="#legend-position"><span class="header-section-number">14.10.2</span> Legend Position</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#exporting-a-graph"><span class="header-section-number">14.11</span> Exporting a graph</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ggsave"><span class="header-section-number">14.11.1</span> GGSave()</a></li>
+<li><a class="nav-link" href="#rmarkdown"><span class="header-section-number">14.11.2</span> RMarkdown</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#extensions-and-galleries"><span class="header-section-number">14.12</span> Extensions and Galleries</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#graph-gallery"><span class="header-section-number">14.12.1</span> Graph Gallery</a></li>
+<li><a class="nav-link" href="#extensions"><span class="header-section-number">14.12.2</span> Extensions</a></li>
+<li><a class="nav-link" href="#esquisse"><span class="header-section-number">14.12.3</span> Esquisse</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-03-20.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 5 Inspecting a Dataset | IP2038 - Analysing Political and Economic Data in the Real World - Course Material</title>
+<meta name="author" content="Stefano Pagliari">
+<meta name="description" content="5.1 Peeking at the Data Once we have loaded a dataset in our working environment in RStudio, can can start exploring this data. Different functions are also available to peek at the data itself...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 5 Inspecting a Dataset | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta property="og:type" content="book">
+<meta property="og:description" content="5.1 Peeking at the Data Once we have loaded a dataset in our working environment in RStudio, can can start exploring this data. Different functions are also available to peek at the data itself...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 5 Inspecting a Dataset | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta name="twitter:description" content="5.1 Peeking at the Data Once we have loaded a dataset in our working environment in RStudio, can can start exploring this data. Different functions are also available to peek at the data itself...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IP2038 - Analysing Political and Economic Data in the Real World - Course Material</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction to the Module</a></li>
+<li class="book-part">Introduction to R</li>
+<li><a class="" href="rstudio-and-rstudio-cloud.html"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></li>
+<li><a class="" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
+<li class="book-part">Datasets</li>
+<li><a class="" href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></li>
+<li><a class="active" href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
+<li><a class="" href="long-vs.-wide-data.html"><span class="header-section-number">6</span> Long vs. Wide Data</a></li>
+<li><a class="" href="list-of-political-and-economic-datasets.html"><span class="header-section-number">7</span> List of Political and Economic Datasets</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="data-wrangling-with-dplyr.html"><span class="header-section-number">8</span> Data Wrangling with dplyr</a></li>
+<li><a class="" href="working-with-observations.html"><span class="header-section-number">9</span> Working with Observations</a></li>
+<li><a class="" href="working-with-variables.html"><span class="header-section-number">10</span> Working with Variables</a></li>
+<li><a class="" href="grouping-and-summarising-data.html"><span class="header-section-number">11</span> Grouping and Summarising Data</a></li>
+<li><a class="" href="relational-data.html"><span class="header-section-number">12</span> Relational Data</a></li>
+<li><a class="" href="missing-data.html"><span class="header-section-number">13</span> Missing Data</a></li>
+<li class="book-part">Data Visualization</li>
+<li><a class="" href="data-visualization-with-ggplot.html"><span class="header-section-number">14</span> Data Visualization with ggplot</a></li>
+<li><a class="" href="types-of-visualizations.html"><span class="header-section-number">15</span> Types of visualizations</a></li>
+<li class="book-part">Exploratory Analysis</li>
+<li><a class="" href="exploring-numerical-data.html"><span class="header-section-number">16</span> Exploring Numerical Data</a></li>
+<li><a class="" href="exploring-categorical-data.html"><span class="header-section-number">17</span> Exploring Categorical Data</a></li>
+<li><a class="" href="relationship-between-categorical-and-numerical-variables.html"><span class="header-section-number">18</span> Relationship between categorical and numerical variables</a></li>
+<li><a class="" href="relationship-between-numerical-variables.html"><span class="header-section-number">19</span> Relationship between numerical variables</a></li>
+<li><a class="" href="relationship-between-categorical-variables.html"><span class="header-section-number">20</span> Relationship between categorical variables</a></li>
+<li><a class="" href="time-series.html"><span class="header-section-number">21</span> Time Series</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="assessment-guidance.html"><span class="header-section-number">A</span> Assessment Guidance</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="inspecting-a-dataset" class="section level1" number="5">
+<h1>
+<span class="header-section-number">5</span> Inspecting a Dataset<a class="anchor" aria-label="anchor" href="#inspecting-a-dataset"><i class="fas fa-link"></i></a>
+</h1>
+<div id="peeking-at-the-data" class="section level2" number="5.1">
+<h2>
+<span class="header-section-number">5.1</span> Peeking at the Data<a class="anchor" aria-label="anchor" href="#peeking-at-the-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>Once we have loaded a dataset in our working environment in RStudio, can can start exploring this data.
+Different functions are also available to peek at the data itself from within R Studio.</p>
+<p>The <code>head</code> function displays the first 6 rows of the dataframe.</p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+
+<span class="co">#Create the gap dataset from gapminder function</span>
+<span class="va">gap</span> <span class="op">&lt;-</span> <span class="va">gapminder</span>
+
+<span class="co"># Print in the console the initial values for each column</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gap</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 × 6</span>
+<span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt;   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372      786.</span></code></pre></div>
+<p>It is possible to view the entire dataset from within RStudio using the command <code>View</code> followed by the name of the dataframe or by clicking on the data name of the dataset in the Environment panel (top-right).</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">gap</span><span class="op">)</span></code></pre></div>
+<p>This will open the entire dataset in a separate tab. This viewer allows you to filter the value in a specific column as well as reorder them.</p>
+<div class="inline-figure"><img src="images/RStudio-Viewer.png" style="width:80.0%"></div>
+</div>
+<div id="dimensions-of-a-dataframe" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> Dimensions of a dataframe<a class="anchor" aria-label="anchor" href="#dimensions-of-a-dataframe"><i class="fas fa-link"></i></a>
+</h2>
+<p>One of the first elements we may want to know about a dataset is the number of observations (rows) and variables (columns). These can be computed using the function <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code>, adding the name of the object where the dataset is stored within parentheses. For instance, let’s look at the dimensions of the Gapminder dataset.</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+
+<span class="co">#Create the gap dataset from gapminder function</span>
+<span class="va">gap_df</span> <span class="op">&lt;-</span> <span class="va">gapminder</span>
+
+<span class="co">#List the number of rows and variables using the</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">gap_df</span><span class="op">)</span>
+<span class="co">#&gt; [1] 1704    6</span></code></pre></div>
+<p>The results of this function show that the dataframe has 6 variables (columns) and 1704 obvervations (rows),</p>
+<p>The dimensions of a dataframe are also visible in the RStudio ‘environment’ panel (top-right), next to the name of the object.</p>
+<div class="inline-figure"><img src="images/R_Dimensions_Dataframe.png" style="width:80.0%"></div>
+</div>
+<div id="exploring-the-variables" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> Exploring the variables<a class="anchor" aria-label="anchor" href="#exploring-the-variables"><i class="fas fa-link"></i></a>
+</h2>
+<div id="name-of-the-variables" class="section level3" number="5.3.1">
+<h3>
+<span class="header-section-number">5.3.1</span> Name of the Variables<a class="anchor" aria-label="anchor" href="#name-of-the-variables"><i class="fas fa-link"></i></a>
+</h3>
+<p>We can extract the name of the columns (variables) by using the function <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code></p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+
+<span class="co">#Create the gap dataset from gapminder function</span>
+<span class="va">gap_df</span> <span class="op">&lt;-</span> <span class="va">gapminder</span>
+
+<span class="co"># Print in the console the name of the variables</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">gap_df</span><span class="op">)</span>
+<span class="co">#&gt; [1] "country"   "continent" "year"      "lifeExp"  </span>
+<span class="co">#&gt; [5] "pop"       "gdpPercap"</span></code></pre></div>
+</div>
+<div id="type-of-variables" class="section level3" number="5.3.2">
+<h3>
+<span class="header-section-number">5.3.2</span> Type of Variables<a class="anchor" aria-label="anchor" href="#type-of-variables"><i class="fas fa-link"></i></a>
+</h3>
+<p>Knowing what type of variables are present in a dataset is crucial to be able analyze them. Many of the summaries, models, functions, and pictures we can generate in R depend on knowing what kind of variable we’re using. The wrong kind of variable used with a command or function will often elicit an error message.</p>
+<p>The function <code>str</code> can be used to investigate the type (or class) of all the variables in a given dataframe.</p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+
+<span class="co">#Create the gap dataset from gapminder function</span>
+<span class="va">gap</span> <span class="op">&lt;-</span> <span class="va">gapminder</span>
+
+<span class="co">#Check type of variable lifeExp</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">gap</span><span class="op">)</span>
+<span class="co">#&gt; tibble [1,704 × 6] (S3: tbl_df/tbl/data.frame)</span>
+<span class="co">#&gt;  $ country  : Factor w/ 142 levels "Afghanistan",..: 1 1 1 1 1 1 1 1 1 1 ...</span>
+<span class="co">#&gt;  $ continent: Factor w/ 5 levels "Africa","Americas",..: 3 3 3 3 3 3 3 3 3 3 ...</span>
+<span class="co">#&gt;  $ year     : int [1:1704] 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...</span>
+<span class="co">#&gt;  $ lifeExp  : num [1:1704] 28.8 30.3 32 34 36.1 ...</span>
+<span class="co">#&gt;  $ pop      : int [1:1704] 8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...</span>
+<span class="co">#&gt;  $ gdpPercap: num [1:1704] 779 821 853 836 740 ...</span></code></pre></div>
+<p>In this case, we can see that the 6 columns in the gap dataset take different types:</p>
+<ul>
+<li>The variable gdpPercap (<em>GDP Per Capita</em>) and lifeExp (<em>life expectancy</em>) are assigned to the class “numeric” since these are numeric continuous variables.</li>
+<li>The variable <code>year</code> and <code>pop</code> are numerical discrete variables which are assigned to an element of class <strong>integer</strong>, a different numeric class which accomodates values that not a fraction.</li>
+<li>The variable <code>country</code> and <code>continent</code> are categorical variables and are imported in this case as class of <strong>factor</strong> Factors are used to represent categorical data and can be ordered or unordered. In other cases unordered categorical variables can be stored as <strong>characters</strong>.</li>
+</ul>
+<p>A similar breakdown of the variables types combined with a peak at the initial values can be obtained using the <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> function (part of the tidyverse).</p>
+</div>
+<div id="summary-of-the-variables" class="section level3" number="5.3.3">
+<h3>
+<span class="header-section-number">5.3.3</span> Summary of the Variables<a class="anchor" aria-label="anchor" href="#summary-of-the-variables"><i class="fas fa-link"></i></a>
+</h3>
+<p>In order to better understand our data, we may also want to understand the distribution and type of variables. The <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function provides quick summary statistics of a all the variables in our dataframe.</p>
+<p>The command will return for each numerical variable the minimum and maximum value that the variable takes, as well as the median, mean, and 1/3rd quartile.</p>
+<p>In the case of strings, the command will return the frequency of the most common values found in this variable</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+
+<span class="co">#Create the gap dataset from gapminder function</span>
+<span class="va">gap</span> <span class="op">&lt;-</span> <span class="va">gapminder</span>
+
+<span class="co">#Print to the console summary statistics of teh main variable</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">gap</span><span class="op">)</span>
+<span class="co">#&gt;         country        continent        year     </span>
+<span class="co">#&gt;  Afghanistan:  12   Africa  :624   Min.   :1952  </span>
+<span class="co">#&gt;  Albania    :  12   Americas:300   1st Qu.:1966  </span>
+<span class="co">#&gt;  Algeria    :  12   Asia    :396   Median :1980  </span>
+<span class="co">#&gt;  Angola     :  12   Europe  :360   Mean   :1980  </span>
+<span class="co">#&gt;  Argentina  :  12   Oceania : 24   3rd Qu.:1993  </span>
+<span class="co">#&gt;  Australia  :  12                  Max.   :2007  </span>
+<span class="co">#&gt;  (Other)    :1632                                </span>
+<span class="co">#&gt;     lifeExp           pop              gdpPercap       </span>
+<span class="co">#&gt;  Min.   :23.60   Min.   :6.001e+04   Min.   :   241.2  </span>
+<span class="co">#&gt;  1st Qu.:48.20   1st Qu.:2.794e+06   1st Qu.:  1202.1  </span>
+<span class="co">#&gt;  Median :60.71   Median :7.024e+06   Median :  3531.8  </span>
+<span class="co">#&gt;  Mean   :59.47   Mean   :2.960e+07   Mean   :  7215.3  </span>
+<span class="co">#&gt;  3rd Qu.:70.85   3rd Qu.:1.959e+07   3rd Qu.:  9325.5  </span>
+<span class="co">#&gt;  Max.   :82.60   Max.   :1.319e+09   Max.   :113523.1  </span>
+<span class="co">#&gt; </span></code></pre></div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></div>
+<div class="next"><a href="long-vs.-wide-data.html"><span class="header-section-number">6</span> Long vs. Wide Data</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#inspecting-a-dataset"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
+<li><a class="nav-link" href="#peeking-at-the-data"><span class="header-section-number">5.1</span> Peeking at the Data</a></li>
+<li><a class="nav-link" href="#dimensions-of-a-dataframe"><span class="header-section-number">5.2</span> Dimensions of a dataframe</a></li>
+<li>
+<a class="nav-link" href="#exploring-the-variables"><span class="header-section-number">5.3</span> Exploring the variables</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#name-of-the-variables"><span class="header-section-number">5.3.1</span> Name of the Variables</a></li>
+<li><a class="nav-link" href="#type-of-variables"><span class="header-section-number">5.3.2</span> Type of Variables</a></li>
+<li><a class="nav-link" href="#summary-of-the-variables"><span class="header-section-number">5.3.3</span> Summary of the Variables</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-03-20.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
