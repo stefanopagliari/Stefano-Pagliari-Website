@@ -610,7 +610,7 @@ A correlation coefficient quantifies the degree to which an association tends to
 
 For instance, the figure below reveals a number of combinations where two variables are related but not in a linear way, yet the correlation coefficient is always 0.  
 
-![](images/Correlation_Coeff_Plot3){width=90%}(Source: Childs 2019)
+![](images/Correlation_Coeff_Plot3.png){width=90%}(Source: Childs 2019)
 
 
 ####  Steepness
@@ -620,7 +620,7 @@ Moreover, even in the case  the relationship between two variables is linear, Pe
 For instance, the figure below shows different configurations that have the same correlation coefficients but where the steepness of the relationship varies significantly.
 
 
-![](images/Correlation_Coeff_Plot2){width=90%}(Source: Childs 2019)
+![](images/Correlation_Coeff_Plot2.png){width=90%}(Source: Childs 2019)
 
 ####  Outliers
 

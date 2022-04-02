@@ -263,6 +263,12 @@ plotting-country-year-time-series
 line-plot-for-single-country
 line-plot-for-multiple-countries
 visualizing-time-series-for-large-number-of-countries
+maps
+shape-maps
+shape-maps-with-maps-and-geom_maps
+shape-maps-with-rnaturalearth-and-geom_sf
+choropleth-map
+point-maps
 assessment-guidance
 instructions-for-completing-your-assignment
 data

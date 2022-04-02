@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 22 Maps | IP2038 - Analysing Political and Economic Data in the Real World - Course Material</title>
+<meta name="author" content="Stefano Pagliari">
+<meta name="description" content="Much of the data that we examine as political economists concerns geographical locations. For instance, we are often interested in exploring the behavior of different policymakers that represents...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 22 Maps | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Much of the data that we examine as political economists concerns geographical locations. For instance, we are often interested in exploring the behavior of different policymakers that represents...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 22 Maps | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta name="twitter:description" content="Much of the data that we examine as political economists concerns geographical locations. For instance, we are often interested in exploring the behavior of different policymakers that represents...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IP2038 - Analysing Political and Economic Data in the Real World - Course Material</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction to the Module</a></li>
+<li class="book-part">Introduction to R</li>
+<li><a class="" href="rstudio-and-rstudio-cloud.html"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></li>
+<li><a class="" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
+<li class="book-part">Datasets</li>
+<li><a class="" href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></li>
+<li><a class="" href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
+<li><a class="" href="long-vs.-wide-data.html"><span class="header-section-number">6</span> Long vs. Wide Data</a></li>
+<li><a class="" href="list-of-political-and-economic-datasets.html"><span class="header-section-number">7</span> List of Political and Economic Datasets</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="data-wrangling-with-dplyr.html"><span class="header-section-number">8</span> Data Wrangling with dplyr</a></li>
+<li><a class="" href="working-with-observations.html"><span class="header-section-number">9</span> Working with Observations</a></li>
+<li><a class="" href="working-with-variables.html"><span class="header-section-number">10</span> Working with Variables</a></li>
+<li><a class="" href="grouping-and-summarising-data.html"><span class="header-section-number">11</span> Grouping and Summarising Data</a></li>
+<li><a class="" href="relational-data.html"><span class="header-section-number">12</span> Relational Data</a></li>
+<li><a class="" href="missing-data.html"><span class="header-section-number">13</span> Missing Data</a></li>
+<li class="book-part">Data Visualization</li>
+<li><a class="" href="data-visualization-with-ggplot.html"><span class="header-section-number">14</span> Data Visualization with ggplot</a></li>
+<li><a class="" href="types-of-visualizations.html"><span class="header-section-number">15</span> Types of visualizations</a></li>
+<li class="book-part">Exploratory Analysis</li>
+<li><a class="" href="exploring-numerical-data.html"><span class="header-section-number">16</span> Exploring Numerical Data</a></li>
+<li><a class="" href="exploring-categorical-data.html"><span class="header-section-number">17</span> Exploring Categorical Data</a></li>
+<li><a class="" href="relationship-between-categorical-and-numerical-variables.html"><span class="header-section-number">18</span> Relationship between categorical and numerical variables</a></li>
+<li><a class="" href="relationship-between-numerical-variables.html"><span class="header-section-number">19</span> Relationship between numerical variables</a></li>
+<li><a class="" href="relationship-between-categorical-variables.html"><span class="header-section-number">20</span> Relationship between categorical variables</a></li>
+<li><a class="" href="time-series.html"><span class="header-section-number">21</span> Time Series</a></li>
+<li><a class="active" href="maps.html"><span class="header-section-number">22</span> Maps</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="assessment-guidance.html"><span class="header-section-number">A</span> Assessment Guidance</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="maps" class="section level1" number="22">
+<h1>
+<span class="header-section-number">22</span> Maps<a class="anchor" aria-label="anchor" href="#maps"><i class="fas fa-link"></i></a>
+</h1>
+<p>Much of the data that we examine as political economists concerns geographical locations. For instance, we are often interested in exploring the behavior of different policymakers that represents geographically defined states or regions, or the economic characteristics of different countries.</p>
+<p>For this reason, sometimes it is helpful to visualize our data in geographical space. Maps can be a useful tool for displaying information across geographical location.</p>
+<p>In particular maps are helpful to give a sense for the geographical distribution of data and how does this evolve over time.</p>
+<p>At the same time, just because you data is geographically-defined in some way doesn’t mean you should map it. Maps are helpful to communicate a geographical stgory about the data, but other visualization tools are more appropriate when we are not interested in highlighting the spatial dimension of our phenomenon of interest</p>
+<div id="shape-maps" class="section level2" number="22.1">
+<h2>
+<span class="header-section-number">22.1</span> Shape maps<a class="anchor" aria-label="anchor" href="#shape-maps"><i class="fas fa-link"></i></a>
+</h2>
+<p>Shape maps are maps where the map is drawn and parceled into different areas.</p>
+<p>Shapes can draw continents, regions, countries, states, counties/municipalities, cities, districts, neighborhoods, blocks, etc…These shapes can be defined politically, administratively, or geologically, sociologically, economically, etc… Either way, they are based on geographical areas on the map</p>
+<p>Shape maps are used when your data is geographically defined, that is, relate to the area or areas you are mapping. In other words, when each row of your data corresponds to a geographical area.</p>
+<p>This is the case for most of the data examined by political economist, which frequently relate to areas (e.g. country gdp per capita, country regime type, regional vote share of different parties).</p>
+<div id="shape-maps-with-maps-and-geom_maps" class="section level3" number="22.1.1">
+<h3>
+<span class="header-section-number">22.1.1</span> Shape Maps with <code>maps</code> and <code>geom_maps</code><a class="anchor" aria-label="anchor" href="#shape-maps-with-maps-and-geom_maps"><i class="fas fa-link"></i></a>
+</h3>
+<p>Shape maps require data on the shape being drawn, in the form of a shape file. This is a dataframe that specifies the longitude and latitude of the different borders to the geographical entities (countries, regions, municipalities) that we want to download.</p>
+<p>Geographical shape files are widely available from a variety of sources, depending on the shapes you need.</p>
+<p>For instance, world maps to visualize all countries across different conteninents are available through the <code>maps</code> package</p>
+<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"maps"</span><span class="op">)</span></code></pre></div>
+<p>The <code>map_data</code> function allows use to create a dataframe with the longitude and latitude of every country of the world.</p>
+<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">world</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/map_data.html">map_data</a></span><span class="op">(</span><span class="st">"world"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">world</span><span class="op">)</span>
+<span class="co">#&gt;        long      lat group order region subregion</span>
+<span class="co">#&gt; 1 -69.89912 12.45200     1     1  Aruba      &lt;NA&gt;</span>
+<span class="co">#&gt; 2 -69.89571 12.42300     1     2  Aruba      &lt;NA&gt;</span>
+<span class="co">#&gt; 3 -69.94219 12.43853     1     3  Aruba      &lt;NA&gt;</span>
+<span class="co">#&gt; 4 -70.00415 12.50049     1     4  Aruba      &lt;NA&gt;</span>
+<span class="co">#&gt; 5 -70.06612 12.54697     1     5  Aruba      &lt;NA&gt;</span>
+<span class="co">#&gt; 6 -70.05088 12.59707     1     6  Aruba      &lt;NA&gt;</span></code></pre></div>
+<p>Once we have downloaded the shape file we need we can plot it using ggplot2. There are different ways to create a shape map in ggplot2. We will use a technique, which uses the <code><a href="https://ggplot2.tidyverse.org/reference/geom_map.html">geom_map()</a></code> geom. <code>geom_map</code> takes a map argument, which is a dataframe that specifies the longitude and latitude of different countries of the world.</p>
+<p>You can use <code><a href="https://ggplot2.tidyverse.org/reference/geom_map.html">geom_map()</a></code> to plot these sets of national coordinates in the country borders and create a shape map. We map longitudine values to the <code>x</code> axis and latitudine to the <code>y</code> axis in order to draw the border, while mapping the variable containing the name of each country (<code>region</code>) to the aestetic <code>map_id</code>.
+The function <code>theme_map</code> (from the <code>ggthemes</code> package) removes all grid lines, backgrounds and axes from the visualization.</p>
+<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">maps</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span>
+<span class="va">world</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/map_data.html">map_data</a></span><span class="op">(</span><span class="st">"world"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">world</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html">geom_map</a></span><span class="op">(</span>map <span class="op">=</span> <span class="va">world</span>,
+           <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>, y <span class="op">=</span> <span class="va">lat</span>, map_id <span class="op">=</span> <span class="va">region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html">theme_map</a></span><span class="op">(</span><span class="op">)</span> </code></pre></div>
+<div class="inline-figure"><img src="97_Maps_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
+</div>
+<div id="shape-maps-with-rnaturalearth-and-geom_sf" class="section level3" number="22.1.2">
+<h3>
+<span class="header-section-number">22.1.2</span> Shape Maps with rnaturalearth and geom_sf<a class="anchor" aria-label="anchor" href="#shape-maps-with-rnaturalearth-and-geom_sf"><i class="fas fa-link"></i></a>
+</h3>
+<p>In addition to teh approach presented above, there are other ways to download and plot shape files.</p>
+<p>Shape files of the United Kingdom and a number of other countries can be found from the package <code>rnaturalearth</code> using the function <code><a href="https://rdrr.io/pkg/rnaturalearth/man/ne_states.html">ne_states()</a></code>.</p>
+<p>For instance, the code below installs the package <code>rnaturalearth</code> and then download the shape file for the United Kingdom. This includes information regarding different districts (e.g. Derry, Enfield), regions (e.g. East Wales) and nations (England, Northern Ireland Scotland, Wales).</p>
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Code to install rnaturalearthhires</span>
+<span class="co">#remotes::install_github("ropensci/rnaturalearthhires")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ropenscilabs/rnaturalearth">rnaturalearth</a></span><span class="op">)</span> <span class="co"># for map data</span>
+<span class="va">uk_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rnaturalearth/man/ne_states.html">ne_states</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"united kingdom"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">uk_sf</span><span class="op">)</span>
+<span class="co">#&gt; Simple feature collection with 6 features and 83 fields</span>
+<span class="co">#&gt; Geometry type: MULTIPOLYGON</span>
+<span class="co">#&gt; Dimension:     XY</span>
+<span class="co">#&gt; Bounding box:  xmin: -8.173837 ymin: 54.03457 xmax: -5.865834 ymax: 55.06932</span>
+<span class="co">#&gt; Geodetic CRS:  SOURCECRS</span>
+<span class="co">#&gt;             featurecla scalerank adm1_code diss_me</span>
+<span class="co">#&gt; 325 Admin-1 scale rank         8  GBR-2083    2083</span>
+<span class="co">#&gt; 326 Admin-1 scale rank         8  GBR-2135    2135</span>
+<span class="co">#&gt; 327 Admin-1 scale rank         8  GBR-2136    2136</span>
+<span class="co">#&gt; 331 Admin-1 scale rank         8  GBR-2089    2089</span>
+<span class="co">#&gt; 332 Admin-1 scale rank         8  GBR-2085    2085</span>
+<span class="co">#&gt; 333 Admin-1 scale rank         8  GBR-2086    2086</span>
+<span class="co">#&gt;     iso_3166_2 wikipedia iso_a2 adm0_sr             name</span>
+<span class="co">#&gt; 325     GB-DRY      &lt;NA&gt;     GB       1            Derry</span>
+<span class="co">#&gt; 326     GB-STB      &lt;NA&gt;     GB       1         Strabane</span>
+<span class="co">#&gt; 327     GB-FER      &lt;NA&gt;     GB       1        Fermanagh</span>
+<span class="co">#&gt; 331     GB-DGN      &lt;NA&gt;     GB       1        Dungannon</span>
+<span class="co">#&gt; 332     GB-ARM      &lt;NA&gt;     GB       1           Armagh</span>
+<span class="co">#&gt; 333     GB-NYM      &lt;NA&gt;     GB       1 Newry and Mourne</span>
+<span class="co">#&gt;        name_alt name_local     type               type_en</span>
+<span class="co">#&gt; 325 Londonderry       &lt;NA&gt; District London Borough (city)</span>
+<span class="co">#&gt; 326        &lt;NA&gt;       &lt;NA&gt; District              District</span>
+<span class="co">#&gt; 327        &lt;NA&gt;       &lt;NA&gt; District              District</span>
+<span class="co">#&gt; 331        &lt;NA&gt;       &lt;NA&gt; District              District</span>
+<span class="co">#&gt; 332        &lt;NA&gt;       &lt;NA&gt; District              District</span>
+<span class="co">#&gt; 333      Mourne       &lt;NA&gt; District              District</span>
+<span class="co">#&gt;     code_local code_hasc note hasc_maybe           region</span>
+<span class="co">#&gt; 325       &lt;NA&gt;     GB.LD &lt;NA&gt;       &lt;NA&gt; Northern Ireland</span>
+<span class="co">#&gt; 326       &lt;NA&gt;     GB.SB &lt;NA&gt;       &lt;NA&gt; Northern Ireland</span>
+<span class="co">#&gt; 327       &lt;NA&gt;     GB.FE &lt;NA&gt;       &lt;NA&gt; Northern Ireland</span>
+<span class="co">#&gt; 331       &lt;NA&gt;     GB.DN &lt;NA&gt;       &lt;NA&gt; Northern Ireland</span>
+<span class="co">#&gt; 332       &lt;NA&gt;     GB.AM &lt;NA&gt;       &lt;NA&gt; Northern Ireland</span>
+<span class="co">#&gt; 333       &lt;NA&gt;     GB.NM &lt;NA&gt;       &lt;NA&gt; Northern Ireland</span>
+<span class="co">#&gt;     region_cod provnum_ne gadm_level check_me datarank</span>
+<span class="co">#&gt; 325       &lt;NA&gt;          3          2       20        5</span>
+<span class="co">#&gt; 326       &lt;NA&gt;          3          2       20        5</span>
+<span class="co">#&gt; 327       &lt;NA&gt;          3          2       20        5</span>
+<span class="co">#&gt; 331       &lt;NA&gt;          3          2       20        5</span>
+<span class="co">#&gt; 332       &lt;NA&gt;          3          2       20        5</span>
+<span class="co">#&gt; 333       &lt;NA&gt;          3          2       20        5</span>
+<span class="co">#&gt;     abbrev postal area_sqkm sameascity labelrank name_len</span>
+<span class="co">#&gt; 325   &lt;NA&gt;     LD         0         NA         9        5</span>
+<span class="co">#&gt; 326   &lt;NA&gt;     SB         0         NA         9        8</span>
+<span class="co">#&gt; 327   &lt;NA&gt;     FE         0         NA         9        9</span>
+<span class="co">#&gt; 331   &lt;NA&gt;     DN         0         NA         9        9</span>
+<span class="co">#&gt; 332   &lt;NA&gt;     AM         0         NA         9        6</span>
+<span class="co">#&gt; 333   &lt;NA&gt;     NM         0         NA         9       16</span>
+<span class="co">#&gt;     mapcolor9 mapcolor13 fips fips_alt   woe_id woe_label</span>
+<span class="co">#&gt; 325         6          3 UK70     UKS6 20078338      &lt;NA&gt;</span>
+<span class="co">#&gt; 326         6          3 UK77     UKT4 20078345      &lt;NA&gt;</span>
+<span class="co">#&gt; 327         6          3 UK66     UKS2 20078335      &lt;NA&gt;</span>
+<span class="co">#&gt; 331         6          3 UK65     UKS1 20078342      &lt;NA&gt;</span>
+<span class="co">#&gt; 332         6          3 UK54     UKQ8 20078322      &lt;NA&gt;</span>
+<span class="co">#&gt; 333         6          3 UK73     UKS9 20078333      &lt;NA&gt;</span>
+<span class="co">#&gt;             woe_name latitude longitude sov_a3 adm0_a3</span>
+<span class="co">#&gt; 325            Derry  54.9694  -7.21329    GB1     GBR</span>
+<span class="co">#&gt; 326         Strabane  54.8064  -7.41337    GB1     GBR</span>
+<span class="co">#&gt; 327        Fermanagh  54.3798  -7.66047    GB1     GBR</span>
+<span class="co">#&gt; 331        Dungannon  54.4791  -6.94613    GB1     GBR</span>
+<span class="co">#&gt; 332           Armagh  54.3304  -6.62144    GB1     GBR</span>
+<span class="co">#&gt; 333 Newry and Mourne  54.1804  -6.26952    GB1     GBR</span>
+<span class="co">#&gt;     adm0_label          admin         geonunit gu_a3</span>
+<span class="co">#&gt; 325          7 United Kingdom Northern Ireland   NIR</span>
+<span class="co">#&gt; 326          7 United Kingdom Northern Ireland   NIR</span>
+<span class="co">#&gt; 327          7 United Kingdom Northern Ireland   NIR</span>
+<span class="co">#&gt; 331          7 United Kingdom Northern Ireland   NIR</span>
+<span class="co">#&gt; 332          7 United Kingdom Northern Ireland   NIR</span>
+<span class="co">#&gt; 333          7 United Kingdom Northern Ireland   NIR</span>
+<span class="co">#&gt;       gn_id                   gn_name   gns_id</span>
+<span class="co">#&gt; 325 2643737             City of Derry -2601895</span>
+<span class="co">#&gt; 326 2636745         Strabane District -2608907</span>
+<span class="co">#&gt; 327 2649533        Fermanagh District -2596082</span>
+<span class="co">#&gt; 331 2650730        Dungannon District -2594881</span>
+<span class="co">#&gt; 332 2657061           Armagh District -2588528</span>
+<span class="co">#&gt; 333 2641580 Newry and Mourne District -2604059</span>
+<span class="co">#&gt;                      gns_name gn_level gn_region gn_a1_code</span>
+<span class="co">#&gt; 325            Derry, City of        2      &lt;NA&gt;      GB.S6</span>
+<span class="co">#&gt; 326         Strabane District        2      &lt;NA&gt;      GB.T4</span>
+<span class="co">#&gt; 327        Fermanagh District        2      &lt;NA&gt;      GB.S2</span>
+<span class="co">#&gt; 331        Dungannon District        2      &lt;NA&gt;      GB.S1</span>
+<span class="co">#&gt; 332           Armagh District        2      &lt;NA&gt;      GB.Q8</span>
+<span class="co">#&gt; 333 Newry and Mourne District        2      &lt;NA&gt;      GB.S9</span>
+<span class="co">#&gt;                             region_sub sub_code gns_level</span>
+<span class="co">#&gt; 325          North of Northern Ireland     &lt;NA&gt;         1</span>
+<span class="co">#&gt; 326          North of Northern Ireland     &lt;NA&gt;         1</span>
+<span class="co">#&gt; 327 West and South of Northern Ireland     &lt;NA&gt;         1</span>
+<span class="co">#&gt; 331 West and South of Northern Ireland     &lt;NA&gt;         1</span>
+<span class="co">#&gt; 332 West and South of Northern Ireland     &lt;NA&gt;         1</span>
+<span class="co">#&gt; 333 West and South of Northern Ireland     &lt;NA&gt;         1</span>
+<span class="co">#&gt;     gns_lang gns_adm1 gns_region min_label max_label</span>
+<span class="co">#&gt; 325      eng     &lt;NA&gt;       UK01        10        11</span>
+<span class="co">#&gt; 326      cym     &lt;NA&gt;       UK01        10        11</span>
+<span class="co">#&gt; 327      eng     &lt;NA&gt;       UK01        10        11</span>
+<span class="co">#&gt; 331      eng     &lt;NA&gt;       UK01        10        11</span>
+<span class="co">#&gt; 332      cym     &lt;NA&gt;       UK01        10        11</span>
+<span class="co">#&gt; 333      eng     &lt;NA&gt;       UK01        10        11</span>
+<span class="co">#&gt;     min_zoom wikidataid name_ar name_bn</span>
+<span class="co">#&gt; 325       10   Q1200370    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt; 326       10   Q1198500    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt; 327       10   Q1198461    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt; 331       10   Q1198466    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt; 332       10   Q4792580    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt; 333       10    Q606825    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt;                        name_de</span>
+<span class="co">#&gt; 325                      Derry</span>
+<span class="co">#&gt; 326                   Strabane</span>
+<span class="co">#&gt; 327                  Fermanagh</span>
+<span class="co">#&gt; 331 Dungannon and South Tyrone</span>
+<span class="co">#&gt; 332                     Armagh</span>
+<span class="co">#&gt; 333           Newry and Mourne</span>
+<span class="co">#&gt;                                        name_en name_es</span>
+<span class="co">#&gt; 325                         Derry City Council    &lt;NA&gt;</span>
+<span class="co">#&gt; 326                  Strabane District Council    &lt;NA&gt;</span>
+<span class="co">#&gt; 327                 Fermanagh District Council    &lt;NA&gt;</span>
+<span class="co">#&gt; 331 Dungannon and South Tyrone Borough Council    &lt;NA&gt;</span>
+<span class="co">#&gt; 332                                     Armagh  Armagh</span>
+<span class="co">#&gt; 333          Newry and Mourne District Council    &lt;NA&gt;</span>
+<span class="co">#&gt;                                    name_fr name_el name_hi</span>
+<span class="co">#&gt; 325                         Ville de Derry    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt; 326                   District de Strabane    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt; 327                  District de Fermanagh    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt; 331 District de Dungannon and South Tyrone    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt; 332                                 Armagh    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt; 333           District de Newry and Mourne    &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt;     name_hu name_id                               name_it</span>
+<span class="co">#&gt; 325    &lt;NA&gt;    &lt;NA&gt;                    distretto di Derry</span>
+<span class="co">#&gt; 326    &lt;NA&gt;    &lt;NA&gt;                 distretto di Strabane</span>
+<span class="co">#&gt; 327    &lt;NA&gt;    &lt;NA&gt;                Distretto di Fermanagh</span>
+<span class="co">#&gt; 331    &lt;NA&gt;    &lt;NA&gt; distretto di Dungannon e South Tyrone</span>
+<span class="co">#&gt; 332    &lt;NA&gt;    &lt;NA&gt;                   distretto di Armagh</span>
+<span class="co">#&gt; 333    &lt;NA&gt;    &lt;NA&gt;           distretto di Newry e Mourne</span>
+<span class="co">#&gt;     name_ja name_ko                   name_nl name_pl</span>
+<span class="co">#&gt; 325    &lt;NA&gt;    &lt;NA&gt;        Derry City Council    &lt;NA&gt;</span>
+<span class="co">#&gt; 326    &lt;NA&gt;    &lt;NA&gt;                  Strabane    &lt;NA&gt;</span>
+<span class="co">#&gt; 327    &lt;NA&gt;    &lt;NA&gt;                 Fermanagh    &lt;NA&gt;</span>
+<span class="co">#&gt; 331    &lt;NA&gt;    &lt;NA&gt; Dungannon en South Tyrone    &lt;NA&gt;</span>
+<span class="co">#&gt; 332    &lt;NA&gt;    &lt;NA&gt;                      &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt; 333    &lt;NA&gt;    &lt;NA&gt;          Newry and Mourne    &lt;NA&gt;</span>
+<span class="co">#&gt;     name_pt name_ru                    name_sv name_tr</span>
+<span class="co">#&gt; 325   Derry    &lt;NA&gt;                       &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt; 326    &lt;NA&gt;    &lt;NA&gt;                   Strabane    &lt;NA&gt;</span>
+<span class="co">#&gt; 327    &lt;NA&gt;    &lt;NA&gt;                  Fermanagh    &lt;NA&gt;</span>
+<span class="co">#&gt; 331    &lt;NA&gt;    &lt;NA&gt; Dungannon and South Tyrone    &lt;NA&gt;</span>
+<span class="co">#&gt; 332  Armagh    &lt;NA&gt;                       &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="co">#&gt; 333    &lt;NA&gt;    &lt;NA&gt;           Newry and Mourne    &lt;NA&gt;</span>
+<span class="co">#&gt;     name_vi name_zh      ne_id</span>
+<span class="co">#&gt; 325    &lt;NA&gt;    &lt;NA&gt; 1159312781</span>
+<span class="co">#&gt; 326    &lt;NA&gt;    &lt;NA&gt; 1159312823</span>
+<span class="co">#&gt; 327    &lt;NA&gt;    &lt;NA&gt; 1159312825</span>
+<span class="co">#&gt; 331    &lt;NA&gt;    &lt;NA&gt; 1159312793</span>
+<span class="co">#&gt; 332    &lt;NA&gt;    &lt;NA&gt; 1159312785</span>
+<span class="co">#&gt; 333    &lt;NA&gt;    &lt;NA&gt; 1159312787</span>
+<span class="co">#&gt;                           geometry</span>
+<span class="co">#&gt; 325 MULTIPOLYGON (((-7.415755 5...</span>
+<span class="co">#&gt; 326 MULTIPOLYGON (((-7.707951 5...</span>
+<span class="co">#&gt; 327 MULTIPOLYGON (((-8.168467 5...</span>
+<span class="co">#&gt; 331 MULTIPOLYGON (((-6.870015 5...</span>
+<span class="co">#&gt; 332 MULTIPOLYGON (((-6.648448 5...</span>
+<span class="co">#&gt; 333 MULTIPOLYGON (((-6.605217 5...</span></code></pre></div>
+<p>After having downloaded the shape file from the United Kingdom, we can plot it using ggplot and the geom <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code></p>
+<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">uk_sf</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">geonunit</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="97_Maps_files/figure-html/unnamed-chunk-5-1.png" width="672"></div>
+<p>While the function <code><a href="https://rdrr.io/pkg/rnaturalearth/man/ne_countries.html">ne_countries()</a></code> from the <code>rnaturalearth</code> can be used to download information to plot the boundaries of sub-national level entities within a country, the function <code><a href="https://rdrr.io/pkg/rnaturalearth/man/ne_states.html">ne_states()</a></code> can be used to download national borders.</p>
+<p>For instance, the code below first downloads shape files for all African countries and then plot this information.</p>
+<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ropenscilabs/rnaturalearth">rnaturalearth</a></span><span class="op">)</span> <span class="co"># for map data</span>
+<span class="va">Africa_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rnaturalearth/man/ne_countries.html">ne_countries</a></span><span class="op">(</span>continent <span class="op">=</span> <span class="st">"Africa"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Africa_sf</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="97_Maps_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
+</div>
+<div id="choropleth-map" class="section level3" number="22.1.3">
+<h3>
+<span class="header-section-number">22.1.3</span> Choropleth Map<a class="anchor" aria-label="anchor" href="#choropleth-map"><i class="fas fa-link"></i></a>
+</h3>
+<p>In addition to drawing the shape of different geographically-defined units (e.g. countries), we can also fill these shapes based on some the data that we would like to visualize. A choropleth map is a type of statistical thematic map that uses intensity of color to correspond with an aggregate summary of a geographic characteristic within spatial units.</p>
+<p>For instance, below we want to use the world map to visualize the gdp per capita of different countries as present in the <code>gapminder</code> dataset. In order to do so we need to pair the two dataset by using a common <code>key</code> variable. In this case, this is the variable containing the name of each country.</p>
+<p>In order to do this, a few adjustemnts are needed in this case.</p>
+<ul>
+<li>The key variable containing the name of each country is named <code>region</code> in the <code>world</code> dataset and <code>country</code> in the <code>gapminder</code> dataset. As a result, so we need to specify that we are joining variables with a different title</li>
+<li>When merging the two datasets, observations where the name of the country is same across the two tables will be paired. In this case, some countries are assigned two different names across the two datasets. We need to adjust the values using the <code><a href="https://dplyr.tidyverse.org/reference/recode.html">recode()</a></code> function</li>
+<li>Maps are suitable to visualize the variation in the value taken by a variable across different countries. A single map is not suitable to illustrate the evolution across time. Since the Gapminder dataset includes different observations for the same countries across different years, we need to subset the data by selecting a single year we want to visualize</li>
+</ul>
+<p>Once we have joined the two datasets, we can map the variable we want to associate with the colour of different country to the <code>fill</code> aesthetic.</p>
+<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">maps</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span>
+
+
+<span class="va">gap_2007</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">country</span>,
+   <span class="st">"United States"</span><span class="op">=</span><span class="st">"USA"</span>,
+   <span class="st">"United Kingdom"</span><span class="op">=</span><span class="st">"UK"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">world</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/map_data.html">map_data</a></span><span class="op">(</span><span class="st">"world"</span><span class="op">)</span>
+
+<span class="va">world_gap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">world</span>, <span class="va">gap_2007</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"region"</span> <span class="op">=</span> <span class="st">"country"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">world_gap</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html">geom_map</a></span><span class="op">(</span>map <span class="op">=</span> <span class="va">world_gap</span>,
+           <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>, 
+               y <span class="op">=</span> <span class="va">lat</span>, 
+               map_id <span class="op">=</span> <span class="va">region</span>,
+               fill <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GDP Per Capita across countries - 2007"</span>,
+       caption <span class="op">=</span> <span class="st">"Data = Gapminder"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="97_Maps_files/figure-html/unnamed-chunk-7-1.png" width="672"></div>
+<p>Since we are mapping a continuous variable, values will be represented using a colour gradient. If we instead map to the colour (<code>fill</code> aesthetic) a categorical variable, a different colour will be selected for each value of the selected variable.</p>
+<p>For instance, in the figure below we transform the measure of gdp per capita in the gapminder dataset from a continuous to a categorical variable, differentiating between high-, middle- and low-income countries</p>
+<div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder_dev</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>development <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+      <span class="va">gdpPercap</span><span class="op">&lt;</span> <span class="fl">4045</span> <span class="op">~</span> <span class="st">"low-income country"</span>,
+      <span class="va">gdpPercap</span><span class="op">&gt;=</span> <span class="fl">4045</span> <span class="op">&amp;</span> <span class="va">gdpPercap</span><span class="op">&lt;</span><span class="fl">12535</span>  <span class="op">~</span> <span class="st">"middle-income country"</span>, 
+      <span class="va">gdpPercap</span><span class="op">&gt;=</span> <span class="fl">12535</span>  <span class="op">~</span> <span class="st">"high-income country"</span>,
+      <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">'other'</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>development <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">development</span>, <span class="st">"low-income country"</span>,<span class="st">"middle-income country"</span>,<span class="st">"high-income country"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">country</span>,
+   <span class="st">"United States"</span><span class="op">=</span><span class="st">"USA"</span>,
+   <span class="st">"United Kingdom"</span><span class="op">=</span><span class="st">"UK"</span><span class="op">)</span><span class="op">)</span>
+
+
+<span class="va">world</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/map_data.html">map_data</a></span><span class="op">(</span><span class="st">"world"</span><span class="op">)</span>
+
+<span class="va">world_gap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">world</span>, <span class="va">gapminder_dev</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"region"</span> <span class="op">=</span> <span class="st">"country"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">world_gap</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html">geom_map</a></span><span class="op">(</span>map <span class="op">=</span> <span class="va">world_gap</span>,
+           <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>, 
+               y <span class="op">=</span> <span class="va">lat</span>, 
+               map_id <span class="op">=</span> <span class="va">region</span>,
+               fill <span class="op">=</span> <span class="va">development</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Set2"</span><span class="op">)</span> <span class="op">+</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GDP Per Capita across countries - 2007"</span>,
+       caption <span class="op">=</span> <span class="st">"Data = Gapminder"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="97_Maps_files/figure-html/unnamed-chunk-8-1.png" width="672"></div>
+</div>
+<div id="point-maps" class="section level3" number="22.1.4">
+<h3>
+<span class="header-section-number">22.1.4</span> Point maps<a class="anchor" aria-label="anchor" href="#point-maps"><i class="fas fa-link"></i></a>
+</h3>
+<p>Point maps are maps where data is plotted as points on a map. Points could be used to plot events, locations or incidents, or anything that that can be associated to a specific location on a map. Points can be colored, sized, and labeled based on the value found in a variable in the our data in order to convey additional information beyond the location.</p>
+<p>Unlike shape maps where each observation corresponds to a geopgraphical unit, point map are used when your data is locatable within these larger geographical units. Here, each row of your data corresponds to a particular location within that geographical unit.</p>
+<p>As a result, point maps require geo-coded data, with the longitude and latitude of the location.</p>
+<p>We can create a point map by overlaying to a normal map points based on the coordinate of the location we want to visualize. We can do this with ggplot using <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>.</p>
+<p>For instance, in the example below we overlay on a shape map of the UK the coordinates of some of the main cities.</p>
+<div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span>
+<span class="va">UK_Cites</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span> 
+  <span class="op">~</span><span class="va">city</span>,           <span class="op">~</span><span class="va">lat</span>,     <span class="op">~</span><span class="va">lon</span>,
+  <span class="st">"Leeds"</span>,    <span class="fl">53.801277</span>, <span class="op">-</span><span class="fl">1.548567</span>,  
+  <span class="st">"Southampton"</span>, <span class="fl">50.909698</span>, <span class="op">-</span><span class="fl">1.404351</span>, 
+  <span class="st">"Manchester"</span>,  <span class="fl">53.483959</span>, <span class="op">-</span><span class="fl">2.244644</span>, 
+  <span class="st">"London"</span>,  <span class="fl">51.509865</span>, <span class="op">-</span><span class="fl">0.118092</span>, 
+  <span class="st">"Cardiff"</span>,     <span class="fl">51.481583</span>, <span class="op">-</span><span class="fl">3.179090</span>, 
+  <span class="st">"Glasgow"</span>,    <span class="fl">55.860916</span>, <span class="op">-</span><span class="fl">4.251433</span>, 
+  <span class="st">"Belfast"</span>,  <span class="fl">54.607868</span>, <span class="op">-</span><span class="fl">5.926437</span> 
+<span class="op">)</span>
+
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">uk_sf</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span> mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UK_Cites</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, y <span class="op">=</span> <span class="va">lat</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UK_Cites</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, y <span class="op">=</span> <span class="va">lat</span>, label <span class="op">=</span> <span class="va">city</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>  </code></pre></div>
+<div class="inline-figure"><img src="97_Maps_files/figure-html/unnamed-chunk-9-1.png" width="672"></div>
+
+</div>
+</div>
+</div>
+
+
+
+<div class="chapter-nav">
+<div class="prev"><a href="time-series.html"><span class="header-section-number">21</span> Time Series</a></div>
+<div class="next"><a href="assessment-guidance.html"><span class="header-section-number">A</span> Assessment Guidance</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#maps"><span class="header-section-number">22</span> Maps</a></li>
+<li>
+<a class="nav-link" href="#shape-maps"><span class="header-section-number">22.1</span> Shape maps</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#shape-maps-with-maps-and-geom_maps"><span class="header-section-number">22.1.1</span> Shape Maps with maps and geom_maps</a></li>
+<li><a class="nav-link" href="#shape-maps-with-rnaturalearth-and-geom_sf"><span class="header-section-number">22.1.2</span> Shape Maps with rnaturalearth and geom_sf</a></li>
+<li><a class="nav-link" href="#choropleth-map"><span class="header-section-number">22.1.3</span> Choropleth Map</a></li>
+<li><a class="nav-link" href="#point-maps"><span class="header-section-number">22.1.4</span> Point maps</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+</div>
+  
+
+  
+
+</div>
+ <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-04-02.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
