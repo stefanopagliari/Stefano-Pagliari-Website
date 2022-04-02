@@ -585,7 +585,7 @@ A positive value in the correlation coefficient (0-1) indicates that high values
 
 For instance, the figure below shows a series of linear relationships that vary in their strength and direction.
 
-![](images/Correlation_Coeff_Plot1){width=90%}(Source: Childs 2019)
+![](images/Correlation_Coeff_Plot1.png){width=90%}(Source: Childs 2019)
 
 ###  Calculating Correlation Statistic in R
 
