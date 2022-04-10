@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 23 RMarkdown | IP2038 - Analysing Political and Economic Data in the Real World - Course Material</title>
+<meta name="author" content="Stefano Pagliari">
+<meta name="description" content="23.1 What is RMarkdown R Markdown scripts are scripts that combine R code with “markdown” text. Markdown is a lightweight markup language that you can use to add formatting elements to plain text...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 23 RMarkdown | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta property="og:type" content="book">
+<meta property="og:description" content="23.1 What is RMarkdown R Markdown scripts are scripts that combine R code with “markdown” text. Markdown is a lightweight markup language that you can use to add formatting elements to plain text...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 23 RMarkdown | IP2038 - Analysing Political and Economic Data in the Real World - Course Material">
+<meta name="twitter:description" content="23.1 What is RMarkdown R Markdown scripts are scripts that combine R code with “markdown” text. Markdown is a lightweight markup language that you can use to add formatting elements to plain text...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IP2038 - Analysing Political and Economic Data in the Real World - Course Material</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction to the Module</a></li>
+<li class="book-part">Introduction to R</li>
+<li><a class="" href="rstudio-and-rstudio-cloud.html"><span class="header-section-number">2</span> RStudio and RStudio Cloud</a></li>
+<li><a class="" href="getting-started-with-r.html"><span class="header-section-number">3</span> Getting Started with R</a></li>
+<li class="book-part">Datasets</li>
+<li><a class="" href="importing-data-into-r.html"><span class="header-section-number">4</span> Importing Data into R</a></li>
+<li><a class="" href="inspecting-a-dataset.html"><span class="header-section-number">5</span> Inspecting a Dataset</a></li>
+<li><a class="" href="long-vs.-wide-data.html"><span class="header-section-number">6</span> Long vs. Wide Data</a></li>
+<li><a class="" href="list-of-political-and-economic-datasets.html"><span class="header-section-number">7</span> List of Political and Economic Datasets</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="data-wrangling-with-dplyr.html"><span class="header-section-number">8</span> Data Wrangling with dplyr</a></li>
+<li><a class="" href="working-with-observations.html"><span class="header-section-number">9</span> Working with Observations</a></li>
+<li><a class="" href="working-with-variables.html"><span class="header-section-number">10</span> Working with Variables</a></li>
+<li><a class="" href="grouping-and-summarising-data.html"><span class="header-section-number">11</span> Grouping and Summarising Data</a></li>
+<li><a class="" href="relational-data.html"><span class="header-section-number">12</span> Relational Data</a></li>
+<li><a class="" href="missing-data.html"><span class="header-section-number">13</span> Missing Data</a></li>
+<li class="book-part">Data Visualization</li>
+<li><a class="" href="data-visualization-with-ggplot.html"><span class="header-section-number">14</span> Data Visualization with ggplot</a></li>
+<li><a class="" href="types-of-visualizations.html"><span class="header-section-number">15</span> Types of visualizations</a></li>
+<li class="book-part">Exploratory Analysis</li>
+<li><a class="" href="exploring-numerical-data.html"><span class="header-section-number">16</span> Exploring Numerical Data</a></li>
+<li><a class="" href="exploring-categorical-data.html"><span class="header-section-number">17</span> Exploring Categorical Data</a></li>
+<li><a class="" href="relationship-between-categorical-and-numerical-variables.html"><span class="header-section-number">18</span> Relationship between categorical and numerical variables</a></li>
+<li><a class="" href="relationship-between-numerical-variables.html"><span class="header-section-number">19</span> Relationship between numerical variables</a></li>
+<li><a class="" href="relationship-between-categorical-variables.html"><span class="header-section-number">20</span> Relationship between categorical variables</a></li>
+<li><a class="" href="time-series.html"><span class="header-section-number">21</span> Time Series</a></li>
+<li><a class="" href="maps.html"><span class="header-section-number">22</span> Maps</a></li>
+<li class="book-part">Communicate</li>
+<li><a class="active" href="rmarkdown-1.html"><span class="header-section-number">23</span> RMarkdown</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="assessment-guidance.html"><span class="header-section-number">A</span> Assessment Guidance</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="rmarkdown-1" class="section level1" number="23">
+<h1>
+<span class="header-section-number">23</span> RMarkdown<a class="anchor" aria-label="anchor" href="#rmarkdown-1"><i class="fas fa-link"></i></a>
+</h1>
+<div id="what-is-rmarkdown" class="section level2" number="23.1">
+<h2>
+<span class="header-section-number">23.1</span> What is RMarkdown<a class="anchor" aria-label="anchor" href="#what-is-rmarkdown"><i class="fas fa-link"></i></a>
+</h2>
+<p><em>R Markdown</em> scripts are scripts that combine R code with “markdown” text. Markdown is a lightweight markup language that you can use to add formatting elements to plain text document.</p>
+<p>Each RMarkdown file is a plain text file that has the extension “.Rmd” and that can be opened with any text editor.</p>
+<p>RMarkdown files contains three types of content:</p>
+<ul>
+<li>An header surrounded by <code>---</code> that specifies the type of output</li>
+<li>R code chunks surrounded by ```</li>
+<li>Text mixed with simple text formatting</li>
+</ul>
+<p>For an introduction to RMarkdown see the video below</p>
+<iframe src="https://player.vimeo.com/video/178485416?h=8a57bf9b88&amp;color=428bca" width="640" height="400" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+</iframe>
+<p>
+<a href="https://vimeo.com/178485416">What is R Markdown?</a> from <a href="https://vimeo.com/rstudioinc">RStudio, Inc.</a> on <a href="https://vimeo.com">Vimeo</a>.
+</p>
+</div>
+<div id="text" class="section level2" number="23.2">
+<h2>
+<span class="header-section-number">23.2</span> Text<a class="anchor" aria-label="anchor" href="#text"><i class="fas fa-link"></i></a>
+</h2>
+<p>RMarkdown documents includes text that is written using a text format called <em>Markdown</em>. Markdown is widely used in online documents, blogging, collaborative software, and other files.</p>
+<div class="inline-figure"><img src="images/Markdown_Syntax.png" style="width:80.0%"></div>
+</div>
+<div id="code-chunk" class="section level2" number="23.3">
+<h2>
+<span class="header-section-number">23.3</span> Code Chunk<a class="anchor" aria-label="anchor" href="#code-chunk"><i class="fas fa-link"></i></a>
+</h2>
+<p>Rmarkdown file integrate text with the output of R code that are included in “code chunks”.</p>
+<p>You can quickly insert chunks into your file with</p>
+<ul>
+<li>the keyboard shortcut Ctrl + Alt + I (OS X: Cmd + Option + I)</li>
+<li>the Add Chunk command in the editor toolbar</li>
+<li>or by typing the chunk delimiters <code>{r} and</code>.</li>
+</ul>
+<p>It is possible to run the code included in a code chunk by selecting the green arrow next to the chunk:</p>
+<div class="inline-figure"><img src="images/RMD_Chunk.png" style="width:90.0%"></div>
+<div id="chunk-options" class="section level3" number="23.3.1">
+<h3>
+<span class="header-section-number">23.3.1</span> Chunk options<a class="anchor" aria-label="anchor" href="#chunk-options"><i class="fas fa-link"></i></a>
+</h3>
+<p>Arguments can be added to the chunk header to provided further customisation.</p>
+<p>The most important set of options controls if your code block is executed and what results are inserted in the finished report:</p>
+<ul>
+<li>
+<code>eval = FALSE</code> prevents code from being run and the results from being displayed. This option is useful for displaying example code.</li>
+<li>
+<code>include = FALSE</code> runs the code, but doesn’t show the code or results in the final document. Use this for setup code that you don’t want cluttering your report.</li>
+<li>
+<code>echo = FALSE</code> prevents code, but not the results from appearing in the finished file. Use this when writing reports aimed at people who don’t want to see the underlying R code.</li>
+<li>
+<code>message = FALSE</code> or <code>warning = FALSE</code> prevents messages or warnings from appearing in the finished file.</li>
+<li>
+<code>error = TRUE</code> causes the render to continue even if code returns an error.</li>
+</ul>
+<div class="inline-figure"><img src="images/rmd_params.png" style="width:90.0%"></div>
+</div>
+</div>
+<div id="header-type-of-rmarkdown-file" class="section level2" number="23.4">
+<h2>
+<span class="header-section-number">23.4</span> Header (Type of RMarkdown File)<a class="anchor" aria-label="anchor" href="#header-type-of-rmarkdown-file"><i class="fas fa-link"></i></a>
+</h2>
+<p>The initial part of a Rmarkdown file will specify what type of document is being produced.</p>
+<p>After you create a new RMarkdown file from RStudio (*File –&gt; New File –&gt; RMarkdown), you will be prompted to chose the type of output among a number of pre-loaded types, while others can be added by installing and loading specific packages.
+This will generate a markdown file with a pre-populated header.</p>
+<p>It is then possible to tweak the parameters oof the header to change the nature and look of the document produced.</p>
+<p>To produce a complete report containing all text, code, and results, click “Knit” or press Cmd/Ctrl + Shift + K.</p>
+<p>When you render your .Rmd file, RMarkdown will run each code chunk and embed the results beneath the code chunk in a self-contained file that you can share with others.</p>
+</div>
+<div id="type-of-outputs" class="section level2" number="23.5">
+<h2>
+<span class="header-section-number">23.5</span> Type of Outputs<a class="anchor" aria-label="anchor" href="#type-of-outputs"><i class="fas fa-link"></i></a>
+</h2>
+<p>For a demo of the different outputs that can be produced using RMarkdown, see the video below by Yihui Xie</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qLEkUjxk7e8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<div id="documents" class="section level3" number="23.5.1">
+<h3>
+<span class="header-section-number">23.5.1</span> Documents<a class="anchor" aria-label="anchor" href="#documents"><i class="fas fa-link"></i></a>
+</h3>
+<p>Among the documents that you can produce there are different formats such as</p>
+<ul>
+<li>
+<a href="https://bookdown.org/yihui/rmarkdown/html-document.html">HTML Documents</a> (<code>output: html_document</code>),</li>
+<li>
+<a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html">PDF Documents</a> (<code>output: pdf_document</code>)</li>
+<li>
+<a href="https://bookdown.org/yihui/rmarkdown/word-document.html">Word Documents</a> (<code>output: word_document</code>)</li>
+</ul>
+<p><img src="images/rmd_document2.png" style="width:90.0%"><img src="images/rmd_document1.png" style="width:90.0%"></p>
+</div>
+<div id="slide-presentations" class="section level3" number="23.5.2">
+<h3>
+<span class="header-section-number">23.5.2</span> Slide Presentations<a class="anchor" aria-label="anchor" href="#slide-presentations"><i class="fas fa-link"></i></a>
+</h3>
+<p>RMarkdown renders to different type of presentation formats by adding the following output to the header:</p>
+<ul>
+<li>HTML Presentations via <a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html">ioslides</a> (<code>output: ioslides_presentation</code>), <a href="https://bookdown.org/yihui/rmarkdown/slidy-presentation.html">slidy</a> (<code>output: slidy_presentation</code>), <a href="https://bookdown.org/yihui/rmarkdown/revealjs.html">revealjs</a> (via the <code>revealjs</code> package and <code>output: revealjs::revealjs_presentation</code>), <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html">xaringan</a> (via the <code>xaringan</code> package and <code>output: revealjs::revealjs_presentation</code>),</li>
+<li><a href="https://bookdown.org/yihui/rmarkdown/beamer-presentation.html">PDF Presentations</a></li>
+<li><a href="https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html">Powerpoint Presentations</a></li>
+</ul>
+<p>You can create a slide show broken up into sections by using the # and ## heading tags. It is also create a new slide without a header using a horizontal rule (—).</p>
+<p><img src="images/rmd_Slides1.png" style="width:90.0%"><img src="images/rmd_Slides2.png" style="width:90.0%"><img src="images/rmd_Slides3.png" style="width:90.0%"></p>
+</div>
+<div id="other-output-types" class="section level3" number="23.5.3">
+<h3>
+<span class="header-section-number">23.5.3</span> Other Output Types<a class="anchor" aria-label="anchor" href="#other-output-types"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>[Books] (<a href="https://rmarkdown.rstudio.com/lesson-13.html" class="uri">https://rmarkdown.rstudio.com/lesson-13.html</a>)</li>
+<li>[Websites] (<a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html" class="uri">https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html</a>)</li>
+<li>[Interactive Documents] (<a href="https://rmarkdown.rstudio.com/lesson-14.html" class="uri">https://rmarkdown.rstudio.com/lesson-14.html</a>)</li>
+</ul>
+</div>
+</div>
+<div id="tables" class="section level2" number="23.6">
+<h2>
+<span class="header-section-number">23.6</span> Tables<a class="anchor" aria-label="anchor" href="#tables"><i class="fas fa-link"></i></a>
+</h2>
+<p>By default, R Markdown prints data frames and matrices as you’d see them in the console:</p>
+<div class="sourceCode" id="cb262"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'dplyr'</span>
+<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     filter, lag</span>
+<span class="co">#&gt; The following objects are masked from 'package:base':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
+<span class="va">gap_summary</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">continent</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Average_LifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span>,
+            Median_LifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">gap_summary</span>
+<span class="co">#&gt; # A tibble: 5 × 3</span>
+<span class="co">#&gt;   continent Average_LifeExp Median_LifeExp</span>
+<span class="co">#&gt;   &lt;fct&gt;               &lt;dbl&gt;          &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Africa               54.8           52.9</span>
+<span class="co">#&gt; 2 Americas             73.6           72.9</span>
+<span class="co">#&gt; 3 Asia                 70.7           72.4</span>
+<span class="co">#&gt; 4 Europe               77.6           78.6</span>
+<span class="co">#&gt; 5 Oceania              80.7           80.7</span></code></pre></div>
+<p>It is possible to display a table with additional formatting using the <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable</a></code> function.</p>
+<div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">gap_summary</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">continent</th>
+<th align="right">Average_LifeExp</th>
+<th align="right">Median_LifeExp</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Africa</td>
+<td align="right">54.80604</td>
+<td align="right">52.9265</td>
+</tr>
+<tr class="even">
+<td align="left">Americas</td>
+<td align="right">73.60812</td>
+<td align="right">72.8990</td>
+</tr>
+<tr class="odd">
+<td align="left">Asia</td>
+<td align="right">70.72848</td>
+<td align="right">72.3960</td>
+</tr>
+<tr class="even">
+<td align="left">Europe</td>
+<td align="right">77.64860</td>
+<td align="right">78.6085</td>
+</tr>
+<tr class="odd">
+<td align="left">Oceania</td>
+<td align="right">80.71950</td>
+<td align="right">80.7195</td>
+</tr>
+</tbody>
+</table></div>
+<p>While this function without additional parameters can be used to produce a simple table, it is also possible to further customize different elements regarding the formatting and look of the table, as well as how the information is displayed (for more information see <a href="https://bookdown.org/yihui/rmarkdown-cookbook/kable.html">this page</a>).</p>
+<p>For instance, in the example below we specify further parameters to the <code>kable</code> function to change the title of the columns, their alignment, the number of digits to be displayed, and to add a caption to the table.</p>
+<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">gap_summary</span>,
+             col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Continent"</span>, <span class="st">"Average Life Expectancy"</span>, <span class="st">"Median Life Expectancy"</span><span class="op">)</span>,
+             align <span class="op">=</span> <span class="st">"lcc"</span>,
+             digits <span class="op">=</span> <span class="fl">2</span>,
+             caption <span class="op">=</span> <span class="st">"Life Expectancy Across Continents in 2007"</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:unnamed-chunk-3">Table 23.1: </span>Life Expectancy Across Continents in 2007</caption>
+<thead><tr class="header">
+<th align="left">Continent</th>
+<th align="center">Average Life Expectancy</th>
+<th align="center">Median Life Expectancy</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Africa</td>
+<td align="center">54.81</td>
+<td align="center">52.93</td>
+</tr>
+<tr class="even">
+<td align="left">Americas</td>
+<td align="center">73.61</td>
+<td align="center">72.90</td>
+</tr>
+<tr class="odd">
+<td align="left">Asia</td>
+<td align="center">70.73</td>
+<td align="center">72.40</td>
+</tr>
+<tr class="even">
+<td align="left">Europe</td>
+<td align="center">77.65</td>
+<td align="center">78.61</td>
+</tr>
+<tr class="odd">
+<td align="left">Oceania</td>
+<td align="center">80.72</td>
+<td align="center">80.72</td>
+</tr>
+</tbody>
+</table></div>
+<p>The package (kableExtra)[<a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html" class="uri">https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html</a>] can be used to add additional customizations such as colours, images, and text specifications.</p>
+<div class="sourceCode" id="cb265"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#install.packages("kableExtra")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'kableExtra'</span>
+<span class="co">#&gt; The following object is masked from 'package:dplyr':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     group_rows</span>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">gap_summary</span>, col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Continent"</span>, <span class="st">"Average"</span>, <span class="st">"Median"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span><span class="op">(</span><span class="st">"striped"</span>,  full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/footnote.html">footnote</a></span><span class="op">(</span>general <span class="op">=</span> <span class="st">"Source: Gapminder."</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">" "</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"Life Expectancy"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/column_spec.html">column_spec</a></span><span class="op">(</span><span class="fl">1</span>, color <span class="op">=</span> <span class="st">"white"</span>, background <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Life Expectancy
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Continent
+</th>
+<th style="text-align:right;">
+Average
+</th>
+<th style="text-align:right;">
+Median
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;color: white !important;background-color: red !important;">
+Africa
+</td>
+<td style="text-align:right;">
+54.80604
+</td>
+<td style="text-align:right;">
+52.9265
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: white !important;background-color: red !important;">
+Americas
+</td>
+<td style="text-align:right;">
+73.60812
+</td>
+<td style="text-align:right;">
+72.8990
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: white !important;background-color: red !important;">
+Asia
+</td>
+<td style="text-align:right;">
+70.72848
+</td>
+<td style="text-align:right;">
+72.3960
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: white !important;background-color: red !important;">
+Europe
+</td>
+<td style="text-align:right;">
+77.64860
+</td>
+<td style="text-align:right;">
+78.6085
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: white !important;background-color: red !important;">
+Oceania
+</td>
+<td style="text-align:right;">
+80.71950
+</td>
+<td style="text-align:right;">
+80.7195
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<span style="font-style: italic;">Note: </span>
+</td>
+</tr>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> Source: Gapminder.
+</td>
+</tr>
+</tfoot>
+</table></div>
+</div>
+</div>
+
+
+
+<div class="chapter-nav">
+<div class="prev"><a href="maps.html"><span class="header-section-number">22</span> Maps</a></div>
+<div class="next"><a href="assessment-guidance.html"><span class="header-section-number">A</span> Assessment Guidance</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rmarkdown-1"><span class="header-section-number">23</span> RMarkdown</a></li>
+<li><a class="nav-link" href="#what-is-rmarkdown"><span class="header-section-number">23.1</span> What is RMarkdown</a></li>
+<li><a class="nav-link" href="#text"><span class="header-section-number">23.2</span> Text</a></li>
+<li>
+<a class="nav-link" href="#code-chunk"><span class="header-section-number">23.3</span> Code Chunk</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#chunk-options"><span class="header-section-number">23.3.1</span> Chunk options</a></li></ul>
+</li>
+<li><a class="nav-link" href="#header-type-of-rmarkdown-file"><span class="header-section-number">23.4</span> Header (Type of RMarkdown File)</a></li>
+<li>
+<a class="nav-link" href="#type-of-outputs"><span class="header-section-number">23.5</span> Type of Outputs</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#documents"><span class="header-section-number">23.5.1</span> Documents</a></li>
+<li><a class="nav-link" href="#slide-presentations"><span class="header-section-number">23.5.2</span> Slide Presentations</a></li>
+<li><a class="nav-link" href="#other-output-types"><span class="header-section-number">23.5.3</span> Other Output Types</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#tables"><span class="header-section-number">23.6</span> Tables</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+</div>
+  
+
+  
+
+</div>
+ <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IP2038 - Analysing Political and Economic Data in the Real World - Course Material</strong>" was written by Stefano Pagliari. It was last built on 2022-04-10.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
