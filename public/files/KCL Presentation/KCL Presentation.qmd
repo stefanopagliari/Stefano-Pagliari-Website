@@ -1,0 +1,679 @@
+---
+title: "Co-ordination and hierarchy across transnational financial regulatory networks"
+author: 
+  - ""
+  - "Stefano Pagliari"
+  -  "City, University of London"
+  - ""
+  - "King's College London, 16 June 2022"
+institution: ""
+format:  
+  revealjs:
+    theme: simple
+    incremental: true
+editor: visual
+bibliography: StefanoZotero.bib
+---
+
+```{r setup, echo=FALSE}
+library(tidyverse)
+library(plotly)
+library("gt")
+
+AllReg <- rio::import("All_Int_Reg_Filtered.csv")
+Citation_Document_Long <- rio::import("Citation_Document_Long.csv")
+Citation_Document_Wide <- rio::import("Citation_Document_Wide.csv")
+Org_Pos_All <- rio::import("Org_Pos_All.csv")
+
+```
+
+## International Financial Regulation Over Time
+
+![](images/paste-BDDE58C8.png){width="1000"}
+
+## Literature: focus on single or comparative case study analysis
+
+-   **Before the crisis**: banking (Kapstein 1989; Oatley and Nabors 1998), securities (Underhill 1995), insurance (2004)
+
+-   **After the crisis**: hedge funds (Helleiner and Pagliari, 2009), derivatives (Knaack, 2015), resolution regimes for too-big-to-fail financial institutions (Quaglia, 2017), and shadow banking (Rixen, 2013; Ban, Seabrooke and Freitas, 2016).
+
+## International Banking and Securities Regulations
+
+![](images/paste-42267B21.png)
+
+## Corpus
+
+![](images/paste-E7DE48E5.png)
+
+## Regulatory Novelty![](images/RegulatoryNovelty_Example_1.png)
+
+## Regulatory Novelty![](images/RegulatoryNovelty_Example_2.png)
+
+## Regulatory Novelty![](images/RegulatoryNovelty_Example_3.png)
+
+## Regulatory Novelty![](images/RegulatoryNovelty_Example_4.png)
+
+## Regulatory Novelty and Financial Crises
+
+![](images/RegNovelty%20Post-GFC.png)
+
+------------------------------------------------------------------------
+
+## Standard-Setting Bodies in International Finance
+
+![](images/paste-BDDE58C8.png){width="1300"}
+
+## Corpus
+
+```{r Visualize distribution regulators over time, echo = FALSE, warning=FALSE, warn.conflicts=FALSE, message=FALSE}
+
+Fig <- AllReg %>%
+  group_by(Regulator) %>%
+  mutate(Total_Documents = n_distinct(Title_Text)) %>%
+  mutate(Regulator_Label = paste(Regulator, " (",Total_Documents, ")", sep="")) %>%
+  ungroup() %>%
+  group_by(Regulator_Label, Total_Documents, Date_Year) %>%
+  tally() %>%
+  ggplot() +
+  geom_point(aes(x = Date_Year, 
+                 y = Regulator_Label, 
+                 size = n, 
+                 text = n,
+                 colour = Regulator_Label), 
+             alpha = 0.70,
+             show.legend = c(size = F, colour = F)) +
+  xlim(1970,2017) +
+  xlab("Year") +
+  ylab("International Organization") +
+  theme_minimal()
+
+ggplotly(Fig, tooltip = "text") %>%
+  layout(showlegend = FALSE) 
+```
+
+## Interaction between International Institutions
+
+-   Unilateralism or lack of cooperation
+
+-   Pooling of resources [@ClarkPoolDuelCooperation2021]
+
+-   Joint decision-making [@WiderbergMappingInstitutionalComplexity2016]
+
+-   Orchestration [@AbbottInternationalOrganizationsOrchestrators2014]
+
+-   Deference [@PrattDeferenceHierarchyInternational2018]
+
+-   Informal communication [@WiderbergMappingInstitutionalComplexity2016].
+
+-   Creation of formal collaboration forums [@GestInteractionsIntergovernmentalOrganizations2010]
+
+## Co-Authorship in Int'l Financial Regulation
+
+```{r}
+
+library(ggraph)
+library(tidygraph)
+Nodes_DF <- rio::import("Nodes_DF.csv")
+Edges_DF_Coauthorship <- rio::import("Edges_DF_Coauthorship.csv")
+library(ggraph)
+library(tidygraph)
+#Citation_Document <- rio::import("Citation_Document.csv")
+
+ 
+#  Calculate the weight of edges
+Edges_DF_Coauthorship <- Edges_DF_Coauthorship %>%
+  add_count(Regulator.x, Regulator.y) %>% 
+  rename(Weight_Edges = n)
+
+Net <- tbl_graph(nodes = Nodes_DF, edges = Edges_DF_Coauthorship, directed = FALSE)
+
+library(visNetwork) 
+Net %>% 
+  activate(nodes) %>%
+  mutate(label = Regulator) %>%
+  activate(edges) %>%
+  mutate(width = Weight_Edges) %>%
+  as.igraph() %>%
+  visIgraph(idToLabel = FALSE,
+            layout = "layout_nicely") %>%
+    visNodes(scaling = list(min = 10, max = 30),
+           color = list(background = "lightblue", 
+                        border = "darkblue",
+                        highlight = NA),
+           shadow = list(enabled = TRUE, size = 10)) %>%
+  visEdges(shadow = FALSE)%>%
+    visOptions(highlightNearest = TRUE,
+               nodesIdSelection = TRUE) %>%
+    visInteraction(navigationButtons = TRUE)
+
+
+
+```
+
+## Co-Authorship in Int'l Financial Regulation
+
+```{r}
+
+
+
+
+#Calculate the year group
+Edges_DF_Coauthorship <- Edges_DF_Coauthorship %>%
+  mutate(year_group = case_when(
+    Date_Year >= 1960 & Date_Year <= 1989 ~ "1975-1989",
+    Date_Year >= 1990 & Date_Year <= 1999 ~ "1990-1999",
+    Date_Year >= 2000 & Date_Year <= 2009~ "2000-2009",
+    Date_Year >= 2010 & Date_Year <= 2019 ~ "2010-2019",
+  ))
+
+Edges_DF_Coauthorship <- Edges_DF_Coauthorship %>%
+  mutate(Weight_Edges = Weight_Edges/5)
+
+Net <- tbl_graph(nodes = Nodes_DF, edges = Edges_DF_Coauthorship, directed = FALSE)
+ 
+
+Net %>% 
+  activate(nodes) %>%
+  filter(Regulator %in% c("BCBS", "IOSCO", "IMF", "IAIS", "FSB", "IASB", "JF", "IADI", "CPMI", "WB", "IOPS", "OECD", "CGFS", "FATF", "IAASB", "G20", "G7")) %>%
+  ggraph(layout = "kk") +
+  geom_edge_link(aes(width = Weight_Edges), colour = "gray", show.legend = F) +
+  geom_node_point(aes(fill = Regulator),
+                      size = 3,
+                  shape = 21,
+                  colour = "black", stroke = 1, show.legend = c(fill = FALSE, size = FALSE)) +
+  geom_node_text(aes(label = Regulator), size = 3, nudge_x = 0.2, nudge_y = 0.2) +
+  theme_graph() +
+  #theme_graph(foreground = 'steelblue') +
+  labs(subtitle = "Width of the edges = number of co-authored documents") +
+  facet_edges(~year_group)
+```
+
+## Co-Authorship in Int'l Financial Regulation
+
+```{r}
+#Edge_DF_Citation <- rio::import("Edge_DF_Citation.csv")
+
+
+#AllReg <- rio::import("All_Int_Reg.csv")
+
+# Turn JF into BCBS/IOSCO/IAIS
+Temp <- AllReg %>% 
+  filter(Regulator == "JF")
+Temp1 <- Temp %>% mutate(Regulator = "BCBS")
+Temp2 <- Temp %>% mutate(Regulator = "IOSCO")
+Temp3 <- Temp %>% mutate(Regulator = "IAIS")
+AllReg <- AllReg %>% 
+  bind_rows(Temp1, Temp2, Temp3) %>%
+  filter(Regulator != "JF")
+
+# Plot co-authored documents and add variable "Co_Authored"
+CoauthoredReg <-  AllReg %>%
+  drop_na(Title_Text) %>%
+  filter(Title_Text != "") %>%
+  add_count(Title_Text) %>%
+  rename("Number_Author" = n) %>%
+  mutate(Co_Authored = ifelse(Number_Author>1, "Co-authored", "Single-Authored")) %>%
+  filter(Regulator %in% c("BCBS", "IOSCO", "IMF", "IAIS", "FSB", "IASB", "JF", "IADI", "CPMI", "WB", "IOPS", "OECD", "CGFS", "FATF", "IAASB", "G20", "G7")) 
+
+
+ CoauthoredReg %>% ggplot() +
+  geom_bar(mapping =  aes(Date_Year, fill = Co_Authored)) +
+  labs(fill = "",
+       x = "Year",
+       y = "Numbe rof Documents") +
+  ggtitle("Count of Co-authored documents", subtitle = "each co-authored document is counted multiple times") +
+  theme_minimal() +
+  theme(legend.position = "top") +
+  geom_text(data = CoauthoredReg %>% 
+               group_by(Date_Year) %>%
+               summarize(num_rules = n(),
+                         num_coauthored_rules = sum(Number_Author>1)) %>%
+              mutate(num_coauthored_rules = ifelse(num_coauthored_rules==0, 
+                                                   NA, 
+                                                   num_coauthored_rules)),
+             mapping = aes(x=Date_Year, y = num_rules+8, label = num_coauthored_rules), size = 2) +
+   xlim(1970,2018) 
+
+ 
+
+ 
+
+```
+
+## Citations Analysis
+
+Different studies have explored textual references to another body or agreement
+
+-   Citations in treaties [@KimEmergentNetworkStructure2013]
+
+-   Citations in official documents published by public or private international organizations [@PerezTransnationalNetworkedConstitutionalism2018; @MurdieTiesThatBind2013]
+
+-   "Recognition" of one institution by another [@GreenOrderOutChaos2013; @GreenBlurredLinesPublicPrivate2017]
+
+-   Endorsement and deference of one institution by another [@PrattDeferenceHierarchyInternational2018]
+
+## Citations Across Time
+
+```{r}
+Citation_Document_Wide %>%
+  filter(Date_Year > 1980) %>%
+  group_by(Date_Year) %>%
+  summarise(Num_Documents = n(),
+            Num_Documents_Citing = n_distinct(Title_Text[Citation_Total>0])) %>%
+  mutate(Perc_Documents_Citing = Num_Documents_Citing/Num_Documents) %>%
+  ggplot()+
+  geom_col(mapping = aes(x=Date_Year, y = Perc_Documents_Citing),
+           fill = "lightblue", colour = "darkblue") +
+  geom_smooth(mapping = aes(x=Date_Year, y = Perc_Documents_Citing)) +
+  labs(title = "Share of rules citing other organizations",
+       x = "Year",
+       y = "Percentage of Rules") +
+    scale_y_continuous(labels = scales::percent) +
+  theme_linedraw()
+```
+
+## Who Cites?
+
+```{r}
+
+#Citation_Document_Wide <- rio::import("Citation_Document_Wide.csv")
+
+library(RColorBrewer)
+mycolors <- colorRampPalette(brewer.pal(8, "Set2"))(n_distinct(Citation_Document_Wide$Regulator))
+
+Citation_Document_Wide %>%
+  group_by(Regulator) %>%
+  summarise(Num_Documents = n(),
+            Num_Documents_Citing = n_distinct(Title_Text[Citation_Total>0])) %>%
+  mutate(Perc_Documents_Citing = Num_Documents_Citing/Num_Documents) %>%
+  ggplot()+
+  geom_col(mapping = aes(x = reorder(Regulator,-Perc_Documents_Citing), 
+                         y  = Perc_Documents_Citing,
+                         fill = Regulator)) +
+  labs(title = "Percentage of documents citing other institutions",
+       x = "International Institution",
+       y = "Percentage") +
+  scale_fill_manual(values = mycolors)+ 
+  scale_y_continuous(labels = scales::percent) +
+    theme_light() +
+  theme(legend.position = "none")
+```
+
+## Who Cites Whom?
+
+```{r}
+
+p <- Citation_Document_Long %>%
+  filter(Reg_Cited != "JF") %>%
+  group_by(Reg_Cited, Regulator) %>%
+  summarise(Document_Total = n_distinct(Title_Text),
+            Document_Citing = n_distinct(Title_Text[Num_Citation>0])) %>%
+  mutate(Perc_Citing = Document_Citing/Document_Total) %>%
+  ggplot()+
+  geom_tile(mapping = aes(x = Regulator, y  = Reg_Cited, fill= Perc_Citing)) +
+  labs( title = "Percentage of documents citing others",
+        y = "Target Citation",
+        x = "Source Citation",
+        fill = "Percentage Citation") +
+  theme(legend.position = "bottom") +
+  scale_fill_gradient(low="white", high="blue", labels = scales::percent) +
+    theme(axis.text = element_text(size = 4))  
+
+ggplotly(p)  
+```
+
+## Interpreting Citations
+
+> -   "*In April this year, the **IMF** and **World Bank** published an expanded and updated version of the 2002 report*." (**Financial Stability Board**)
+>
+> -   "*The **FSB** endorsed the **IOSCO** Principles for Financial Benchmarks (IOSCO Principles) published in July 2013 which cover the important issues of benchmark governance, integrity, methodology, quality and accountability*" (**Financial Stability Board**)
+>
+> -   *"In particular,the **IAIS** is a member of the **FSB**, founding member and co-parent of the **Joint Forum**, along with the **BCBS** and **IOSCO***" (**IAIS**)
+
+## Empirical Approach
+
+Natural Language Processing: application of computational techniques to understand text and spoken language
+
+1.  Sentence Segmentation,
+2.  Tokenization/Lemmatization,
+3.  Part-of-Speech tagging,
+4.  Dependency parsing:
+
+- All the steps are done using **UDPipe** [@StrakaTokenizingPOSTagging2017]: open-source and trainable parser.
+
+```{r}
+#Citation_All <- rio::import("Citation_All.csv")
+library(udpipe)
+library(igraph)
+library(ggraph)
+library(ggplot2)
+udmodel <- udpipe::udpipe_load_model(file = here::here("english-ewt-ud-2.5-191206.udpipe"))
+
+plot_annotation_1 <- function(x, size = 3){
+  stopifnot(is.data.frame(x) & all(c("sentence_id", "token_id", "head_token_id", "dep_rel",
+                                     "token_id", "token", "lemma", "upos", "xpos", "feats") %in% colnames(x)))
+  x <- x[!is.na(x$head_token_id), ]
+  x <- x[x$sentence_id %in% min(x$sentence_id), ]
+  edges <- x[x$head_token_id != 0, c("token_id", "head_token_id", "dep_rel")]
+  edges$label <- edges$dep_rel
+  g <- graph_from_data_frame(edges,
+                             vertices = x[, c("token_id", "token", "lemma", "upos", "xpos", "feats")],
+                             directed = TRUE)
+  ggraph(g, layout = "linear") +
+       geom_node_label(ggplot2::aes(label = token), nudge_y = -0.1, col = "darkgreen", size = size*2, fontface = "bold") +
+    geom_node_text(ggplot2::aes(label = upos), nudge_y = -0.35, size = size*1.5, colour = "white") +
+    theme_graph(base_family = "Arial Narrow") +
+  geom_edge_arc(ggplot2::aes(label = dep_rel, vjust = -0.20),  colour = "white",
+                 label_colour = "white", check_overlap = TRUE, label_size = size) 
+}
+
+plot_annotation_2 <- function(x, size = 3){
+  stopifnot(is.data.frame(x) & all(c("sentence_id", "token_id", "head_token_id", "dep_rel",
+                                     "token_id", "token", "lemma", "upos", "xpos", "feats") %in% colnames(x)))
+  x <- x[!is.na(x$head_token_id), ]
+  x <- x[x$sentence_id %in% min(x$sentence_id), ]
+  edges <- x[x$head_token_id != 0, c("token_id", "head_token_id", "dep_rel")]
+  edges$label <- edges$dep_rel
+  g <- graph_from_data_frame(edges,
+                             vertices = x[, c("token_id", "token", "lemma", "upos", "xpos", "feats")],
+                             directed = TRUE)
+  ggraph(g, layout = "linear") +
+       geom_node_label(ggplot2::aes(label = token), nudge_y = -0.1, col = "darkgreen", size = size*2, fontface = "bold") +
+    geom_node_text(ggplot2::aes(label = upos), nudge_y = -0.35, ) +
+    theme_graph(base_family = "Arial Narrow") +
+  geom_edge_arc(ggplot2::aes(label = dep_rel, vjust = -0.20),  colour = "white",
+                 label_colour = "white", check_overlap = TRUE, label_size = size) 
+}
+
+plot_annotation_3 <- function(x, size = 3){
+  stopifnot(is.data.frame(x) & all(c("sentence_id", "token_id", "head_token_id", "dep_rel",
+                                     "token_id", "token", "lemma", "upos", "xpos", "feats") %in% colnames(x)))
+  x <- x[!is.na(x$head_token_id), ]
+  x <- x[x$sentence_id %in% min(x$sentence_id), ]
+  edges <- x[x$head_token_id != 0, c("token_id", "head_token_id", "dep_rel")]
+  edges$label <- edges$dep_rel
+  g <- graph_from_data_frame(edges,
+                             vertices = x[, c("token_id", "token", "lemma", "upos", "xpos", "feats")],
+                             directed = TRUE)
+  ggraph(g, layout = "linear") +
+       geom_node_label(ggplot2::aes(label = token), nudge_y = -0.1, col = "darkgreen", size = size*2, fontface = "bold") +
+    geom_node_text(ggplot2::aes(label = upos), nudge_y = -0.35, size = size*1.5) +
+    theme_graph(base_family = "Arial Narrow") +
+    geom_edge_arc(ggplot2::aes(label = dep_rel, vjust = -0.35),
+               arrow = grid::arrow(length = unit(4, 'mm'), ends = "last", type = "closed"),
+               end_cap = ggraph::label_rect("wordswordswords"),
+               label_colour = "red", check_overlap = TRUE, label_size = size*1.5) 
+
+    #labs(title = "udpipe output", subtitle = "tokenisation, parts of speech tagging & dependency relations")
+}
+ 
+
+Sentence <-  "In April 2020, the IMF published a new report"
+AnnotatedSentence <- udpipe_annotate(udmodel, x = Sentence)
+AnnotatedSentence <- as.data.frame(AnnotatedSentence, detailed = TRUE)
+
+```
+
+## Tokenization
+
+```{r}
+plot_annotation_1(AnnotatedSentence)
+
+```
+
+## 
+
+## Part of Speech Tagging
+
+```{r}
+plot_annotation_2(AnnotatedSentence)
+
+```
+
+## Dependency Parsing
+
+-   Task of analyzing the dependency structure of a given input sentence automatically
+
+-   Annotation scheme developed by the Universal Dependencies project [@deMarneffeUniversalDependencies2021]
+
+    ## 
+
+![](images/UD%20-%20Typology%20of%20synctactic%20relations.png){width="1291"}
+
+## 
+
+## Dependency Parsing
+
+```{r}
+plot_annotation_3(AnnotatedSentence)
+
+```
+
+## Analysis
+
+-   Identify the **clauses** (verbs) in the corpus
+
+-   Identify the **nominals** (noun phrase) that are dependent to those verbs
+
+-   Identify the position of the nominals vis-a-vis the verb
+
+    -   nominal subject (`nsubj`): "**Maria** left"
+
+    -   direct object (`obj`): "Maria has left a **note**"
+
+    -   indirect object (`iobj`): "Maria could have left **Pedro** a note"
+
+-   Filter nominals that refer to an international institution
+
+## Verbs associated with International Financial Institutions
+
+```{r}
+
+library(ggwordcloud)
+
+#Org_Pos_All <- rio::import("Org_Pos_All.csv")
+
+Org_Pos_All %>%
+   mutate(across(where(is.character), ~na_if(., ""))) %>%
+  filter(is.na(OrgSubject)==F |is.na(OrgObject)==F) %>%
+  mutate(type = case_when(
+    is.na(OrgSubject)==F & is.na(OrgObject)==T ~ "Subject",
+    is.na(OrgSubject)==T & is.na(OrgObject)==F ~ "Object",
+    is.na(OrgSubject)==F & is.na(OrgObject)==F ~ "Subject/Object"
+  )) %>%
+  filter(type == "Subject" | type == "Subject/Object")  %>%
+  group_by(type, VerbLemma) %>%
+  summarise(num_Lemma = n()) %>%
+  arrange(desc(num_Lemma)) %>%
+  filter(row_number()==1:50) %>%
+  mutate(total =sum(num_Lemma)) %>%
+  mutate(num_Lemma =num_Lemma/total) %>%
+  #mutate(num_Lemma = abs(rnorm(num_Lemma))*1000) %>%
+  mutate (group = fct_relevel(type, c("Subject", "Subject/Object"))) %>%      # Reordering group factor levels
+  #slice(1:40) %>%
+  ggplot() +
+  geom_text_wordcloud(aes(label= VerbLemma, 
+                               size = num_Lemma,
+                               color = num_Lemma),
+                           rm_outside = TRUE) +
+  
+  theme_minimal() +
+  scale_size_area(max_size = 9) +
+  scale_color_gradient(low = "darkred", high = "red") +
+      facet_wrap(~group)
+```
+
+## Verbs Linking Different Institutions
+
+```{r}
+
+Org_Pos_count <- Org_Pos_All %>%
+   mutate(across(where(is.character), ~na_if(., ""))) %>%
+  filter(OrgSubject != "IAASB") %>%
+  drop_na(OrgObject) %>%
+  drop_na(OrgSubject) %>%
+  group_by(OrgSubject, OrgObject, VerbLemma) %>%
+  count() %>%
+  arrange(OrgSubject, OrgObject, desc(n)) %>%
+  group_by(OrgSubject, OrgObject) %>%
+  slice_head(n = 1) %>%
+  mutate(VerbLemma = ifelse(OrgSubject == OrgObject, NA, VerbLemma)) %>%
+  mutate(n = ifelse(OrgSubject == OrgObject, NA, n))
+
+kw <- 2
+Org_Pos_count$Sentence_Sample <- NA
+for (kw in 1:nrow(Org_Pos_count)) {
+  Org_Pos_Selected <- Org_Pos_count[kw,]
+  if(is.na(Org_Pos_Selected$n)) next
+   Org_Pos_count$Sentence_Sample[kw] <- semi_join(Org_Pos_All,Org_Pos_Selected ) %>%
+    sample_n(1) %>%
+    select(Sentence) %>%
+    pull()
+   
+}
+ 
+
+P <- ggplot(data=Org_Pos_count) +
+  geom_tile(aes(x = OrgSubject,
+                y = OrgObject,
+                fill = n)) + 
+  geom_text(aes(x = OrgSubject,
+                y = OrgObject,
+                label = VerbLemma,
+                 text = stringr::str_wrap(
+                  string = Sentence_Sample,
+                  width = 20,
+                  indent = 1, # let's add extra space from the margins
+                  exdent = 1  # let's add extra space from the margins
+                )),
+            size = 1.9) +
+  scale_fill_gradient(low = "white", high = "red") +
+  theme_minimal() +
+  labs(x = "Subject",
+       y = "Object")
+
+ 
+ ggplotly(P, tooltip = "text") %>%
+  layout(showlegend = FALSE) 
+
+```
+
+## Next Steps
+
+-   Validate, validate, validate
+-   Build dictionary to associate verbs with different types of coordination/hierarchy among IOs
+-   Validate, validate, validate
+-   Use approach to text the determinants of different types of coordination hierarchy
+-   Explore the impact of observed patterns of cooperation over the content of the rules
+
+# Additional Slides
+
+## Part of Speech Tagging
+
+| Traditional POS | UPOS    | Category                                                 |
+|------------------|------------------|-----------------------------------|
+| noun            | `NOUN`  | common noun                                              |
+|                 | `PROPN` | proper noun                                              |
+| verb            | `VERB`  | main verb                                                |
+|                 | `AUX`   | auxiliary verb or other tense, aspect, or mood particle  |
+| adjective       | `ADJ`   | adjective                                                |
+|                 | `DET`   | determiner (including article)                           |
+|                 | `NUM`   | numeral (cardinal)                                       |
+| adverb          | `ADV`   | adverb                                                   |
+| pronoun         | `PRON`  | pronoun                                                  |
+| preposition     | `ADP`   | adposition (preposition/postposition)                    |
+| conjunction     | `CCONJ` | coordinating conjunction                                 |
+|                 | `SCONJ` | subordinating conjunction                                |
+| interjection    | `INTJ`  | interjection                                             |
+| \-              | `PART`  | particle (special single word markers in some languages) |
+| \-              | `X`     | other (e.g. words in foreign language expressions)       |
+| \-              | `SYM`   | non-punctuation symbols (e.g. a hash (#) or emojii)      |
+| \-              | `PUNCT` | punctuation                                              |
+
+: {tbl-colwidths="\[15,15, 70\]"}
+
+## Taxonomy of Dependency Relations/1
+
+Source: [@deMarneffeUniversalDependencies2021]
+
+-   `acl`: adnominal clause; finite or non-finite clause modifying a nominal
+
+-   `advcl`: adverbial clause modifying a predicate or modifier word
+
+-   `advmod`: adverb or adverbial phrase modifying a predicate or modifier word
+
+-   `amod`: adjectival modifier of a nominal
+
+-   `appos`: appositional modifier; a nominal used to define, name, or describe the referent of a preceding nominal
+
+-   `aux`: auxiliary; links a function word expressing tense, mood, aspect, voice, or evidentiality to a predicate
+
+## Taxonomy of Dependency Relations/2
+
+-   `case`: links a case-marking element (preposition, postposition, or clitic) to a nominal
+
+-   `cc`: links a coordinating conjunction to the following conjunct
+
+-   `ccomp`: clausal complement of a verb or adjective without an obligatorily controlled subject
+
+-   `clf:` (numeral) classifier; a word reflecting a conceptual classification of nouns linked to a numeric modifier or determiner
+
+-   `compound`: any kind of word-level compounding (noun compound, serial verb, phrasal verb)
+
+-   `conj`: conjunct; links two elements which are conjoined
+
+## Taxonomy of Dependency Relations/3
+
+-   `cop`: copula; links a function word used to connect a subject and a nonverbal predicate to the nonverbal predicate`csubj`: clausal syntactic subject of a predicate
+
+-   `dep` unspecified dependency, used when a more precise relation cannot be determined det determiner (article, demonstrative, etc.) in a nominal
+
+-   `discourse`: discourse element (interjection, filler, or non-adverbial discourse marker)
+
+-   `dislocated`: a peripheral (initial or final) nominal in a clause that does not fill a regular role of the predicate but has roles such as topic or afterthought
+
+-   `expl:` expletive; links a pronominal form in a core argument position but not assigned any semantic role to a predicate
+
+## Taxonomy of Dependency Relations/4
+
+-   `fixed` fixed multiword expression; links elements of grammaticalized expressions that behave as function words or short adverbials
+
+-   `flat`: flat multiword expression; links elements of headless semi-fixed multiword expressions like names
+
+-   `goeswith`: links parts of a word that are separated but should go together according to standard orthography or linguistic wordhood
+
+-   `iobj`: indirect object; nominal core argument of a verb that is not its subject or (direct) object
+
+-   `list`: links elements of comparable items interpreted as a list
+
+## Taxonomy of Dependency Relations/5
+
+-   `mark`: marker; links a function word marking a clause as subordinate to the predicate of the clause
+
+-   `nmod`: nominal modifier; a nominal modifying another nominal
+
+-   `nummod`: numeric modifier; numeral in a nominal
+
+-   `nsubj` nominal subject; nominal core argument which is the syntactic subject (or pivot) of a predicate
+
+-   `obj` : object; the core argument nominal which is the most basic core argument that is not the subject, typically the most directly affected participant
+
+-   `obl`: oblique; a nominal functioning as a non-core (oblique) modifier of a predicate
+
+## Taxonomy of Dependency Relations/6
+
+-   `orphan:` links orphaned dependents of an elided predicate
+
+-   `parataxis`:links constituents placed side by side with no explicit coordination or subordination
+
+-   `punct`: punctuation attached to the head of its clause or phrase
+
+-   `reparandum`: repair of a (normally spoken language) disfluency
+
+-   `root`: root of the sentence
+
+-   `vocative`: nominal directed to an addressee
+
+-   `xcomp`: clausal complement of a verb or adjective with an obligatorily controlled subject
+
+## Works Cited
