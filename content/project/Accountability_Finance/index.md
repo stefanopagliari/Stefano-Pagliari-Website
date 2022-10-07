@@ -10,7 +10,7 @@ links:
 #  name: Follow
 #  url: https://twitter.com/georgecushen
 slides: example
-summary: The research with [Iosif Kovras](https://ucy.ac.cy/dir/el/cb-profile/ikovra01) (University of Cyprus) explores the policies responses introduced after the financial crisis by national authorities and international financial institutioins to hold individuals accountable for illegal or unethical behaviors associated with the global financial crisis.
+summary: The research with [Iosif Kovras](https://ucy.ac.cy/dir/el/cb-profile/ikovra01) (University of Cyprus) explores the policies introduced after the financial crisis by national authorities and international financial institutioins to hold individuals accountable for illegal or unethical behaviors associated with the global financial crisis.
 #tags:
 #- Deep Learning
 title: 4. Accountability after Financial Crises
