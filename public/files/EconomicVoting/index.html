@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title></title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="css/stefano.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Economic Voting
+
+<img src="Pocketbook_Voting.jpg" alt="" style="width: 400px; object-fit: fill">
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## What determines how people vote? 
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Ideology/Values
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Party affiliation
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Class
+- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->Gender
+- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->Age
+- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->Ethnicity
+- &shy;<!-- .element: class="fragment" data-fragment-index="7" -->Religion
+- &shy;<!-- .element: class="fragment" data-fragment-index="8" -->Family
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Economic voting  
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Theoretical perspective which argues that voter behavior is heavily influenced by the **economic conditions** in their country at the time of the election.
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Relationship between **macroeconomic** fluctuations and variations in the **incumbent** **vote** or **popularity**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Voters reward incumbents for good economic performances
+	- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->Voters punish incumbents when the economy is not doing well
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Which economic indicators affect voting?
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Growth** (Powell and Whitten 1993; Dassonneville and Lewis-Beck 2014) 
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->**Unemployment** (Roberts 2008; Tucker 2001)
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**Inflation** (Palmer and Whitten 1999; Chappell and Veiga 2000)
+- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->**Housing Prices** (Ansell and Adler 2019)
+- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->**Mortgage Credit** (Antoniades and Calomiris 2018)
+- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->**Stock Market** (Prechter et al. 2012)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Economic Voting: the Evidence
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**US:**  incumbent parties more votes with high economic growth, low inflation, and low unemployment  in U.S. presidential elections win (e.g. Kramer 1971, Tufte 1980, Hibbs 1987, Alesina and Rosenthal 1995) and in Congressional elections (Tufte 1975)
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->**Europe**: Evidence of economic voting has also been found in European countries such as Germany, France, Italy, Spain, UK, Denmark, Norway, and Sweden (Lewis-Beck 1990; Lewis-Beck and Nadeau 2012);
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**Latin American countries** (Benton 2005; Singer and Carlin 2013);
+- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->**Sub-Saharan African countries** (Bratton et al. 2012);
+- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->**South and East Asia** and **Middle East** (Gelineau 2013)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Economic Voting: Prospective vs. Retrospective Voting
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Prospective Voting**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Downs (1957), “An Economic Theory of Democracy”: Voters compare the expected utility of having party A (incumbent) in government with the expected utility of having party B (opposition) in government, and vote accordingly 
+	- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Voters behave as sophisticated"bankers" (MacKuen et al. 1992) and incorporates new information about **future economic performance** when voting.   
+- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->**Retrospective voting**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->Voters consider the economic performance of the immediate **past** rather than future economic performance (Fiorina 1978; 1981)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Pocketbook vs. Sociotropic voting
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Pocketbook (egotropic) voting:** 
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Voters are influenced by the personal economic circumstances (Downs 1957)
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**National (sociotropic) voting:**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->Voters are influenced by the nation’s economic condition which they see as an “indicator of the incumbent’s ability to promote their own economic welfare” (Kinder & Kiewiet 1981)
+- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->**Evidence**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->Different studies have found that  sociotropic dominates egotropic evaluations
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Objective vs. Subjective Assessment of the Economy
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Public evaluations of the national economy vary systematically with:
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->**Information** 
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**Media exposure**: viewers of pro-government media are more likely to think that the national economy has done better
+- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->**Partisanship:** subjective perception of the economy (good vs. bad) is often a reflection of how the voter sees the ruling party (good or bad) 
+- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->**Personal experiences**  
+- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->**Demographic characteristics**
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Positional Economic Voting
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Standard economic voting arguments assume that all voters have the same economic priorities.
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Voters may disagree on which economic policies to pursue
+	- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->e.g. some voters favor less unemployment and more progressive taxation
+	- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->other voters favor less inflation and less progressive taxation
+- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->Positional economic voter targets the policy of the party rather than the incumbency status of the party
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## **Patrimonial economic voting**
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->The assets (house, stocks) or wealth of voters influence the extent to which they favour parties on the left/right (Lewis-Beck, Nadeau, and Foucault 2013; Fraile and Lewis-Beck 2013)
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Voters who own more property, in particular high-risk assets, are held to be more right-wing in their political preferences.
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Vote is influenced by the value of some kinds of assets matters (especially stocks and real estate properties), while other assets (savings in bonds and funds) do not affect voting behavior .
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Political Context and Economic Voting
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->It is not always clear which policymakers is responsible for economic outcomes (e.g. the legislature, the executive, the central bank, the treasury, regulatory agency)
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->**Number of Parties in Government**
+	- economic voting stronger when government is dominated by one party
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**Parliamentary vs. Presidential System**
+	- economic vote less likely when the president and the prime minister of opposing camps
+- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->**Supranational-level**
+	- economic voting weaker when voters perceive that the European Union has more responsibility for economic conditions
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Economic Context and Economic Voting
+
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Globalization**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->The more national economies come to depend on foreign trade, the weaker the connections between economic performance and support for political incumbents (Hellwig and Samuels 2007)
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**Economic Crises**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->Dassonneville and Lewis-Beck (2014) demonstrate that in hard economic times, incumbents are punished more than they are rewarded in good economic time
+- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->**Level of Development**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->Evidence of economic voting has been found not only in US and Europe, but also in developing and emerging countries
+</div></script></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/menu/menu.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+	  function isLight(color) {
+		let hex = color.replace('#', '');
+
+		// convert #fff => #ffffff
+		if(hex.length == 3){
+			hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+		}
+
+		const c_r = parseInt(hex.substr(0, 2), 16);
+		const c_g = parseInt(hex.substr(2, 2), 16);
+		const c_b = parseInt(hex.substr(4, 2), 16);
+		const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+		return brightness > 155;
+	}
+
+	var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--r-background-color').trim();
+
+	if(isLight(bgColor)){
+		document.body.classList.add('has-light-background');
+	} else {
+		document.body.classList.add('has-dark-background');
+	}
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+		  RevealMenu,
+        ],
+
+
+    	allottedTime: 120 * 1000,
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+		markdown: {
+		  gfm: true,
+		  mangle: true,
+		  pedantic: false,
+		  smartLists: false,
+		  smartypants: false,
+		},
+
+		customcontrols: {
+			controls: [
+				{id: 'toggle-overview',
+				title: 'Toggle overview (O)',
+				icon: '<i class="fa fa-th"></i>',
+				action: 'Reveal.toggleOverview();'
+				},
+			]
+		},
+		menu: {
+			loadIcons: false
+		}
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":960,"height":700,"margin":0.04,"controls":true,"progress":true,"slideNumber":true,"center":false,"transition":"fade","transitionSpeed":"slow"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+
+  <!-- created with Advanced Slides -->
+</html>
