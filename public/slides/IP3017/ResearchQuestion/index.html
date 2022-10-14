@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title></title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="css/stefano.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# How to Formulate a Research Question
+
+Stefano Pagliari
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Dissertation vs. Past Education
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Past Education** (high school, previous modules): somebody tell us what the important and meaningful questions are
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->**Dissertation:** you have to specify the topic and question, and you have to provide the answer
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Step 1: Choose a Research Topic
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### How to Identify a Research Topic
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Where do we get our ideas from? How do we come up with new ideas?
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->[Karl Popper (1934)](PopperLogicScientificDiscovery1935): “*there is no such thing as a logical method of having new ideas … Discovery contains an “irrational element” or a “creative intuition*”"
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->No rules (and no good textbooks) about picking up a topic
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Sources of Research Topic
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Personal experience:** Your own life experiences, curiosity about events or issues we observe in the world
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->**Nonscholarly sources:** Newspapers, broadcast, and Internet sources. 
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**Academic literature**:
+	- a conclusion in a research article that you believe to be incorrect. 
+	- two studies that reach conflicting conclusions.  
+	- a general argument advanced in an article that could be applied to a new situation.
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Step 2: Choose a Research Topic
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+> [Fischer (1970)](FischerHistoriansFallaciesLogic1970): “Questions are the engines of intellect, the cerebral machines which convert energy to motion, and curiosity to controlled inquiry”
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Why do you need a research question?
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->to get clear about what kind of knowledge you want to obtain in your research
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->to focus & narrow your search for information;
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->to ensures that your answer in some way contributes to existing knowledge
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Types of Research Question
+
+
+
+<div class="mermaid">
+flowchart TD;
+A[Research Question]-->B[Normative];  
+A[Research Question]-->C[Positive];  
+C-->E[Theoretical];
+D-->F[Descriptive];  
+D-->G[Explanatory];  
+D-->H[Predictive];  
+C-->D[Empirical];
+style A fill:#f9f,stroke:#333,stroke-width:4px
+
+</div>
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Normative vs. Positive Research
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Normative Research  Question
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Seek to adjudicate among different understanding of what ought to be
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->E.g. To what extent should liberal democracies tolerate illiberal cultures?
+
+### Positive Research Question 
+- Focus on describing, understanding, explaining, or predicting reality as it is.
+- E.g. What explains the process of democratization in developing countries?
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Relationship between Normative vs. Positive Questions
+- Normative concerns inevitably drive the selection of the research question
+- Conclusions from positive research have normative implications
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+> **Activity: Are these positives or normative questions**?
+> 1. Fracking should be banned because it is wrong to risk damaging the pristine English country-side.
+> 2. Minimum voting age should be lowered because it discourages political participation.
+> 3. Senior citizens are more likely to vote than college students.
+> 4. Freedom of religion is a fundamental right of all people.
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Theoretical vs. Empirical Research
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Theoretical vs. Empirical Research 
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Theoretical Research
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Deals with the analysis of the properties of abstract concepts and relationships between them.
+	- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Unlike normative research, it does not attach any moral values to the abstract concepts it analyses
+- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->Empirical Research
+	- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->Theory still plays a role, but the research goes beyond the world of abstractions.
+	- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->Makes reference to real-life phenomena and empirical facts.
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Descriptive vs. Explanatory Research
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Descriptive Questions
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Gathering and interpreting facts and observable features of the political world through: words, numbers or models
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->**Who, What, Where, and When**
+- **Example**
+	- Have populist parties increased their popularity in Europe?
+	- Is global terrorism increasing?
+	- Is Azerbaijan a democracy?
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Explanatory Questions
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Explanations point to the **causes** of events
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->particular case (causes of WWI),
+	- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->general phenomenon (causes of civil wars)
+- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->**Types** of explanatory questions
+	- ‘**Why**?’ questions about causal effects
+	- ‘**How**?’ questions about causal mechanisms.
+- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->**Examples**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->Why have populist parties increased their popularity in Europe?
+	- &shy;<!-- .element: class="fragment" data-fragment-index="7" -->What factors explain the evolution of the democratization process in Azerbaijan?
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Formulating Explanatory Questions
+
+
+<img src="Explanatory Question and Hypothesis.png" alt="" style="width: 500px; object-fit: fill">
+
+
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Hypotheses** and Explanatory Questions
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Explanatory questions allows us to test what factors (independent variable) are causally connected to a known outcome (dependent variable)
+- Examples
+	- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Does a country’s regime type influence ethnic conflict?
+	- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->How do the attitudes of voters towards the EU explain changes in the vote in the 2016 elections?
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Relationship between Description and Explanation
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Explanation** is impossible without prior description
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->**Description** is of little use if it cannot provide insights about the deeper casual structure of the social world
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## How to Formulate a Good Research Questions
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Two Criteria: Real World and Academic Relevance
+
+- [Keohane, King, Verba (1994)](KingDesigningSocialInquiry1994): Two principles
+	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Real World Relevance:** A research project should pose a question that is “important in the real world” (real consequences for social, political, or economic life) and
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->**Academic Relevance:** “make a specific contribution to an identifiable scholarly literature” (KKV, p. 15)
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Real World and Academic Relevance
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->From the **Academic Literature** to **Real World**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Survey the literature on the topic of interest
+	- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Start from a broad question and narrow it down to a more specific question concerning a real-world aspect of the topic 
+- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->From **Real World** to the **Academic Literature**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->Start from real world issue you want to study
+	- Consider what more general phenomenon or issue the research question addresses
+	- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->How might your question be linked to a broader area of inquiry in the literature?
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Pitfalls to avoid in formulating a research question
+
+- **Avoid questions that are too big**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Consider the following question: "*How does globalization impact the state"*. This question involves the relationship between broad concepts whose relationship is unlikely to be satisfactorily explored in the context of a single dissertation.
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Choose one feature of globalization and one feature of the basis of the nation state that will enable us to explore more concretely the relationship between globalization and the nation state.
+	- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->E.g. “How does exposure to foreign trade impact welfare policies?”"
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Pitfalls to avoid in formulating a research question
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Do not ask a Question that begs another question**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->“*Why was American slavery the most awful that was ever known*?”
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**Do not ask tautological questions**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->*Do politically apathetic people vote in elections*?
+- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->**Avoid the PhD Question**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->Don’t pick a question that is so ambitious that requires 4 years
+	- &shy;<!-- .element: class="fragment" data-fragment-index="7" -->Remember also that you have serious time and material constraints. You don’t have much time to do the research
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Pitfalls to avoid in formulating a research question
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Do not ask a question about the future**  
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->“Will the Security Council be reformed?”
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**Do not study events too recents or too distant in the past**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->Find something that happened in the past, i.e. that is concluded. No moving targets
+	- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->But not too distant in the past so that you can’t find materials
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Pitfalls to avoid in formulating a research question
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Do not ask questions based on **broad/confusing/ambiguous terms**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Terms should be clearly defined (see week on concepts)
+	- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Instead of asking"*How does globalization impact the state?"* choose one feature of globalization and of the nation that can be analyzed
+	- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->E.g. “How does exposure to foreign trade impact welfare policies?”"
+- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->Do not ask **rhetorical questions** or **questions answered definitely**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->E.g. "*Does the Daily Mail portray a conservative political ideology*?
+	- &shy;<!-- .element: class="fragment" data-fragment-index="7" -->You need to show that others who have addressed it have failed in some way to provide a definitive answer to it. The literature review provides with this.
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Activities
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+> **Activity: Select one of the topic below and formulate an appropriate research question**
+> - Topic:
+> - Globalization
+> - Russian-Ukranian relations
+> - Energy Crisis crisis
+> - Terrorism
+> - Climate Change
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+> **Activity: Analysis of existing research questions**
+> 1) Access the websites of some leading academic journals in your field
+> 	- **Politics:**  e.g. Comparative Political Studies
+> 	- **IP:** International Organization
+> 	- **IPE:** e.g. Review of International Political Economy 
+> 2) Choose an article and read title and abstract
+> 3) **Task 1:** What is the research question?
+> 4) **Task 2:** Think about how you might investigate a similar topic to those found in each article you have chosen. Write down three new research questions below.
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+> **Activity: Formulate Research Questions from the News**
+> - Visit the website of the BBC News
+> - Identify an article of interest
+> - Write six research questions based on political news stories from the organization you selected.
+</div></script></section><section data-markdown><script type="text/template"></script></section></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/menu/menu.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+	  function isLight(color) {
+		let hex = color.replace('#', '');
+
+		// convert #fff => #ffffff
+		if(hex.length == 3){
+			hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+		}
+
+		const c_r = parseInt(hex.substr(0, 2), 16);
+		const c_g = parseInt(hex.substr(2, 2), 16);
+		const c_b = parseInt(hex.substr(4, 2), 16);
+		const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+		return brightness > 155;
+	}
+
+	var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--r-background-color').trim();
+
+	if(isLight(bgColor)){
+		document.body.classList.add('has-light-background');
+	} else {
+		document.body.classList.add('has-dark-background');
+	}
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+		  RevealMenu,
+        ],
+
+
+    	allottedTime: 120 * 1000,
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+		markdown: {
+		  gfm: true,
+		  mangle: true,
+		  pedantic: false,
+		  smartLists: false,
+		  smartypants: false,
+		},
+
+		customcontrols: {
+			controls: [
+				{id: 'toggle-overview',
+				title: 'Toggle overview (O)',
+				icon: '<i class="fa fa-th"></i>',
+				action: 'Reveal.toggleOverview();'
+				},
+			]
+		},
+		menu: {
+			loadIcons: false
+		}
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":960,"height":700,"margin":0.04,"controls":true,"progress":true,"slideNumber":true,"transition":"fade","transitionSpeed":"slow"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+
+  <!-- created with Advanced Slides -->
+</html>
