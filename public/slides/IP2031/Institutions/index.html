@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title></title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="css/stefano.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+
+	<link rel="stylesheet" href="plugin/reveal-pointer/pointer.css" />
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# How do Political Institutions Affect the Economy?
+
+<br>
+
+**Stefano Pagliari**
+
+**IP2031 Comparative Political Economy**
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Institutions in CPE vs. Economics
+- Hall et al. (1997): CPE moves beyond the “tendency of conventional economic analysis to treat all developed and developing economies as if they were institutionally identical”
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## What are Institutions? 
+- North (1990): “Institutions are the **rules of the game** in a society or, more formally, are the humanly devised constraints that shape human interaction ....”
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Political Institutions
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Formal** and **informal** rules, practices, and regularities that **guide and constrain political choices and activities**
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Narrower definition: **state institutions** such as government, parliament, administration as well as federal and communal institutions.
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Broader definition: **social organizations** such as parties, associations, and mass media
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Political Regimes
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Definition of Political Regimes
+
+ - Fishman (1990): “*a regime may be thought of as the formal and informal organization of the center of political power, and of its relations with the broader society. A regime determines **who has access to political power**, and **how those who are in power deal with those who are not***”.
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Democratic vs. Authoritarian Regime
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Democractic regimes**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Przeworski (1991)’s minimalist definition:“*Democracy is a system in which parties lose elections*”
+	- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Different Types (e.g. Parliamentary ; Semi-Presidential ; Presidential)
+- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->**Authoritarian regimes**
+	- Party 
+	- Personal 
+	- Military,
+	- Monarchy
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Electoral Democracy Around the World
+<iframe src="https://ourworldindata.org/explorers/democracy?country=ARG~AUS~BWA~CHN&Dataset=Varieties+of+Democracy&Metric=Electoral+democracy&Sub-metric=Main+index&hideControls=true" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Democracy and Non-Democracy Across Time
+
+<iframe src="https://ourworldindata.org/grapher/share-democracies-nondemocracies-bmr" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Democracy and Economic Growth
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Lee Thesis
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Authoritarian regime is needed for promoting economic development, particularly in relatively poor countries.
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Examples
+	- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->1930s: Authoritarian regimes in the Great Depression
+	- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->1980s: Asian Tigers (Singapore, South Korea, and Taiwan) 
+	- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->1980s-2000s: Rise of China
+- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->Przeworski et al. (2000): “For every developmental miracle, there have been several dictatorships that have engaged in grandiose projects that have ended in ruin, or else dictatorships that have simply stolen and squandered”
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Political Regimes and Property Rights
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Political Regimes and the Threat of Expropriation
+
+
+<div class="mermaid">
+flowchart TD  
+A(Democracy) --> B[Universal Franchise] --> C[Greater representation of  lower income groups] --> D["Incentives to redistribute/expropriate wealth (Meltzer and Richard 1981)"] --> E[Lower investments]
+
+</div>
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Political Regimes and Credible Commitment  (North 1990)
+
+
+<div class="mermaid">
+flowchart TD  
+A(Democracy) --> B[Dispersion of power across different actors] --> C["More of people negatively affected by expropriation who can veto policies (Olson 1993)"] --> D[Greater limits on the capacty of ruler to manipulate economy] --> E[Higher investments] 
+
+</div>
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Britain and the Glorious Revolution of 1688
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**North and Weingast (1989**): establishment of institutions of limited monarchy in England after 1688 allowed the sovereign to credibly commit to repayment of debts and to the security of property rights
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->**Schultz and Weingast (2003**): Britain capable to borrow more cheaply and to outspend France in numerous wars despite smaller economy and population;
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Democracy and Property Rights: Cross-Country Evidence
+| Country (Year 1982) | Rule of Law Index | Electoral Rights Index |
+| ------------------- | ----------------- | ---------------------- |
+| Chile               | 0.83              | 0.17                   |
+| Ethiopia            | 0.50              | 0.00                   |
+| Hong Kong           | 1                 | 0.50                   |
+| Myanmar             | 0.50              | 0.00                   |
+| Singapore           | 1.00              | 0.50                   |
+| Taiwan                    |1.00                   |0.33                        |
+
+<br>
+
+| Country (Year 1982) | Rule of Law Index | Electoral Rights Index |
+| ------------------- | ----------------- | ---------------------- |
+| Bolivia             | 0.17              | 0.83                   |
+| Colombia            | 0.33              | 0.83                   |
+| Cyprus              | 0.33              | 1.00                   |
+| Dominican R.        | 0.50              | 1.00                   |
+| Honduras            | 0.17              | 0.83                   |
+| South Africa        | 0.50              | 1.00                   |
+| Uruguay                    |0.50                   |1.00                        |
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Political Regimes and Long-Term Investments 
+
+
+
+<div class="mermaid">
+flowchart TD  
+A(Democracy) --> B["Voters demand economic support (e.g. welfare)"] --> C[Government to direct resources towards public consumption and away from investments] --> D[Lower growth] 
+
+</div>
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Dictatorships are better at generating savings and investment in physical capital required for economic growth (Huntington 1968)
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Przeworski and Limongi (1993): Dictators can implement coercively hard economic policies necessary to generate long-term investments, ignoring the desires of ‘short-sighted electorates’
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Political Regime and Physical vs. Human Capital
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Human Capital**: 
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Knutsen (2012): Democracies have advantage in generating human capital (rather than physical capital) over autocratic regimes
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**Education**: 
+	- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->Democracy is widely regarded as superior to autocracy in terms of providing access to education (Stavasage 2005)
+- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->**Technological Innovation**: 
+	- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->Sah and Stiglitz (1986): democracies are more receptive to innovation and diffusion of new technologies
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Political Regimes and Rent Seeking
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Democracies and Rent-Seeking
+- Olson (1982): 'Rise and Decline of Nations'
+	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Democratic leaders need to retain support of interest groups (e.g. farmers, producers, and trade unions) or they will be voted out of office
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Economic growth may be sacrificed in order to provide concentrated benefits to vested interests at the expense of the whole population
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**Transparency:** democracy reduces rent- seeking because it guarantees greater transparency which allow citizens to monitor elected officials (Wittman 1995)
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Autocracies and Rent-Seeking
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Przeworski and Limongi (1993): success of East Asian dictatorships was ‘state autonomy” and capacity to pursue developmentalist policies insulated from pressures from vested interests (see also Wade 1990)
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Bueno de Mesquita (2003): nondemocratic leaders still rely on the support of a small set of selectors (e.g. political party, military)
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Evidence on Democracy and Growth
+
+
+<img src="Resources/Attachments/Murtin and Wacziarg 2014 dev.png" alt="" style="width: 700px; object-fit: fill">
+
+<small class="caption">Source: Murtin and Wacziarg (2014)</small>
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Democracy and Growth: Correlation vs. Causation?
+
+ - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Lipset (1959): Positive correlation between democracy and economic development
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->**Reverse causation:** Does democracy leads to growth or growth leads to democracy?
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**Omitted variables**: Covariation between democracy and economic growth could be due to other variables affecting the two systematically
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Evidence on Democracy and Growth
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Ambiguous results from the empirical tests of the link between democracy and growth
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Przeworski and Limongi (1993): regime type has no effect on growth (review of 18 studies)
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**Indirect** effect of democracy on growth (Doucouliagos and Ulubaşoğlu 2008)
+	- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->Greater human capital formation,
+	- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->Greater level of economic freedom,
+	- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->Lower inflation,
+	- &shy;<!-- .element: class="fragment" data-fragment-index="7" -->Lower political instability
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Variation in growth within the same regime type
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Very large variation in growth rates among countries with similar regimes
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Variations tend to be larger across dictatorships (Rodrik 2008)
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Democratic Institutions and Growth
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Puzzle
+
+- Why do some democracies choose economic policies that promote economic growth, while others seem incapable of prospering?
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Elements of Institutional Diversity in Democracies
+
+- Number of elected **assemblies** (unicameral vs. bicameral legislatures)
+- Relation between Executive and Legislative (**Parliamentary** vs. **Presidential** vs. **Semi-Presidential** Systems)
+- **Electoral systems** (Proportional systems with large vs. winner-take-all basis with smaller districts)
+- **Single party** vs. **multi-party** coalition governments
+- **Federalist** vs. **centralized** system
+- **Delegation** to Bureaucracies
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Cox and McCubbins (2001): Democratic Institutions and Policy Stability/Change
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Democratic institutions differ in the extent to which they require a broader consensus before any policy can be changed.
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Presence of multiple “veto points” leads to
+	1) Policy outcomes that are more stable,
+	2) May impede necessary policy changes
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Cox and McCubbins (2001): Democratic Institutions and Policy Stability/Change
+
+<img src="Resources/Attachments/McCubbin - Argument.png" alt="" style="width: 600px; object-fit: fill">
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Cox and McCubbins (2001): Democratic institutions and rent-seeking
+
+- Institutions determine to what extent politicians respond to demands of special interests (rent- seeking) vs. the general public
+
+<img src="Resources/Attachments/McCubbins - RentSeeking.png" alt="" style="width: 700px; object-fit: fill">
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Electoral System
+
+- **Electoral system** shapes the incentives of politicians to campaign on a broad national platform or to defend the interests of location-specific groups
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Campaign Finance
+
+- Special interests are key contributions where campaign finance rules are lax (e.g. USA) compared to countries strict regulation of expenditure on mass media (as in the U.K.)
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Federalism
+- Greater fragmentation of authority increase the political need for accommodation of narrow demands as the number of veto players increases.
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Government Subcommittees
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Policies that affect specific issue areas are often made within “iron triangles” between special interests, bureaucrats, and legislative committee members work together
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Interests of those groups represented in the policy process are advantaged over those who are excluded
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Institutional Variations in non-democratic regimes
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Variations in growth of dictatorship  
+
+<iframe src="https://data.worldbank.org/share/widget?indicators=NY.GDP.PCAP.CD&locations=KR-CD" width='750' height='500' frameBorder='0' scrolling="no" ></iframe>
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Variations in the aims of dictators
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Totalitarian dictators exerting as much control as possible over society (e.g. Mao’s China)
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Predatory dictators accumulating rents from sale of natural resources (e.g. Mobutu’s DRC)
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Developmental dictators (e.g.Lee’s Singapore)
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Variations in the Role of Legislatures in Autocracies (Wahman et al. 2013)
+
+- Authoritarian regimes **without elected legislatures**
+	- Military Regimes
+	- Monarchies
+- Authoritarian regimes **with elected legislatures**
+	- No-party
+	- One-party
+	- Multiparty authoritarian
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Variations in the Role of Legislatures in Autocracies (Wahman et al. 2013)
+
+<img src="Resources/Attachments/Wahman - Hybriud Types of Regimes.png" alt="" style="width: 700px; object-fit: fill">
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Do institutions matter in non-democratic regimes?
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Skeptical thesis:** Institutions do not matter since dictators can change them at will
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->McGuire and Olson (1996): Institutions may constrain dictators, and take away opportunities to pursue ‘bad policies'
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Impact of Elections in Authoritarian Regimes
+
+- **Political Business Cycles**
+	- Higashijima (2016): Authoritarian regimes, autocrats with semi-competitive, less fraudulent elections are most likely to adopt expansionary fiscal policy prior to elections  convey a credible signal of their ability to mobilize popular support 
+- **Economic Crises**
+	- Lucardi (2019): Bad economic times can weaken **closed authoritarian regime** popularity at any time, but weaken **electoral authoritarian government** popularity at election time
+</div></script></section></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/menu/menu.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+	<script src="plugin/reveal-pointer/pointer.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+	  function isLight(color) {
+		let hex = color.replace('#', '');
+
+		// convert #fff => #ffffff
+		if(hex.length == 3){
+			hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+		}
+
+		const c_r = parseInt(hex.substr(0, 2), 16);
+		const c_g = parseInt(hex.substr(2, 2), 16);
+		const c_b = parseInt(hex.substr(4, 2), 16);
+		const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+		return brightness > 155;
+	}
+
+	var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--r-background-color').trim();
+	var isLight = isLight(bgColor);
+
+	if(isLight){
+		document.body.classList.add('has-light-background');
+	} else {
+		document.body.classList.add('has-dark-background');
+	}
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+		  RevealMenu,
+	      RevealPointer
+        ],
+
+
+    	allottedTime: 120 * 1000,
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+		markdown: {
+		  gfm: true,
+		  mangle: true,
+		  pedantic: false,
+		  smartLists: false,
+		  smartypants: false,
+		},
+
+		mermaid: {
+			theme: isLight ? 'default' : 'dark',
+		},
+
+		customcontrols: {
+			controls: [
+				{id: 'toggle-overview',
+				title: 'Toggle overview (O)',
+				icon: '<i class="fa fa-th"></i>',
+				action: 'Reveal.toggleOverview();'
+				},
+			]
+		},
+		menu: {
+			loadIcons: false
+		}
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":960,"height":700,"margin":0.04,"controls":true,"progress":true,"slideNumber":true,"transition":"fade","transitionSpeed":"slow","mermaid":{"htmlLabels":false}}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+
+  <!-- created with Advanced Slides -->
+</html>
