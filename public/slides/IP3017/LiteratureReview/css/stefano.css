@@ -282,6 +282,19 @@ body {
     vertical-align: top;
 }
 
+
+.mermaid svg {
+    color: #FF4081;
+    margin-left: 0 !important;
+    text-align: center;
+    resize: both;
+    overflow: auto;
+    margin-bottom: 2px;
+    position: relative;
+    max-height: 600px;
+    max-width: 100%;
+}
+
 /*********************************************
  * LINKS
  *********************************************/
